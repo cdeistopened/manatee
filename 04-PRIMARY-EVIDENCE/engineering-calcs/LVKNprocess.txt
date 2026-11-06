@@ -1,0 +1,54 @@
+                          Thermo-Electric Conversion of Organic Compounds
+                                 using controlled, micro-flow events
+
+It is known that organic molecules can be re-organized using super-critical pressures and temperatures.
+These changes occur when the molecules are heated to 1200+ degrees F and entrained in a pressure
+vessel. What is less commonly known is these conditions of pressure and temperature occur inside
+cavitation bubbles. The principle of this apparatus is the controlled creation of cavitation in such a
+manner as to entrain a portion of a fluid containing water and organic molecules and subject the fluid to
+super-critical conditions.
+
+The energy required to affect this change is then that energy required to bring the fluid to sufficient
+velocity and temperature to cavitate in a controlled manner.
+
+Assume one gallon of fluid being sent through a typical linear venturi:
+
+To induce cavitation requires a velocity of 100 feet per second if the fluid is at 150 degrees F. Using
+Boyle's law the change in velocity reduces the pressure to less than the vapor pressure of the fluid,
+inducing cavitation.
+
+The energy required to accelerate the flow to 100 fps is 0.06 hp/gallon or 204.84 btu.
+[Eulers Equation: V^2/2*g = 100^2/2*32.2 = 10000/64.4 = 155.28 ft= H
+hp= Q*H/3960 = (1gal * 155.28)/3960 = 0.039hp
+assume efficiency of 65% = 0.039/0.35 = 0.06 hp ]
+
+
+Each pass through the venturi converts 3% of the fluid.
+1hp=2544 BTU
+Therefore it requires 204.84/0.03 or 6828 btu.
+
+Based on lab tests, the resulting fluid contains 127,000 btu/ gallon.
+
+Thus the venturi reduces the conversion energy requirement to 5.34% of the energy produced.
+
+
+How the venturi works:
+
+Cavitation is a phenomenon that occurs under predictable conditions, but location of individual bubbles
+can not be calculated. The venturi redirects the energy of cavitation, normally associated with a 2
+dimensional wave front, first into a controlled tetra-helical vortex, then compresses the three vortices
+into a rotating flow that also spirals around a center. In this way the energy distribution inside the flow
+is controlled, directed and non-random.
+
+The primary rotation is nearly 15000rpm. The pressure inside this rotating zone is absolute zero and the
+temperature is 1500 degrees F. However this zone is only 1000Angstroms in diameter. The flow
+entrained inside the spiral is rotating at 2000rpm inside a zone 0.04 inches in diameter. Its pressure is
+also absolute zero and its temperature is 630 degrees F. Since it is not ionized like the flow inside the
+primary vortex, there is an exchange of energy between the 2 zones causing oscillating zones of gas
+and liquid to exchange energy in a 'worm-like' motion. In this manner the cavitation is entrained inside
+the spiral.
+
+The spiral is formed by the excess energy, commonly called turbulence, being focused to a single
+location, inducing a local vortex and allowing laminar flow in the rest of the stream. These phenomena
+are micro-events inside an otherwise stable streamline.
+

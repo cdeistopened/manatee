@@ -1,0 +1,27 @@
+                                        The Process
+
+Biomass is grown in a 2-tank system where abundant light, nutrients, CO2 and warmth
+are provided. Periodically a pump-venturi pulls biomass and water from the bottom of
+one tank and transfers it to another, aerating it with CO2 via the venturi. This raises the
+level of one tank and concentrates biomass on the surface. This overflows back to the
+other tank. Over time the concentration of biomass in one tank becomes more than 6%
+by weight. A light sensor indicates when it is dense enough.
+
+It is then transferred to a closed tank where it will be processed. Inside this tank it is
+drawn in to a high pressure (300psi) pump and ejected through a unique, ultra-cavitating
+nozzle. Inside the nozzle a portion of the biomass and water (3%) are converted into
+hydrocarbons via a process called hydrous pyrolysis. The stream is re-injected into the
+processing tank where the mass converted to hydrocarbons floats at the surface while the
+remainder sinks into the tank and is sent through the nozzle again.
+
+Over time a layer of hydrocarbons forms on the surface. When fresh biomass is injected
+into the tank, the water level rises. This displaces most of the hydrocarbons into a
+collection bladder. A “S” shaped tube with a sub-surface inlet returns a portion of the
+tank water, containing residual chlorophyl, back into the greenhouse tanks where it is re-
+used in future generations of algae.
+
+The hydrocarbons accumulate in the storage bladder. They stratify, separating any
+residual water. They are off-loaded when the robot returns to port. Periodically, the robot
+directs some biomass into a closed but not sealed tank. This is allowed to decompose,
+generating CO2 for growth. The waste is returned to the greenhouse tanks.
+

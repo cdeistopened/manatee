@@ -1,0 +1,1323 @@
+{
+  "version": "2026-10-15-detail-2-cleanroom",
+  "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+  "origin": "cleanroom-parametric-2026-10-15",
+  "systems": [
+    {
+      "id": "flotation",
+      "name": "Flotation & attachments",
+      "note": "Clean-room study uses 100% procedural Schedule-40 PVC pontoon tubes and 8 stainless band-clamp saddles; source study retains the four stretched catalogue tubes."
+    },
+    {
+      "id": "structure",
+      "name": "Pipe frame & mast",
+      "note": "53 mm square-section perimeter rails, four corner cross-sockets, planar X-braced + diamond deck truss, and 0.14 m central square mast column."
+    },
+    {
+      "id": "rigging",
+      "name": "Braces, rigging & connectors",
+      "note": "Inner and outer diagonal mast stay sets with upper mast collar rings and inline Suncor-class 316-SS jaw-jaw turnbuckles."
+    },
+    {
+      "id": "propulsion",
+      "name": "Bilge-pump propulsion",
+      "note": "Port and starboard submerged Rule 2000-class marine bilge thrusters with slotted strainers and aft 29 mm water-jet discharge nozzles."
+    },
+    {
+      "id": "fluid",
+      "name": "Intake, cavitation nozzle & separator",
+      "note": "Central priming pump, 300-psi deck feed pump, inline 4-port Venturi Eductor with 4.20-in 316-SS 7-bore Kinetic Cavitation Nozzle, and aft-starboard Pyrolizer-Separator / DAF drum."
+    },
+    {
+      "id": "power",
+      "name": "Solar, storage & controls",
+      "note": "Forward 2.066 \u00d7 0.519 m flexible marine monocrystalline PV array and sealed deck supercapacitor / LiFePO4 buffer module."
+    },
+    {
+      "id": "wind",
+      "name": "Rotor & generator",
+      "note": "Three-wing cycloidal/J-profile Lenz-2 VAWT rotor on six radial spoke arms driving a sealed masthead PMG alternator."
+    }
+  ],
+  "studies": {
+    "cleanroom": {
+      "name": "Manatee \u00b7 100% clean-room parametric CAD",
+      "note": "100% original procedural CAD replacement (CERN-OHL-S-2.0 / CC-BY-SA-4.0) resolving sol0075. Includes all 7 systems and the inline 316-SS 7-bore Kinetic Cavitation Nozzle & 4-port Venturi Eductor.",
+      "parts": [
+        "cr-pontoon-port-outer",
+        "cr-pontoon-port-inner",
+        "cr-pontoon-starboard-inner",
+        "cr-pontoon-starboard-outer",
+        "cr-pontoon-clamps",
+        "cr-frame-rail-cross-aft",
+        "cr-frame-rail-cross-forward",
+        "cr-frame-rail-long-port",
+        "cr-frame-rail-long-starboard",
+        "cr-frame-sockets",
+        "cr-deck-cross-members",
+        "cr-mast-tube",
+        "cr-mast-stays-inner",
+        "cr-mast-stays-outer",
+        "cr-bilge-pumps-pair",
+        "cr-bilge-pump-cartridge-centre",
+        "cr-pump-deck",
+        "cr-eductor-nozzle",
+        "cr-vessel-squat-cylinder",
+        "cr-solar-panel",
+        "cr-capacitor",
+        "cr-rotor-lenz-masthead"
+      ]
+    },
+    "kinetic-nozzle": {
+      "name": "316-SS Kinetic Cavitation Nozzle & 4-Port Eductor",
+      "note": "Parametric 3D engineering study from KineticNozzle1.DXF (4.20 in OD \u00d7 4.20 in, 7 bores on 0.73 in pitch circle), KineticNozzle5gpd.dxf (1.06 in 5-GPD cartridge), and Eductor_Pump_Cavitation_Nozzle_schematic.jpg (180\u00b0 cutaway 4-port Venturi eductor with helical vortex streamlines).",
+      "parts": [
+        "kn-disc-420",
+        "kn-disc-5gpd",
+        "kn-eductor-body",
+        "kn-vortex-guides"
+      ]
+    },
+    "turnbuckle": {
+      "name": "Turnbuckle & cable connection",
+      "note": "Bench study, not installed on the raft. Suncor 1/4 in jaw\u2013jaw envelope, visible threads and pinned eye; generic anchor and cable termination. Connection type still needs confirmation.",
+      "parts": [
+        "tb-body",
+        "tb-stud-upper",
+        "tb-pin-upper",
+        "tb-stud-lower",
+        "tb-pin-lower",
+        "tb-anchor",
+        "cable-thimble",
+        "cable-eye",
+        "cable-sleeves"
+      ]
+    },
+    "bilge-pump": {
+      "name": "Large bilge pump \u00b7 reference study",
+      "note": "Complete 2000 GPH-class pump envelope, not a chosen thruster. Inlet cage, sealed motor, open hose outlet and two leads. Awaiting actual pump identity and propulsion arrangement.",
+      "parts": [
+        "pump-strainer",
+        "pump-motor",
+        "pump-discharge",
+        "pump-leads"
+      ]
+    },
+    "hose-joint": {
+      "name": "Hose, barb & band clamp",
+      "note": "Bench study of a physically overlapping hose/barb/clamp connection. Generic geometry, not a specified fluid circuit or pressure-rated joint.",
+      "parts": [
+        "hose",
+        "hose-barb",
+        "hose-clamp"
+      ]
+    }
+  },
+  "parts": {
+    "cr-pontoon-port-outer": {
+      "id": "cr-pontoon-port-outer",
+      "name": "Clean-room PVC pontoon \u00b7 port outer",
+      "system": "flotation",
+      "status": "Clean-room parametric",
+      "description": "100% original procedural Schedule-40 PVC pontoon tube (132.1 mm cap OD, 3.175 m overall length) with domed slip end-caps and coupling shoulders.skp.",
+      "connection": "Clamped to the fore and aft cross-rails by 316-SS band-clamp saddle brackets bearing against the coupling shoulders.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1321,
+        3.1753,
+        0.1321
+      ],
+      "source_part": "pontoon-port-outer",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-pontoon-port-inner": {
+      "id": "cr-pontoon-port-inner",
+      "name": "Clean-room PVC pontoon \u00b7 port inner",
+      "system": "flotation",
+      "status": "Clean-room parametric",
+      "description": "100% original procedural Schedule-40 PVC pontoon tube (132.1 mm cap OD, 3.175 m overall length) with domed slip end-caps and coupling shoulders.skp.",
+      "connection": "Clamped to the fore and aft cross-rails by 316-SS band-clamp saddle brackets bearing against the coupling shoulders.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1321,
+        3.1753,
+        0.1321
+      ],
+      "source_part": "pontoon-port-inner",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-pontoon-starboard-inner": {
+      "id": "cr-pontoon-starboard-inner",
+      "name": "Clean-room PVC pontoon \u00b7 starboard inner",
+      "system": "flotation",
+      "status": "Clean-room parametric",
+      "description": "100% original procedural Schedule-40 PVC pontoon tube (132.1 mm cap OD, 3.175 m overall length) with domed slip end-caps and coupling shoulders.skp.",
+      "connection": "Clamped to the fore and aft cross-rails by 316-SS band-clamp saddle brackets bearing against the coupling shoulders.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1321,
+        3.1753,
+        0.1321
+      ],
+      "source_part": "pontoon-starboard-inner",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-pontoon-starboard-outer": {
+      "id": "cr-pontoon-starboard-outer",
+      "name": "Clean-room PVC pontoon \u00b7 starboard outer",
+      "system": "flotation",
+      "status": "Clean-room parametric",
+      "description": "100% original procedural Schedule-40 PVC pontoon tube (132.1 mm cap OD, 3.175 m overall length) with domed slip end-caps and coupling shoulders.skp.",
+      "connection": "Clamped to the fore and aft cross-rails by 316-SS band-clamp saddle brackets bearing against the coupling shoulders.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1321,
+        3.1753,
+        0.1321
+      ],
+      "source_part": "pontoon-starboard-outer",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-pontoon-clamps": {
+      "id": "cr-pontoon-clamps",
+      "name": "316-SS pontoon band-clamp saddle mounts (8\u00d7)",
+      "system": "flotation",
+      "status": "Clean-room parametric",
+      "description": "Eight 316-SS worm-drive band clamps with EPDM elastomer saddles securing the four PVC pontoons to the fore and aft cross-rails next to the coupling shoulders.",
+      "connection": "Saddle bolts pass into the underside of the cross-rails; axial thrust is reacted against the PVC coupling shoulders.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 8,
+      "dimensions_m": [
+        2.1775,
+        1.5991,
+        0.161
+      ],
+      "source_part": "pontoon-clamps",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-frame-rail-cross-aft": {
+      "id": "cr-frame-rail-cross-aft",
+      "name": "Aft structural cross-rail",
+      "system": "structure",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 53 mm square-section UV-stabilized PVC/HDPE aft cross-beam spanning 2.061 m across all four pontoons at y = -0.7099 m.",
+      "connection": "Engages port and starboard corner cross-socket collars and carries the eight aft pontoon band clamps.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        2.0611,
+        0.053,
+        0.053
+      ],
+      "source_part": "frame-rail-cross-aft",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-frame-rail-cross-forward": {
+      "id": "cr-frame-rail-cross-forward",
+      "name": "Forward structural cross-rail",
+      "system": "structure",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 53 mm square-section UV-stabilized PVC/HDPE forward cross-beam spanning 2.086 m at y = +0.8652 m.",
+      "connection": "Engages forward corner cross-socket collars and supports the aft edge of the marine solar array.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        2.0856,
+        0.053,
+        0.053
+      ],
+      "source_part": "frame-rail-cross-forward",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-frame-rail-long-port": {
+      "id": "cr-frame-rail-long-port",
+      "name": "Port longitudinal frame rail",
+      "system": "structure",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 53 mm square-section longitudinal rail running 2.519 m fore-and-aft between the port inner and outer pontoons at x = -0.9823 m.",
+      "connection": "Pinned through corner cross-sockets; provides mounting deck for the high-pressure feed pump and supercapacitor buffer.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.053,
+        2.5189,
+        0.053
+      ],
+      "source_part": "frame-rail-long-port",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-frame-rail-long-starboard": {
+      "id": "cr-frame-rail-long-starboard",
+      "name": "Starboard longitudinal frame rail",
+      "system": "structure",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 53 mm square-section longitudinal rail running 2.519 m fore-and-aft between the starboard pontoons at x = +0.8913 m.",
+      "connection": "Pinned through corner cross-sockets; supports the aft-starboard Pyrolizer-Separator & DAF drum.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.053,
+        2.5189,
+        0.053
+      ],
+      "source_part": "frame-rail-long-starboard",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-frame-sockets": {
+      "id": "cr-frame-sockets",
+      "name": "Corner cross-socket collars (4\u00d7)",
+      "system": "structure",
+      "status": "Clean-room parametric",
+      "description": "Four heavy-duty Schedule-80 PVC/HDPE cross-socket collars with 316-SS vertical thru-bolts locking the longitudinal and cross rails at all four perimeter intersections.",
+      "connection": "Thru-bolts also anchor the lower clevis lugs for the outer diagonal mast stays.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 4,
+      "dimensions_m": [
+        1.9886,
+        1.6901,
+        0.088
+      ],
+      "source_part": "frame-sockets",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-deck-cross-members": {
+      "id": "cr-deck-cross-members",
+      "name": "Planar X-braced & diamond deck truss with mast step hub",
+      "system": "structure",
+      "status": "Clean-room parametric",
+      "description": "Clean-room structural deck truss combining an inscribed diamond frame, four inclined X-brace chords, and the lower circular mast-step hub disc (z = 0.0357..0.1623 m).",
+      "connection": "Reacts mast step compression and lateral rigging loads into the four perimeter rails.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        1.6351,
+        1.6453,
+        0.12675
+      ],
+      "source_part": "deck-cross-members",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-mast-tube": {
+      "id": "cr-mast-tube",
+      "name": "Central square mast column (0.14 m section)",
+      "system": "structure",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 139.7 mm square-section vertical composite/PVC mast column rising from the deck step hub (z = 0.0357 m) to the masthead alternator mount (z = 0.8793 m).",
+      "connection": "Base flange bolts to the central deck hub; upper collar carries the Lenz-2 VAWT rotor and inner/outer stay rings.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.158,
+        0.158,
+        0.8436
+      ],
+      "source_part": "mast-tube",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-mast-stays-inner": {
+      "id": "cr-mast-stays-inner",
+      "name": "Inner diagonal mast stays & turnbuckles",
+      "system": "rigging",
+      "status": "Clean-room parametric",
+      "description": "Clean-room four-way diagonal 316-SS mast stay assembly (mast-stays-inner) with welded upper mast collar ring and inline Suncor-class jaw-jaw turnbuckle tensioners at the four deck corners.",
+      "connection": "Upper collar bolts around the 0.14 m mast column; lower clevis forks pin to the frame corner lugs.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        1.5927,
+        1.5924,
+        0.4527
+      ],
+      "source_part": "mast-stays-inner",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-mast-stays-outer": {
+      "id": "cr-mast-stays-outer",
+      "name": "Outer diagonal mast stays & turnbuckles",
+      "system": "rigging",
+      "status": "Clean-room parametric",
+      "description": "Clean-room four-way diagonal 316-SS mast stay assembly (mast-stays-outer) with welded upper mast collar ring and inline Suncor-class jaw-jaw turnbuckle tensioners at the four deck corners.",
+      "connection": "Upper collar bolts around the 0.14 m mast column; lower clevis forks pin to the frame corner lugs.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        1.9202,
+        1.5924,
+        0.4527
+      ],
+      "source_part": "mast-stays-outer",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-bilge-pumps-pair": {
+      "id": "cr-bilge-pumps-pair",
+      "name": "Clean-room Rule 2000-class marine bilge thrusters (pair)",
+      "system": "propulsion",
+      "status": "Clean-room parametric",
+      "description": "Clean-room port and starboard submerged 2000-GPH centrifugal marine bilge thrusters at x = \u00b10.96 m, y = -0.6428 m, z = -0.0777 m with slotted blue ABS strainers, sealed white/red motor housings, and aft-directed 29 mm water-jet discharge nozzles.skp.",
+      "connection": "Suspended beneath the aft frame cross-rail on 316-SS hanger brackets; differential thrust steers the vessel.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 2,
+      "dimensions_m": [
+        2.136,
+        0.3305,
+        0.1705
+      ],
+      "source_part": "bilge-pumps-pair",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-bilge-pump-cartridge-centre": {
+      "id": "cr-bilge-pump-cartridge-centre",
+      "name": "Central intake & priming bilge cartridge",
+      "system": "fluid",
+      "status": "Clean-room parametric",
+      "description": "Clean-room central low-pressure priming/slurry lift pump at (0, -0.0016, 0.050 m) with slotted strainer base and 12VDC sealed cartridge.skp.",
+      "connection": "Draws surface algae harvest slurry into the 4-port Venturi eductor induction manifold.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.0711,
+        0.0632,
+        0.0999
+      ],
+      "source_part": "bilge-pump-cartridge-centre",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-pump-deck": {
+      "id": "cr-pump-deck",
+      "name": "High-pressure motive feed pump (300-psi 12VDC)",
+      "system": "fluid",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 300-psi 12VDC positive-displacement plunger/diaphragm feed pump at (-0.7833, 0.2217, 0.1896 m) with cast bronze manifold head and unloader valve.skp.",
+      "connection": "Delivers high-pressure motive water stream to the 316-SS 7-bore Kinetic Cavitation Nozzle inside the inline Venturi eductor.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.0761,
+        0.1399,
+        0.0779
+      ],
+      "source_part": "pump-deck",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-eductor-nozzle": {
+      "id": "cr-eductor-nozzle",
+      "name": "Inline 4-port Venturi Eductor & 4.20-in 316-SS Kinetic Cavitation Nozzle",
+      "system": "fluid",
+      "status": "Clean-room parametric",
+      "description": "Behrens core IP: 4.20-in OD \u00d7 4.20-in 316-SS 7-bore tetrahedral Kinetic Cavitation Nozzle seated inside a 4-port bronze Venturi Eductor on the aft fluid bridge between the high-pressure deck pump and separator drum.",
+      "connection": "High-pressure motive water from pump-deck accelerates through the 7 bores (0.25\" & 0.16\" jets on 0.73\" pitch circle), entraining algae/paraffin slurry via the 4 induction ports and lysing cells by hydrodynamic acoustic cavitation.",
+      "source": "Behrens DXF & schematic: dossier/03_cad-and-schematics/kinetic-nozzle/ (KineticNozzle1.DXF, KineticNozzle5gpd.dxf, Eductor_Pump_Cavitation_Nozzle_schematic.jpg)",
+      "quantity": 1,
+      "dimensions_m": [
+        1.49889,
+        1.32576,
+        0.26243
+      ],
+      "source_part": "cr-eductor-nozzle",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-vessel-squat-cylinder": {
+      "id": "cr-vessel-squat-cylinder",
+      "name": "Pyrolizer-Separator & DAF decant drum",
+      "system": "fluid",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 415.3 mm OD \u00d7 93.3 mm cyclonic dissolved-air-flotation (DAF) & lipid/paraffin decant vessel at the aft-starboard corner (0.9264, -1.0460, 0.1740 m) with internal stainless weir baffle, tangential cavitated-slurry feed boss, upper lipid/paraffin skim port, and clarified water return port.",
+      "connection": "Receives lysed multiphase mixture from cr-eductor-nozzle; separates buoyant lipid/paraffin fraction over the internal weir.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.41705,
+        0.41565,
+        0.0933
+      ],
+      "source_part": "vessel-squat-cylinder",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-solar-panel": {
+      "id": "cr-solar-panel",
+      "name": "Clean-room flexible marine monocrystalline PV array (100 W)",
+      "system": "power",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 2.0655 \u00d7 0.5192 m ETFE-laminated flexible marine monocrystalline solar array at (-0.0399, 1.1179, 0.1649 m) with white polymer backing, busbar grid, and sealed junction box.",
+      "connection": "Mounted across the forward pontoon deck ahead of the forward cross-rail; feeds the supercapacitor/LiFePO4 buffer module.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        2.0655,
+        0.5192,
+        0.0068
+      ],
+      "source_part": "solar-panel",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-capacitor": {
+      "id": "cr-capacitor",
+      "name": "Sealed marine supercapacitor / LiFePO4 buffer module",
+      "system": "power",
+      "status": "Clean-room parametric",
+      "description": "Clean-room 64.0 \u00d7 203.1 \u00d7 64.0 mm brushed-stainless energy buffer module at (-0.7735, 0.5625, 0.1921 m) with sealed polymer end-caps and waterproof cable glands.skp.",
+      "connection": "Buffers solar & Lenz-2 VAWT generator output to handle high-current pulse loads from the 300-psi cavitation feed pump.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.064,
+        0.203,
+        0.064
+      ],
+      "source_part": "capacitor",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "cr-rotor-lenz-masthead": {
+      "id": "cr-rotor-lenz-masthead",
+      "name": "Clean-room 3-wing Lenz-2 VAWT rotor & masthead PMG alternator",
+      "system": "wind",
+      "status": "Clean-room parametric",
+      "description": "Clean-room vertical-axis wind turbine (VAWT) at (-0.0136, 0.1687, 0.8742 m, z = 0.6756..1.0727 m) with three cycloidal/J-profile Lenz-2 wings on six radial spoke arms around a central hub and sealed permanent-magnet alternator housing.",
+      "connection": "Couples directly to the masthead PMG shaft to trickle-charge the deck supercapacitor/LiFePO4 buffer day and night.",
+      "source": "Solaris Clean-Room Parametric CAD (cleanroom-parametric-2026-10-15) \u00b7 CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "quantity": 1,
+      "dimensions_m": [
+        0.57748,
+        0.52784,
+        0.3971
+      ],
+      "source_part": "rotor-lenz-masthead",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "kn-disc-420": {
+      "id": "kn-disc-420",
+      "name": "4.20-in 316-SS 7-Bore Kinetic Cavitation Nozzle (KineticNozzle1.DXF)",
+      "system": "fluid",
+      "status": "Clean-room parametric",
+      "description": "Exact 3D realization of KineticNozzle1.DXF & KineticNozzle1BBB.JPG (labeled \"306 S.S.\" / 316 stainless steel): 4.20 in (106.68 mm) OD \u00d7 4.20 in (106.68 mm) cylinder Boolean-drilled with the 7-bore tetrahedral vortex cluster around the 0.73 in (18.54 mm) pitch circle \u2014 one central 0.25 in (6.35 mm) bore, three outer 0.25 in primary bores at 90\u00b0/210\u00b0/330\u00b0, and three interstitial 0.16 in (4.06 mm) secondary bores.",
+      "connection": "Seats inside the converging motive inlet of the 4-port Venturi Eductor; high-velocity jets generate collapsing vapour cavities downstream.",
+      "source": "Behrens DXF & schematic: dossier/03_cad-and-schematics/kinetic-nozzle/ (KineticNozzle1.DXF, KineticNozzle5gpd.dxf, Eductor_Pump_Cavitation_Nozzle_schematic.jpg)",
+      "quantity": 1,
+      "dimensions_m": [
+        0.10668,
+        0.10709,
+        0.10668
+      ],
+      "source_part": "kn-disc-420",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "kn-disc-5gpd": {
+      "id": "kn-disc-5gpd",
+      "name": "5-GPD 1.06-in 316-SS Kinetic Nozzle Cartridge (KineticNozzle5gpd.dxf)",
+      "system": "fluid",
+      "status": "Clean-room parametric",
+      "description": "Exact 3D realization of KineticNozzle5gpd.dxf: 1.06 in (26.92 mm) OD \u00d7 1.06 in (26.92 mm) 316-SS bench/pilot 5-GPD cavitation cartridge with 0.20 in (5.08 mm) pitch circle, four 0.06 in (1.52 mm) primary bores, and three 0.04 in (1.02 mm) secondary bores, shown alongside the 4.20-in full-scale unit for 1:4 scale comparison.",
+      "connection": "Seats inside the converging motive inlet of the 4-port Venturi Eductor; high-velocity jets generate collapsing vapour cavities downstream.",
+      "source": "Behrens DXF & schematic: dossier/03_cad-and-schematics/kinetic-nozzle/ (KineticNozzle1.DXF, KineticNozzle5gpd.dxf, Eductor_Pump_Cavitation_Nozzle_schematic.jpg)",
+      "quantity": 1,
+      "dimensions_m": [
+        0.02692,
+        0.02726,
+        0.02692
+      ],
+      "source_part": "kn-disc-5gpd",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "kn-eductor-body": {
+      "id": "kn-eductor-body",
+      "name": "Cutaway 4-Port Venturi Eductor & Cavitation Mixing Chamber",
+      "system": "fluid",
+      "status": "Clean-room parametric",
+      "description": "180\u00b0 cutaway engineering model of Rudy Behrens' 4-Port Venturi Eductor & Cavitation Nozzle schematic (Eductor_Pump_Cavitation_Nozzle_schematic.jpg). Shows the bottom flanged high-pressure motive feed inlet, the seated 316-SS multi-bore kinetic nozzle insert, the four angled low-pressure induction ports, the converging acoustic-cavitation mixing chamber, and the diverging Venturi discharge diffuser.",
+      "connection": "Motive jet exits the 316-SS nozzle at high velocity into the converging chamber, pulling secondary slurry through the four angled induction ports and collapsing cavitation microbubbles in the throat.",
+      "source": "Behrens DXF & schematic: dossier/03_cad-and-schematics/kinetic-nozzle/ (KineticNozzle1.DXF, KineticNozzle5gpd.dxf, Eductor_Pump_Cavitation_Nozzle_schematic.jpg)",
+      "quantity": 1,
+      "dimensions_m": [
+        0.16087,
+        0.076,
+        0.235
+      ],
+      "source_part": "kn-eductor-body",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "kn-vortex-guides": {
+      "id": "kn-vortex-guides",
+      "name": "Helical Vortex Core & Acoustic Cavitation Shear Streamlines",
+      "system": "fluid",
+      "status": "Clean-room parametric",
+      "description": "Illustrative 3D flow-field geometry inside the cutaway mixing chamber: central helical vortex core (blue) generated by the tetrahedral 7-bore cluster, surrounded by three high-frequency acoustic-cavitation shear filaments (cyan) rising from the four induction ports into the Venturi throat.",
+      "connection": "Visualizes the hydrodynamic shear and microbubble implosion zone that lyses algae cell walls and emulsifies/cracks heavy hydrocarbons.",
+      "source": "Behrens DXF & schematic: dossier/03_cad-and-schematics/kinetic-nozzle/ (KineticNozzle1.DXF, KineticNozzle5gpd.dxf, Eductor_Pump_Cavitation_Nozzle_schematic.jpg)",
+      "quantity": 1,
+      "dimensions_m": [
+        0.0847,
+        0.08774,
+        0.16153
+      ],
+      "source_part": "kn-vortex-guides",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0"
+    },
+    "mast-stays-inner": {
+      "id": "mast-stays-inner",
+      "name": "Mast stays inner",
+      "system": "rigging",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part. These are wide brace-like strips in the drawing; whether each is a rigid brace or cable must be resolved.",
+      "connection": "End fasteners are not resolved in the export. Do not substitute cables without confirming the load path.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        1.59265,
+        1.59248,
+        0.45269
+      ]
+    },
+    "frame-rail-cross-aft": {
+      "id": "frame-rail-cross-aft",
+      "name": "Frame rail cross aft",
+      "system": "structure",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part.",
+      "connection": "Joint hardware and fits need confirmation.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        2.06105,
+        0.05302,
+        0.05302
+      ]
+    },
+    "frame-rail-long-starboard": {
+      "id": "frame-rail-long-starboard",
+      "name": "Frame rail long starboard",
+      "system": "structure",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part.",
+      "connection": "Joint hardware and fits need confirmation.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        0.05302,
+        2.51886,
+        0.05302
+      ]
+    },
+    "deck-cross-members": {
+      "id": "deck-cross-members",
+      "name": "Deck cross members",
+      "system": "structure",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part.",
+      "connection": "Joint hardware and fits need confirmation.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        1.63503,
+        1.6453,
+        0.12664
+      ]
+    },
+    "frame-rail-long-port": {
+      "id": "frame-rail-long-port",
+      "name": "Frame rail long port",
+      "system": "structure",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part.",
+      "connection": "Joint hardware and fits need confirmation.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        0.05302,
+        2.51886,
+        0.05302
+      ]
+    },
+    "frame-rail-cross-forward": {
+      "id": "frame-rail-cross-forward",
+      "name": "Frame rail cross forward",
+      "system": "structure",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part.",
+      "connection": "Joint hardware and fits need confirmation.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        2.08562,
+        0.05302,
+        0.05302
+      ]
+    },
+    "pontoon-port-inner": {
+      "id": "pontoon-port-inner",
+      "name": "Pontoon port inner",
+      "system": "flotation",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part. Four individual tubes, arranged in two pairs. Catalogue drum geometry was stretched into tubes; nominal pipe size is unresolved.",
+      "connection": "Source annotation calls for frame-fixed pipe clamps next to cap/coupling shoulders.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: 55+gallon+drum.skp",
+      "quantity": 1,
+      "dimensions_m": [
+        0.13211,
+        3.17526,
+        0.13211
+      ]
+    },
+    "pontoon-starboard-outer": {
+      "id": "pontoon-starboard-outer",
+      "name": "Pontoon starboard outer",
+      "system": "flotation",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part. Four individual tubes, arranged in two pairs. Catalogue drum geometry was stretched into tubes; nominal pipe size is unresolved.",
+      "connection": "Source annotation calls for frame-fixed pipe clamps next to cap/coupling shoulders.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: 55+gallon+drum.skp",
+      "quantity": 1,
+      "dimensions_m": [
+        0.13211,
+        3.17526,
+        0.13211
+      ]
+    },
+    "pontoon-port-outer": {
+      "id": "pontoon-port-outer",
+      "name": "Pontoon port outer",
+      "system": "flotation",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part. Four individual tubes, arranged in two pairs. Catalogue drum geometry was stretched into tubes; nominal pipe size is unresolved.",
+      "connection": "Source annotation calls for frame-fixed pipe clamps next to cap/coupling shoulders.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: 55+gallon+drum.skp",
+      "quantity": 1,
+      "dimensions_m": [
+        0.13211,
+        3.17526,
+        0.13211
+      ]
+    },
+    "pontoon-starboard-inner": {
+      "id": "pontoon-starboard-inner",
+      "name": "Pontoon starboard inner",
+      "system": "flotation",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part. Four individual tubes, arranged in two pairs. Catalogue drum geometry was stretched into tubes; nominal pipe size is unresolved.",
+      "connection": "Source annotation calls for frame-fixed pipe clamps next to cap/coupling shoulders.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: 55+gallon+drum.skp",
+      "quantity": 1,
+      "dimensions_m": [
+        0.13211,
+        3.17526,
+        0.13211
+      ]
+    },
+    "mast-stays-outer": {
+      "id": "mast-stays-outer",
+      "name": "Mast stays outer",
+      "system": "rigging",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part. These are wide brace-like strips in the drawing; whether each is a rigid brace or cable must be resolved.",
+      "connection": "End fasteners are not resolved in the export. Do not substitute cables without confirming the load path.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        1.92026,
+        1.59248,
+        0.45269
+      ]
+    },
+    "bilge-pumps-pair": {
+      "id": "bilge-pumps-pair",
+      "name": "Bilge pumps pair",
+      "system": "propulsion",
+      "status": "Pump identity needed",
+      "description": "Two bare catalogue cartridges in one source group. Charlie confirms propulsion uses large off-the-shelf marine bilge pumps. Make/model and complete-pump versus cartridge conversion are unresolved.",
+      "connection": "Mounts, discharge direction, wet inlet clearance and wiring route need confirmation.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: Bilge Pump Cartridge2.skp",
+      "quantity": 2,
+      "dimensions_m": [
+        2.14113,
+        0.33072,
+        0.17057
+      ]
+    },
+    "rotor-lenz-masthead": {
+      "id": "rotor-lenz-masthead",
+      "name": "Rotor lenz masthead",
+      "system": "wind",
+      "status": "Source geometry",
+      "description": "Three-wing Lenz-type rotor geometry retained. This represents the rotor, not a verified generator assembly.",
+      "connection": "Bearing stack, shaft coupler and generator attachment are not detailed.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        0.64499,
+        0.63835,
+        0.39708
+      ]
+    },
+    "mast-tube": {
+      "id": "mast-tube",
+      "name": "Mast tube",
+      "system": "structure",
+      "status": "Source geometry",
+      "description": "Shape and position retained from the SketchUp export. Dimensions describe the drawing, not a verified manufactured part.",
+      "connection": "Joint hardware and fits need confirmation.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1397,
+        0.1397,
+        0.84364
+      ]
+    },
+    "vessel-squat-cylinder": {
+      "id": "vessel-squat-cylinder",
+      "name": "Vessel squat cylinder",
+      "system": "fluid",
+      "status": "Function unresolved",
+      "description": "Shallow source cylinder. Function is unresolved; it is not evidence of a 55-gallon reactor.",
+      "connection": "No confirmed feed, return or drain ports.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: behrens",
+      "quantity": 1,
+      "dimensions_m": [
+        0.41535,
+        0.41535,
+        0.09326
+      ]
+    },
+    "capacitor": {
+      "id": "capacitor",
+      "name": "Capacitor",
+      "system": "power",
+      "status": "Electrical identity needed",
+      "description": "Catalogue capacitor present in drawing. Electrical rating and actual wiring unverified.",
+      "connection": "Terminals are not sufficient evidence of an electrical circuit.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: Elec_capacitor.skp",
+      "quantity": 1,
+      "dimensions_m": [
+        0.064,
+        0.20307,
+        0.064
+      ]
+    },
+    "pump-deck": {
+      "id": "pump-deck",
+      "name": "Pump deck",
+      "system": "fluid",
+      "status": "Pump identity needed",
+      "description": "Generic catalogue Pumpe.skp placeholder, not an identified process pump.",
+      "connection": "Do not infer flow direction or hose route from this placeholder.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: Pumpe.skp",
+      "quantity": 1,
+      "dimensions_m": [
+        0.07161,
+        0.13993,
+        0.07789
+      ]
+    },
+    "solar-panel": {
+      "id": "solar-panel",
+      "name": "Solar panel",
+      "system": "power",
+      "status": "Scaled placeholder",
+      "description": "Source panel is a non-uniformly stretched SunPower catalogue model. Its 2.066 \u00d7 0.519 m footprint is a placeholder, not a real panel specification. Annotation says flexible 100 W.",
+      "connection": "Actual panel dimensions, mounting holes and cable exit need identification.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: unknown-catalogue",
+      "quantity": 1,
+      "dimensions_m": [
+        2.0655,
+        0.51923,
+        0.00687
+      ]
+    },
+    "bilge-pump-cartridge-centre": {
+      "id": "bilge-pump-cartridge-centre",
+      "name": "Bilge pump cartridge centre",
+      "system": "fluid",
+      "status": "Source geometry",
+      "description": "Central bilge cartridge exists in the drawing; exact model and fluid duty unconfirmed.",
+      "connection": "Inlet/outlet plumbing is absent from the source.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json; origin: Bilge Pump Cartridge2.skp",
+      "quantity": 1,
+      "dimensions_m": [
+        0.07954,
+        0.06318,
+        0.09991
+      ]
+    },
+    "clamp-pontoon-port-inner-aft": {
+      "id": "clamp-pontoon-port-inner-aft",
+      "name": "Pontoon band clamp \u00b7 port-inner aft",
+      "system": "flotation",
+      "status": "Placement study",
+      "description": "Clamp band around source tube, worm housing and mounting saddle. Generic dimensions; band orientation is illustrative.",
+      "connection": "Generic mounting saddle shown near the source frame. The source has overlapping pipe envelopes; bracket geometry, liner and axial stops require a close-up.",
+      "source": "CAD annotation: Rigidly attach pipe clamps to frame\u2026 next to shoulders formed by end caps & couplings.",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1371,
+        0.018,
+        0.1616
+      ]
+    },
+    "clamp-pontoon-port-inner-forward": {
+      "id": "clamp-pontoon-port-inner-forward",
+      "name": "Pontoon band clamp \u00b7 port-inner forward",
+      "system": "flotation",
+      "status": "Placement study",
+      "description": "Clamp band around source tube, worm housing and mounting saddle. Generic dimensions; band orientation is illustrative.",
+      "connection": "Generic mounting saddle shown near the source frame. The source has overlapping pipe envelopes; bracket geometry, liner and axial stops require a close-up.",
+      "source": "CAD annotation: Rigidly attach pipe clamps to frame\u2026 next to shoulders formed by end caps & couplings.",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1371,
+        0.018,
+        0.1616
+      ]
+    },
+    "clamp-pontoon-starboard-outer-aft": {
+      "id": "clamp-pontoon-starboard-outer-aft",
+      "name": "Pontoon band clamp \u00b7 starboard-outer aft",
+      "system": "flotation",
+      "status": "Placement study",
+      "description": "Clamp band around source tube, worm housing and mounting saddle. Generic dimensions; band orientation is illustrative.",
+      "connection": "Generic mounting saddle shown near the source frame. The source has overlapping pipe envelopes; bracket geometry, liner and axial stops require a close-up.",
+      "source": "CAD annotation: Rigidly attach pipe clamps to frame\u2026 next to shoulders formed by end caps & couplings.",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1371,
+        0.018,
+        0.1616
+      ]
+    },
+    "clamp-pontoon-starboard-outer-forward": {
+      "id": "clamp-pontoon-starboard-outer-forward",
+      "name": "Pontoon band clamp \u00b7 starboard-outer forward",
+      "system": "flotation",
+      "status": "Placement study",
+      "description": "Clamp band around source tube, worm housing and mounting saddle. Generic dimensions; band orientation is illustrative.",
+      "connection": "Generic mounting saddle shown near the source frame. The source has overlapping pipe envelopes; bracket geometry, liner and axial stops require a close-up.",
+      "source": "CAD annotation: Rigidly attach pipe clamps to frame\u2026 next to shoulders formed by end caps & couplings.",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1371,
+        0.018,
+        0.1616
+      ]
+    },
+    "clamp-pontoon-port-outer-aft": {
+      "id": "clamp-pontoon-port-outer-aft",
+      "name": "Pontoon band clamp \u00b7 port-outer aft",
+      "system": "flotation",
+      "status": "Placement study",
+      "description": "Clamp band around source tube, worm housing and mounting saddle. Generic dimensions; band orientation is illustrative.",
+      "connection": "Generic mounting saddle shown near the source frame. The source has overlapping pipe envelopes; bracket geometry, liner and axial stops require a close-up.",
+      "source": "CAD annotation: Rigidly attach pipe clamps to frame\u2026 next to shoulders formed by end caps & couplings.",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1371,
+        0.018,
+        0.1616
+      ]
+    },
+    "clamp-pontoon-port-outer-forward": {
+      "id": "clamp-pontoon-port-outer-forward",
+      "name": "Pontoon band clamp \u00b7 port-outer forward",
+      "system": "flotation",
+      "status": "Placement study",
+      "description": "Clamp band around source tube, worm housing and mounting saddle. Generic dimensions; band orientation is illustrative.",
+      "connection": "Generic mounting saddle shown near the source frame. The source has overlapping pipe envelopes; bracket geometry, liner and axial stops require a close-up.",
+      "source": "CAD annotation: Rigidly attach pipe clamps to frame\u2026 next to shoulders formed by end caps & couplings.",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1371,
+        0.018,
+        0.1616
+      ]
+    },
+    "clamp-pontoon-starboard-inner-aft": {
+      "id": "clamp-pontoon-starboard-inner-aft",
+      "name": "Pontoon band clamp \u00b7 starboard-inner aft",
+      "system": "flotation",
+      "status": "Placement study",
+      "description": "Clamp band around source tube, worm housing and mounting saddle. Generic dimensions; band orientation is illustrative.",
+      "connection": "Generic mounting saddle shown near the source frame. The source has overlapping pipe envelopes; bracket geometry, liner and axial stops require a close-up.",
+      "source": "CAD annotation: Rigidly attach pipe clamps to frame\u2026 next to shoulders formed by end caps & couplings.",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1371,
+        0.018,
+        0.1616
+      ]
+    },
+    "clamp-pontoon-starboard-inner-forward": {
+      "id": "clamp-pontoon-starboard-inner-forward",
+      "name": "Pontoon band clamp \u00b7 starboard-inner forward",
+      "system": "flotation",
+      "status": "Placement study",
+      "description": "Clamp band around source tube, worm housing and mounting saddle. Generic dimensions; band orientation is illustrative.",
+      "connection": "Generic mounting saddle shown near the source frame. The source has overlapping pipe envelopes; bracket geometry, liner and axial stops require a close-up.",
+      "source": "CAD annotation: Rigidly attach pipe clamps to frame\u2026 next to shoulders formed by end caps & couplings.",
+      "quantity": 1,
+      "dimensions_m": [
+        0.1371,
+        0.018,
+        0.1616
+      ]
+    },
+    "frame-socket--0.9823--0.7099": {
+      "id": "frame-socket--0.9823--0.7099",
+      "name": "Frame cross socket",
+      "system": "structure",
+      "status": "Placement study",
+      "description": "Generic socket envelope around the two intersecting source rails. Socket bores remain visible; this is not a fitting SKU.",
+      "connection": "Confirm cross versus tee arrangement, real pipe outside diameter, and insertion depths. Do not use for fabrication.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.105,
+        0.105,
+        0.073
+      ]
+    },
+    "frame-socket--0.9823-0.8652": {
+      "id": "frame-socket--0.9823-0.8652",
+      "name": "Frame cross socket",
+      "system": "structure",
+      "status": "Placement study",
+      "description": "Generic socket envelope around the two intersecting source rails. Socket bores remain visible; this is not a fitting SKU.",
+      "connection": "Confirm cross versus tee arrangement, real pipe outside diameter, and insertion depths. Do not use for fabrication.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.105,
+        0.105,
+        0.073
+      ]
+    },
+    "frame-socket-0.8913--0.7099": {
+      "id": "frame-socket-0.8913--0.7099",
+      "name": "Frame cross socket",
+      "system": "structure",
+      "status": "Placement study",
+      "description": "Generic socket envelope around the two intersecting source rails. Socket bores remain visible; this is not a fitting SKU.",
+      "connection": "Confirm cross versus tee arrangement, real pipe outside diameter, and insertion depths. Do not use for fabrication.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.105,
+        0.105,
+        0.073
+      ]
+    },
+    "frame-socket-0.8913-0.8652": {
+      "id": "frame-socket-0.8913-0.8652",
+      "name": "Frame cross socket",
+      "system": "structure",
+      "status": "Placement study",
+      "description": "Generic socket envelope around the two intersecting source rails. Socket bores remain visible; this is not a fitting SKU.",
+      "connection": "Confirm cross versus tee arrangement, real pipe outside diameter, and insertion depths. Do not use for fabrication.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.105,
+        0.105,
+        0.073
+      ]
+    },
+    "tb-body": {
+      "id": "tb-body",
+      "name": "Turnbuckle barrel",
+      "system": "rigging",
+      "status": "Manufacturer dimensions",
+      "description": "Closed barrel: nominal 3.50 in length and 0.38 in diameter, based on Suncor S0101-0007.",
+      "connection": "Opposed right- and left-hand 1/4 in UNC studs engage this barrel. Internal thread form is simplified.",
+      "source": "https://suncorstainless.com/steel-product/jaw-jaw-turnbuckle/",
+      "quantity": 1,
+      "dimensions_m": [
+        0.00965,
+        0.00965,
+        0.0889
+      ]
+    },
+    "tb-stud-upper": {
+      "id": "tb-stud-upper",
+      "name": "Upper threaded fork",
+      "system": "rigging",
+      "status": "Manufacturer envelope",
+      "description": "Nominal 1/4 in UNC stud and fork. Jaw opening and pin size from manufacturer; transition profiles are simplified.",
+      "connection": "Fork cheeks flank the eye; pin passes through all three. Operating pin span shown at 190 mm, within published open/closed range.",
+      "source": "https://suncorstainless.com/steel-product/jaw-jaw-turnbuckle/",
+      "quantity": 1,
+      "dimensions_m": [
+        0.01765,
+        0.014,
+        0.073
+      ]
+    },
+    "tb-pin-upper": {
+      "id": "tb-pin-upper",
+      "name": "Upper clevis pin & retaining ring",
+      "system": "rigging",
+      "status": "Connection study",
+      "description": "Removable cross-pin through the fork and mating eye. Retaining ring is schematic; retention detail must match the selected product.",
+      "connection": "Pin carries the eye load; the threaded stud does not screw into the cable.",
+      "source": "https://suncorstainless.com/steel-product/jaw-jaw-turnbuckle/",
+      "quantity": 1,
+      "dimensions_m": [
+        0.0326,
+        0.008,
+        0.008
+      ]
+    },
+    "tb-stud-lower": {
+      "id": "tb-stud-lower",
+      "name": "Lower threaded fork",
+      "system": "rigging",
+      "status": "Manufacturer envelope",
+      "description": "Nominal 1/4 in UNC stud and fork. Jaw opening and pin size from manufacturer; transition profiles are simplified.",
+      "connection": "Fork cheeks flank the eye; pin passes through all three. Operating pin span shown at 190 mm, within published open/closed range.",
+      "source": "https://suncorstainless.com/steel-product/jaw-jaw-turnbuckle/",
+      "quantity": 1,
+      "dimensions_m": [
+        0.01765,
+        0.014,
+        0.073
+      ]
+    },
+    "tb-pin-lower": {
+      "id": "tb-pin-lower",
+      "name": "Lower clevis pin & retaining ring",
+      "system": "rigging",
+      "status": "Connection study",
+      "description": "Removable cross-pin through the fork and mating eye. Retaining ring is schematic; retention detail must match the selected product.",
+      "connection": "Pin carries the eye load; the threaded stud does not screw into the cable.",
+      "source": "https://suncorstainless.com/steel-product/jaw-jaw-turnbuckle/",
+      "quantity": 1,
+      "dimensions_m": [
+        0.0326,
+        0.008,
+        0.008
+      ]
+    },
+    "tb-anchor": {
+      "id": "tb-anchor",
+      "name": "Anchor lug with pin hole",
+      "system": "rigging",
+      "status": "Connection study",
+      "description": "A drilled 5 mm plate illustrates a mating anchor. Not identified on the Manatee.",
+      "connection": "Its base attachment and backing structure remain unresolved; this plate is not installed in the source model.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.005,
+        0.022,
+        0.052
+      ]
+    },
+    "cable-thimble": {
+      "id": "cable-thimble",
+      "name": "Cable-eye thimble",
+      "system": "rigging",
+      "status": "Connection study",
+      "description": "Protective thimble form at the upper clevis. Profile simplified.",
+      "connection": "Upper pin crosses the hollow eye. Actual thimble groove and wire diameter must be matched.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.0024,
+        0.01428,
+        0.02828
+      ]
+    },
+    "cable-eye": {
+      "id": "cable-eye",
+      "name": "1/8 in cable eye & tail",
+      "system": "rigging",
+      "status": "Connection study",
+      "description": "1/8 in cable drawn as a smooth centreline envelope; strand construction is not reproduced.",
+      "connection": "Return tail and standing run meet the eye. End termination type must be confirmed from the actual machine.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.00318,
+        0.01902,
+        0.15551
+      ]
+    },
+    "cable-sleeves": {
+      "id": "cable-sleeves",
+      "name": "Example swage sleeves",
+      "system": "rigging",
+      "status": "Connection study",
+      "description": "Example swaged termination, not an assertion that the raft uses swages.",
+      "connection": "Confirm swage versus clips versus a swageless fitting; hardware and tooling must match the cable.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.007,
+        0.01,
+        0.03
+      ]
+    },
+    "pump-strainer": {
+      "id": "pump-strainer",
+      "name": "Removable slotted inlet strainer",
+      "system": "propulsion",
+      "status": "Representative part",
+      "description": "Slotted inlet cage and removable base, based on the form of a large marine bilge pump.",
+      "connection": "Water must reach the inlet slots. Mounting-hole locations and service-release mechanism are not specified.",
+      "source": "https://www.xylem.com/siteassets/brand/rule/resources/technical-brochure/standard-bilge-pumps-model-number-table.pdf",
+      "quantity": 1,
+      "dimensions_m": [
+        0.108,
+        0.108,
+        0.0395
+      ]
+    },
+    "pump-motor": {
+      "id": "pump-motor",
+      "name": "Motor housing & lower wet chamber",
+      "system": "propulsion",
+      "status": "Manufacturer envelope",
+      "description": "Rule 2000 / 10-6UL reference class: 152 mm tall, 108 mm wide. This is a size study, not identification of the actual Manatee pump.",
+      "connection": "Outlet opens into an illustrative lower wet chamber, separate from the upper motor envelope. Impeller and shaft seal are not reconstructed.",
+      "source": "https://www.xylem.com/siteassets/brand/rule/resources/technical-brochure/standard-bilge-pumps-model-number-table.pdf",
+      "quantity": 1,
+      "dimensions_m": [
+        0.094,
+        0.094,
+        0.113
+      ]
+    },
+    "pump-discharge": {
+      "id": "pump-discharge",
+      "name": "Open discharge hose barb",
+      "system": "propulsion",
+      "status": "Representative part",
+      "description": "Nominal 1-1/8 in (29 mm) hose connection, using the manufacturer hose size. Barb profile/position are illustrative.",
+      "connection": "A complete pump pushes water through this outlet. A cartridge/propeller conversion would be a different assembly.",
+      "source": "https://www.xylem.com/siteassets/brand/rule/resources/technical-brochure/standard-bilge-pumps-model-number-table.pdf",
+      "quantity": 1,
+      "dimensions_m": [
+        0.031,
+        0.055,
+        0.031
+      ]
+    },
+    "pump-leads": {
+      "id": "pump-leads",
+      "name": "Sealed power-lead exit",
+      "system": "propulsion",
+      "status": "Connection study",
+      "description": "Two insulated leads leave the housing. Lead gauge, gland geometry and circuit protection depend on the actual pump.",
+      "connection": "Splices and disconnects belong outside the submerged connection zone unless specifically rated; exact route is pending.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.0096,
+        0.0499,
+        0.06568
+      ]
+    },
+    "hose": {
+      "id": "hose",
+      "name": "Hose with visible bore",
+      "system": "fluid",
+      "status": "Connection study",
+      "description": "Short flexible hose at nominal 29 mm bore. Generic wall thickness.",
+      "connection": "This illustrates a joint only; no route or pressure rating is assigned to the raft.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.037,
+        0.13,
+        0.037
+      ]
+    },
+    "hose-barb": {
+      "id": "hose-barb",
+      "name": "Barbed spigot with open bore",
+      "system": "fluid",
+      "status": "Connection study",
+      "description": "Hose overlaps the ridged spigot. Mating bore is visible; wall profiles are illustrative.",
+      "connection": "Barb OD fits inside the nominal hose bore, with local interference at the ridges. Exact fitting standard and material depend on the chosen pump.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.031,
+        0.08,
+        0.031
+      ]
+    },
+    "hose-clamp": {
+      "id": "hose-clamp",
+      "name": "Worm-drive band, housing & screw",
+      "system": "fluid",
+      "status": "Connection study",
+      "description": "Band sits over the hose above the inserted barb. Worm housing and screw are individually shaped.",
+      "connection": "Clamp type/count/torque must follow the selected hose and fitting. No high-pressure suitability is implied.",
+      "source": "CAD export: cad/out/prime/parts_manifest.json",
+      "quantity": 1,
+      "dimensions_m": [
+        0.0455,
+        0.04,
+        0.012
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": "P01",
+      "text": "What is the thruster pump make/model/GPH, and does it retain the complete pump housing or drive an exposed propeller?",
+      "system": "propulsion"
+    },
+    {
+      "id": "R01",
+      "text": "Which stays are rigid metal braces and which are wire? Where do turnbuckles attach, and are their ends hook/eye/jaw?",
+      "system": "rigging"
+    },
+    {
+      "id": "F01",
+      "text": "What are the actual pontoon/frame outside diameters and socket fittings? Source part scales conflict with annotations.",
+      "system": "structure"
+    },
+    {
+      "id": "E01",
+      "text": "Which solar panel, storage device and control enclosure belong on this version? The drawn PV slab is distorted catalogue geometry.",
+      "system": "power"
+    },
+    {
+      "id": "W01",
+      "text": "Confirm operating pressure and orifice wear tolerance for the 4.20-in vs 1.06-in 316-SS 7-bore Kinetic Cavitation Nozzle and 4-port Venturi Eductor.",
+      "system": "fluid"
+    },
+    {
+      "id": "G01",
+      "text": "How does the rotor shaft connect to the generator and bearing/mast assembly?",
+      "system": "wind"
+    }
+  ]
+}

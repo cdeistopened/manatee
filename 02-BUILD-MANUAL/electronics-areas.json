@@ -1,0 +1,1724 @@
+{
+ "areas": [
+  {
+   "area": "BEAM Analog Steering Controller (VBSXv2 / BasicJT2-AI photovore) + Steering Options",
+   "tiers": "Station-keeping baseline (anchored, no motors, no steering electronics) belongs to T1/T2/T3 — it is the default and the recommendation. The BEAM analog photovore (roaming, light-seeking) is a T3 add-on only. Nothing in this area touches the survival-critical analog reflex (charge/discharge/pump) — steering is strictly optional and unpluggable, exactly like the Observer.",
+   "plainLanguage": "Two ways to keep the raft where the algae is, from dead-simple to clever.\n\nTHE SIMPLE WAY (baseline, no motors): tie it up. A mushroom anchor on a rope, or two ropes to two stakes, or a pole pushed into the pond mud. The wind and the bloom drift to the raft as much as the raft drifts to them; a pond is small; and the machine's whole job — suck water, cavitate it, spit it back cleaner — works perfectly well sitting still. This has nothing to break, draws zero power, and cannot capsize itself. If you build only one thing for steering, build this: a knot.\n\nTHE CLEVER WAY (Tier 3, roaming): give it a nervous system made of light. This is the BEAM photovore — a 1980s style of \"living\" robot with no computer, no code, no chip that \"thinks.\" Picture two eyes (two photodiodes) on the front, one left, one right. If more light hits the right eye, a little circuit nudges the raft to turn right, and vice versa — so it crawls toward the brightest patch of water. The turning rhythm comes from a ring of five cheap logic chips wired to charge and discharge capacitors in a loop, like a row of metronomes handing a pulse around a circle forever. That pulse train, steered left or right by the eyes, drives two little motors. The beauty is that it is a reflex, not a decision: light in, motion out, the way a moth flies at a lamp. The honest catch is that \"brightest water\" is only a rough stand-in for \"most algae\" — a moth will also fly at the moon, and this raft will happily steer toward sun-glare or a white dock instead of a green bloom. So light-seeking finds blooms sometimes, by luck of the fact that scummy surface water often looks different, but it does not actually see algae.\n\nOne more honest thing: the tiny transistor motors on the original BEAM board are pager-motor sized — fine for a toy that fits in your hand, far too weak to shove a 200-plus-pound raft. So if you go roaming, the light-brain still makes the left/right decision, but it hands that decision to real muscle: proper 12-volt boat thrusters switched by a power chip, the way a light switch (tiny) controls a floodlight (big).",
+   "whyThisWay": "Analog is intentional, and steering is where that principle is easiest to honor by simply not steering. Gravity, wind, and the pond's own circulation move a bloom around a small basin; the reactor does not care where on the pond it sits. Station-keeping therefore delivers ~90% of the value of roaming at ~1% of the risk and cost, with zero failure surface. Every motor, prop, thruster wire, and steering transistor is a part that can flood, foul, entangle, draw current the 45 W panel cannot spare, and — worst case — apply a side force that helps capsize a beamy, lightly-loaded hull. Deleting all of it is the single highest-leverage move, exactly in the spirit of the improved manual's design-by-deletion.\n\nWhen roaming IS wanted (a big pond, a slow-moving bloom, or the demonstrator charm of a self-driving raft), the BEAM analog photovore is the right T3 brain precisely because it is NOT a computer. It embodies Charlie's architecture perfectly: a pure reflex with nothing to crash, no firmware to corrupt, no boot sequence, drawing microamps in the logic core. It seeks light through the raw physics of two mismatched photocurrents unbalancing an oscillator — the same reason the survival loop is analog. It can be unplugged mid-pond and the machine keeps cleaning water; it is an optional nervous system bolted onto a body that does not need it, just like the Observer is an optional set of eyes.\n\nThe heritage net is kept faithfully (photodiode bright-sensor bridge → Nv-neuron microcore ring oscillator → reversing tri-state gates → H-bridges) but corrected at exactly one seam: the original discrete PN2907/PN2222 H-bridge is a sub-1-amp toy driver that cannot move a raft, so on real hardware the 4.5 V BEAM logic makes the decision and a power H-bridge module (DRV8871 / BTS7960) supplies the amps to real thrusters. Brains stay tiny and analog; muscle is separate, fused, and power-appropriate. This preserves the BEAM soul while making it physically capable, and keeps a fault in the muscle from ever reaching the nervous system.",
+   "components": [
+    {
+     "ref": "MOOR",
+     "part": "Mushroom anchor (8-15 lb) + nylon rode + stainless swivel + bridle to two frame pad-eyes",
+     "spec": "Baseline station-keeping. Size anchor to ~1.5x expected wind load on the raft's sail area; bridle from BOTH forward lift-eyes so the raft weathervanes bow-to-wind",
+     "qty": "1 set",
+     "cost": "$30-70"
+    },
+    {
+     "ref": "SPUD",
+     "part": "Alt station-keeping: fiberglass spud/push pole + PVC guide sleeve on frame",
+     "spec": "Push-pole driven into pond bottom through a vertical guide; lets the raft rise/fall with level but not drift. Best in <6 ft, soft-bottom ponds",
+     "qty": "1",
+     "cost": "$40-90"
+    },
+    {
+     "ref": "BEAM_PCB",
+     "part": "Perfboard or 2-layer custom PCB for the photovore",
+     "spec": "Hosts the entire T3 brain; conformal-coat after test (MG 422B)",
+     "qty": "1",
+     "cost": "$5-15"
+    },
+    {
+     "ref": "BATT",
+     "part": "3x AA holder + alkaline/NiMH cells = 4.5 V logic rail",
+     "spec": "Dedicated logic supply, ISOLATED from the 12 V power bus. 4.5 V keeps 74HCxx happy and pager-motor bench tests safe",
+     "qty": "1",
+     "cost": "$5"
+    },
+    {
+     "ref": "DPOL",
+     "part": "1N34A germanium diode",
+     "spec": "Reverse-polarity block on the 4.5 V rail (heritage part; a 1N5817 Schottky is a fine modern swap, lower drop)",
+     "qty": "1",
+     "cost": "$0.50"
+    },
+    {
+     "ref": "SW",
+     "part": "SPST toggle",
+     "spec": "ON/OFF for the steering brain only — pulling it stops roaming without touching the reactor reflex",
+     "qty": "1",
+     "cost": "$2"
+    },
+    {
+     "ref": "U14",
+     "part": "74HC14 hex Schmitt-trigger inverter",
+     "spec": "The Nv-neuron substrate: one power-on-reset inverter + the four/six microcore neurons. Schmitt hysteresis is what makes the RC ring oscillate cleanly",
+     "qty": "1-2",
+     "cost": "$0.50 ea"
+    },
+    {
+     "ref": "U125",
+     "part": "74HC125 quad tri-state buffer",
+     "spec": "Reversing MUX + Halt gates: tri-state enables steer the microcore pulse to FRONT/REAR and set turn direction from the bright-sensor bias",
+     "qty": "1-2",
+     "cost": "$0.60 ea"
+    },
+    {
+     "ref": "PD",
+     "part": "Photodiodes (BPW34 class) — the two 'eyes'",
+     "spec": "PD1 (left/port), PD2 (right/starboard). Reverse-biased in the bridge; fast, unlike CdS. Shade-hooded and forward-canted so they compare left-vs-right water brightness",
+     "qty": "2",
+     "cost": "$2 ea"
+    },
+    {
+     "ref": "Q3906",
+     "part": "2N3906 PNP transistors",
+     "spec": "Bright-sensor current-mirror/differential pair (2) + microcore/mux bias drivers (2)",
+     "qty": "4",
+     "cost": "$0.10 ea"
+    },
+    {
+     "ref": "Q3904",
+     "part": "2N3904 NPN transistor",
+     "spec": "Bright-sensor bridge tail/reference sink",
+     "qty": "1",
+     "cost": "$0.10 ea"
+    },
+    {
+     "ref": "QP2907",
+     "part": "PN2907 PNP (heritage H-bridge high-side)",
+     "spec": "BENCH/DEMONSTRATOR ONLY high-side pair per bridge. <1 A — drives pager motors to prove the logic, NOT raft thrusters",
+     "qty": "4",
+     "cost": "$0.15 ea"
+    },
+    {
+     "ref": "QP2222",
+     "part": "PN2222 NPN (heritage H-bridge low-side)",
+     "spec": "BENCH/DEMONSTRATOR ONLY low-side pair per bridge. Pair with base resistors to limit shoot-through",
+     "qty": "4",
+     "cost": "$0.15 ea"
+    },
+    {
+     "ref": "D4148",
+     "part": "1N4148 signal diodes",
+     "spec": "Microcore steering/asymmetry diodes (2, e.g. D8/D9 in VBSXv2) + small-motor catch diodes",
+     "qty": "6",
+     "cost": "$0.05 ea"
+    },
+    {
+     "ref": "RES",
+     "part": "Resistor set: 3M, 10M (microcore timing); 100K (bridge + H-bridge bases); 10K (mux); 1K (bridge emitters)",
+     "spec": "3M/10M set microcore period (~seconds-scale turn cadence); mismatch here + photocurrent sets turn bias",
+     "qty": "~20",
+     "cost": "$8 kit"
+    },
+    {
+     "ref": "CAP",
+     "part": "Film caps: 0.1uF x4 (microcore), 0.001uF (sensor), 1uF (power/reset)",
+     "spec": "0.1uF are the neuron 'memory' timing caps in the ring; 1uF+10M is the power-on reset",
+     "qty": "~7",
+     "cost": "$5"
+    },
+    {
+     "ref": "MOTOR_DEMO",
+     "part": "2x small DC gearmotors (bench proof only)",
+     "spec": "Verify the microcore oscillates and the bridges reverse before committing to thrusters",
+     "qty": "2",
+     "cost": "$6 ea"
+    },
+    {
+     "ref": "THRUST",
+     "part": "2x 12 V thrusters — bilge-cartridge jet (Rule 500-800 GPH housing) or small trolling motor",
+     "spec": "FRONT + REAR (or port/stbd). Sizing = UNKNOWN / must be sized to close the power budget and to actually turn the loaded hull; likely 3-30 A each",
+     "qty": "0-2",
+     "cost": "$40-150 ea"
+    },
+    {
+     "ref": "DRV",
+     "part": "2x power H-bridge module — DRV8871 (~3.6 A) for small thrusters, or BTS7960 (~43 A) for trolling-motor class",
+     "spec": "THE CORRECTION: real muscle between the 4.5 V BEAM logic and the 12 V thrusters. Replaces the toy discrete H-bridge on the water rig",
+     "qty": "0-2",
+     "cost": "$6-15 ea"
+    },
+    {
+     "ref": "LVL",
+     "part": "Optocoupler (or logic-level MOSFET) level shifter",
+     "spec": "Translates 4.5 V BEAM logic outputs to the driver's logic inputs AND galvanically isolates the 12 V muscle from the analog brain",
+     "qty": "1 set",
+     "cost": "$2"
+    },
+    {
+     "ref": "FUSE",
+     "part": "2x inline ATC fuse + holder on each thruster 12 V feed",
+     "spec": "Sized to the thruster stall/running current, off the fused distribution block. A thruster is a fault path next to water",
+     "qty": "2",
+     "cost": "$6"
+    },
+    {
+     "ref": "FLY",
+     "part": "1N5822 Schottky flyback across each 12 V thruster",
+     "spec": "Inductive-kickback catch on the POWER motors (the 1N4148 only suffices for the bench pager motors)",
+     "qty": "2",
+     "cost": "$1"
+    }
+   ],
+   "connections": [
+    {
+     "from": "BATT(+) 4.5V",
+     "to": "SW pole",
+     "wire": "22AWG red",
+     "note": "Logic rail switch — steering brain only; independent of 12 V reactor bus"
+    },
+    {
+     "from": "SW throw",
+     "to": "DPOL anode (1N34A)",
+     "wire": "22AWG red",
+     "note": "Reverse-polarity protection into the board"
+    },
+    {
+     "from": "DPOL cathode",
+     "to": "VCC(4.5V) rail",
+     "wire": "board trace",
+     "note": "Logic VCC for all 74HCxx, bridge, and demo H-bridges"
+    },
+    {
+     "from": "VCC",
+     "to": "CAP 1uF -> GND",
+     "wire": "trace",
+     "note": "Rail bypass + node for power-on reset"
+    },
+    {
+     "from": "VCC",
+     "to": "RES 10M -> U14a input",
+     "wire": "trace",
+     "note": "10M + 1uF = power-on-reset RC; U14a issues a clean start pulse so the microcore boots into oscillation"
+    },
+    {
+     "from": "U14a input",
+     "to": "CAP 1uF junction",
+     "wire": "trace",
+     "note": "RC integrator node for the reset inverter"
+    },
+    {
+     "from": "BATT(-)",
+     "to": "GND rail",
+     "wire": "22AWG black",
+     "note": "Logic ground (single-point; tie to power ground ONLY through the driver's isolation reference)"
+    },
+    {
+     "from": "VCC",
+     "to": "RES 1K -> Q3906(PD1) emitter",
+     "wire": "trace",
+     "note": "Bright-sensor left-eye emitter load"
+    },
+    {
+     "from": "VCC",
+     "to": "RES 1K -> Q3906(PD2) emitter",
+     "wire": "trace",
+     "note": "Bright-sensor right-eye emitter load"
+    },
+    {
+     "from": "Q3906(PD1) collector",
+     "to": "RES 100K + PD1 cathode node",
+     "wire": "trace",
+     "note": "Left photocurrent branch of the differential bridge"
+    },
+    {
+     "from": "Q3906(PD2) collector",
+     "to": "RES 100K + PD2 cathode node",
+     "wire": "trace",
+     "note": "Right photocurrent branch of the differential bridge"
+    },
+    {
+     "from": "PD1 anode / PD2 anode",
+     "to": "Q3904 collector (bridge tail)",
+     "wire": "trace",
+     "note": "2N3904 sets the shared reference sink; imbalance between PD1 and PD2 photocurrent = the steering error signal"
+    },
+    {
+     "from": "Q3904 emitter",
+     "to": "GND",
+     "wire": "trace",
+     "note": "Bridge tail return"
+    },
+    {
+     "from": "Bridge imbalance node",
+     "to": "U125b input (buffer)",
+     "wire": "trace",
+     "note": "Buffer the high-impedance sensor node before it biases the ring"
+    },
+    {
+     "from": "U125b input",
+     "to": "RES 10M -> U125b output",
+     "wire": "trace",
+     "note": "10M feedback sets sensor gain/hysteresis"
+    },
+    {
+     "from": "U125b input",
+     "to": "CAP 0.001uF -> GND",
+     "wire": "trace",
+     "note": "1nF slows the eye response so glints/ripples don't jitter the steering"
+    },
+    {
+     "from": "U125b output",
+     "to": "U14b -> microcore bias node",
+     "wire": "trace",
+     "note": "Bright-sensor output skews the microcore's left/right symmetry = the actual turn command"
+    },
+    {
+     "from": "U14 Nv1 output",
+     "to": "CAP 0.1uF -> U14 Nv2 input",
+     "wire": "trace",
+     "note": "Microcore ring stage 1->2; the 0.1uF is the neuron's timing 'memory'"
+    },
+    {
+     "from": "U14 Nv2 input",
+     "to": "RES 3M -> GND",
+     "wire": "trace",
+     "note": "Nv2 RC period-set"
+    },
+    {
+     "from": "U14 Nv2 output",
+     "to": "CAP 0.1uF -> U14 Nv3 input",
+     "wire": "trace",
+     "note": "Ring stage 2->3"
+    },
+    {
+     "from": "U14 Nv3 input",
+     "to": "RES 3M -> GND ; D4148(D8) across",
+     "wire": "trace",
+     "note": "Nv3 timing + asymmetry diode that gives the walk a direction"
+    },
+    {
+     "from": "U14 Nv3 output",
+     "to": "U125(Halt) -> CAP 0.1uF -> U14 Nv4 input",
+     "wire": "trace",
+     "note": "Halt tri-state gate can freeze the ring (stop/steer-only); then stage 3->4"
+    },
+    {
+     "from": "U14 Nv4 input",
+     "to": "RES 10M -> GND ; D4148(D9) across",
+     "wire": "trace",
+     "note": "Nv4 timing + second asymmetry diode"
+    },
+    {
+     "from": "U14 Nv4 output",
+     "to": "CAP 0.1uF -> U14 Nv1 input",
+     "wire": "trace",
+     "note": "Ring closure — four/six inverters + RC = free-running oscillator (the 'walking loop')"
+    },
+    {
+     "from": "U14 Nv1 input",
+     "to": "RES 10M -> GND",
+     "wire": "trace",
+     "note": "Nv1 timing; microcore bias from U14b injects here to bias period left/right"
+    },
+    {
+     "from": "Microcore taps (Nv2/Nv4)",
+     "to": "U125 Reversing-MUX enables",
+     "wire": "trace",
+     "note": "Tri-state buffers route the pulse to FRONT vs REAR and pick polarity = forward/turn"
+    },
+    {
+     "from": "U125 MUX outputs",
+     "to": "RES 10K -> FRONT/REAR H-bridge input pairs",
+     "wire": "trace",
+     "note": "10K sets base drive; each bridge gets a CW line and a CCW line, never both"
+    },
+    {
+     "from": "VCC(motor)",
+     "to": "QP2907 x2 emitters (FRONT high-side)",
+     "wire": "trace",
+     "note": "Heritage FRONT H-bridge high side — BENCH pager-motor scale only"
+    },
+    {
+     "from": "QP2907(FL) collector",
+     "to": "MOTOR_DEMO_FRONT(+)",
+     "wire": "trace",
+     "note": "High-side left leg to front demo motor"
+    },
+    {
+     "from": "QP2907(FR) collector",
+     "to": "MOTOR_DEMO_FRONT(-)",
+     "wire": "trace",
+     "note": "High-side right leg to front demo motor"
+    },
+    {
+     "from": "MOTOR_DEMO_FRONT(+)",
+     "to": "QP2222(FL) collector",
+     "wire": "trace",
+     "note": "Low-side left leg"
+    },
+    {
+     "from": "MOTOR_DEMO_FRONT(-)",
+     "to": "QP2222(FR) collector",
+     "wire": "trace",
+     "note": "Low-side right leg"
+    },
+    {
+     "from": "QP2222 x2 emitters",
+     "to": "GND",
+     "wire": "trace",
+     "note": "Front low-side return"
+    },
+    {
+     "from": "Q3906 driver + RES 100K + D4148",
+     "to": "QP2907/QP2222 bases (diagonal pairs)",
+     "wire": "trace",
+     "note": "Cross-coupled drive so only one diagonal conducts at a time (prevents shoot-through); 1N4148 catch across motor"
+    },
+    {
+     "from": "REAR H-bridge",
+     "to": "MOTOR_DEMO_REAR",
+     "wire": "trace",
+     "note": "Identical topology mirrored for the REAR motor"
+    },
+    {
+     "from": "U125 MUX FRONT-CW / FRONT-CCW outputs",
+     "to": "LVL optocoupler inputs",
+     "wire": "trace",
+     "note": "WATER-RIG CORRECTION: tap the BEAM logic decision, isolate it, hand it to real muscle instead of the toy transistors"
+    },
+    {
+     "from": "LVL outputs",
+     "to": "DRV(FRONT) IN1/IN2",
+     "wire": "signal",
+     "note": "Level-shifted logic drives the power H-bridge module"
+    },
+    {
+     "from": "12V bus (fused block)",
+     "to": "FUSE -> DRV(FRONT) VM",
+     "wire": "12-14AWG + ATC fuse",
+     "note": "Thruster power off the fused distribution block, sized to stall current"
+    },
+    {
+     "from": "DRV(FRONT) OUT1/OUT2",
+     "to": "THRUST(FRONT) + FLY 1N5822",
+     "wire": "12-14AWG",
+     "note": "12 V thruster with proper Schottky flyback"
+    },
+    {
+     "from": "LVL outputs (REAR)",
+     "to": "DRV(REAR) IN1/IN2 -> THRUST(REAR)",
+     "wire": "signal + 12-14AWG",
+     "note": "Rear/starboard channel, mirror of front; own fuse + flyback"
+    },
+    {
+     "from": "BEAM GND",
+     "to": "DRV logic-GND (isolated side)",
+     "wire": "trace",
+     "note": "Keep 4.5 V analog ground separate from 12 V power ground; join only at the driver's reference through the optocoupler"
+    },
+    {
+     "from": "MOOR bridle",
+     "to": "two forward frame pad-eyes / lift-eyes",
+     "wire": "nylon rode",
+     "note": "STATION-KEEPING BASELINE: no electrical connection at all — the robust default that replaces this entire board"
+    }
+   ],
+   "buildSteps": [
+    {
+     "n": 1,
+     "title": "Default decision: anchor, don't steer",
+     "detail": "Before building any electronics, install the station-keeping baseline. Shackle a mushroom anchor to a bridle led from both forward lift-eyes so the raft weathervanes bow-to-wind, or fit a spud pole through a vertical guide in a shallow soft-bottom pond. Confirm the raft holds position in the expected wind. If the pond is small and the bloom drifts to the raft, you are DONE — skip steps 2-9 entirely.",
+     "caution": "This is the recommendation, not a fallback. Every step after this adds a flooding, fouling, current-draw, and capsize surface the reactor does not need."
+    },
+    {
+     "n": 2,
+     "title": "(T3) Breadboard the microcore ring and prove it oscillates",
+     "detail": "Build the four/six-inverter 74HC14 ring with the 0.1uF caps and 3M/10M timing resistors on a 4.5 V bench supply. Put a scope on each Nv node and confirm a clean, free-running square-ish oscillation at the intended turn cadence (seconds-scale). Add the 1uF+10M power-on-reset so it always self-starts.",
+     "caution": "If it will not oscillate, the culprit is almost always a non-Schmitt inverter substituted for the 74HC14, or timing R/C off by an order of magnitude. Do not proceed until the ring runs."
+    },
+    {
+     "n": 3,
+     "title": "(T3) Build and null the bright-sensor bridge",
+     "detail": "Wire the two-photodiode differential bridge (2x 2N3906 + 2N3904, 100K/1K) and the U125 buffer with its 10M feedback and 0.001uF. Hood and forward-cant PD1 (left) and PD2 (right). Under even light, trim so the bridge output sits mid-rail (zero turn command); then shade one eye and confirm the output swings the correct direction.",
+     "caution": "An unhooded pair will lock onto sun glint or a bright dock. The 1nF must stay in — without it, ripples and passing clouds make the steering hunt."
+    },
+    {
+     "n": 4,
+     "title": "(T3) Add the reversing MUX + Halt gates",
+     "detail": "Wire the U125 tri-state buffers so the microcore pulse routes to FRONT/REAR with a polarity set by the bright-sensor bias, and the Halt gate can freeze the ring. Verify on the bench that shading the left eye biases turns one way and shading the right reverses them.",
+     "caution": "Ensure the CW and CCW enables for a given bridge are mutually exclusive — both high is a commanded shoot-through."
+    },
+    {
+     "n": 5,
+     "title": "(T3) Bench-prove steering with the toy H-bridges + pager motors",
+     "detail": "Build the heritage PN2907/PN2222 H-bridges with their base resistors and 1N4148 catches, hang two small DC gearmotors, and confirm the whole reflex works: shade left eye -> raft-model turns toward light. This validates the ENTIRE logic chain cheaply before any thruster money is spent.",
+     "caution": "These transistors are sub-1-amp. They exist to prove the brain, not to move the raft. Watch for warm transistors = shoot-through; add small base resistors / a few-microsecond dead time if so."
+    },
+    {
+     "n": 6,
+     "title": "(T3) Swap toy muscle for real muscle",
+     "detail": "Tap the four MUX logic lines (FRONT-CW/CCW, REAR-CW/CCW) through the optocoupler/level-shifter into two power H-bridge modules (DRV8871 for small thrusters, BTS7960 for trolling-motor class). Keep the 4.5 V analog brain and its ground isolated from the 12 V power side.",
+     "caution": "Do NOT common the 4.5 V logic ground straight to the 12 V power ground — join only through the driver's isolated reference. A motor-side transient must never reach the microcore."
+    },
+    {
+     "n": 7,
+     "title": "(T3) Power, fuse, and flyback the thrusters",
+     "detail": "Feed each thruster from the fused distribution block through its own ATC fuse sized to stall current, and fit a 1N5822 Schottky flyback across each 12 V thruster. Mount thrusters low and symmetric so their thrust line passes near the center of buoyancy.",
+     "caution": "A high thrust line or asymmetric mounting adds a capsize moment. Fuse to the thruster, not the wire. Do the inclining test with thrusters at full opposing thrust."
+    },
+    {
+     "n": 8,
+     "title": "(T3) Conformal-coat, enclose, and wet-test",
+     "detail": "Coat the BEAM board (MG 422B), mount it in the IP66 box above the splash line with drip loops, and gland the sensor and motor leads low. Wet-test in a tote/pond: confirm it steers toward a lamp, then confirm pulling the steering ON/OFF switch stops roaming while the reactor keeps running.",
+     "caution": "Prove the unpluggable property explicitly: the machine must clean water with the entire steering brain removed. If it doesn't, the wiring has crossed the reflex and the Observer/steering isolation rule."
+    },
+    {
+     "n": 9,
+     "title": "(T3) Honesty check on the water",
+     "detail": "Run it toward an actual bloom vs. toward open sunlit water and record how often 'brightest' equals 'most algae.' Log thruster Wh against the SmartShunt. Decide from data whether roaming earns its power and complexity over the anchor.",
+     "caution": "If thrusters miss the 45 W budget by the expected large margin, or light-seeking steers to glare as often as to algae, revert to station-keeping. That is a valid, honest outcome — not a failure."
+    }
+   ],
+   "safety": "Electrical-fire / fault path: every thruster feed is fused at the distribution block, sized to the thruster's stall current, with a Schottky flyback across each motor — a stalled or shorted thruster next to water is a fire and shock path. Power/brain isolation: the 4.5 V analog nervous system and the 12 V muscle share no direct ground; they meet only through the optocoupler's isolated reference, so a motor transient can never propagate into the microcore or the reactor's survival reflex. Shoot-through: verify mutually-exclusive CW/CCW drive and use base resistors / brief dead-time on any discrete H-bridge, and prefer a power H-bridge IC with built-in cross-conduction protection on the water rig; a shoot-through both cooks transistors and dumps battery current. Capsize from steering forces: mount thrusters low with the thrust line near the center of buoyancy, and repeat the dockside inclining test with both thrusters at full opposing thrust — steering side-load is a capsize contributor the original never considered. Entanglement/fouling: screen or duct any prop, and keep the anchor rode clear of the intake and return so the raft cannot foul itself. Waterproofing: conformal-coat the board, mount it above the splash line, glands low, drip loops on every entry — a wet BEAM board simply stops steering (acceptable), but a wet 12 V driver is a fault (not). Fail-safe default: the ON/OFF switch and the Halt gate must both leave the raft dead-in-the-water (station-keeping via anchor) when steering is cut — never in a runaway single-thruster turn.",
+   "honestNotes": "Light-seeking is a weak proxy for bloom-seeking, and this is the load-bearing honest caveat. The bright-sensor bridge compares which photodiode sees more light; a surface bloom sometimes reads as a distinguishable patch, but sun glint, a white dock, sky reflection, and open bright water all fool it. The raft cannot see algae — it sees luminance. Treat roaming as 'wander toward bright water,' not 'hunt the bloom,' and expect it to steer wrong a meaningful fraction of the time. This is also why species-selective or 'AI seeks cyanobacteria' framing is banned: it is a Braitenberg phototrope, public-domain 1980s BEAM, no machine learning, no inference.\n\nThe heritage discrete H-bridge (PN2907/PN2222) is demonstrator-scale — sub-1-amp, sized for pager motors. It genuinely cannot move a 200-plus-pound raft, so anyone reproducing the VBSXv2/BasicJT2 board as-drawn to drive real thrusters will burn transistors and go nowhere. The board is the correct BRAIN; the muscle must be a separate power stage. I kept the analog nervous net faithful and inserted exactly one corrected seam (opto-isolated logic -> power H-bridge -> fused thruster).\n\nSteering is entirely unproven on water — the BEAM board in this corpus was a design study that, by the teardown's own evidence, never flew; the pond rig actually used a trim-pot perfboard and sat put. Roaming also busts the power budget: the 45 W panel makes ~120-170 Wh/day, and continuous thruster duty plausibly overruns that by a wide, UNKNOWN margin (thruster sizing is itself unresolved). Confidence that station-keeping is the right baseline: HIGH. Confidence that the BEAM logic can be made to oscillate and steer toy motors on a bench: HIGH. Confidence that roaming photovore steering meaningfully improves harvest over an anchor on a real pond, within the power budget: LOW. Recommendation: build the knot; build the BEAM board only as a T3 experiment, gated on bench proof and an honest on-water light-vs-bloom test, and keep it fully unpluggable from the survival reflex."
+  },
+  {
+   "area": "Charge + Storage + Low-Voltage Disconnect (the power heart: solar/wind in → charge control → 12V battery → over-discharge protection → protected feed to the loads)",
+   "tiers": "T1 (core — this whole area IS the analog survival reflex; every builder builds it). T2 adds the passive Observer taps (shunt + logger) without touching the reflex. T3 adds the optional wind-with-diversion-load and the optional pre-charge supercap for a high-inrush motor pump.",
+   "plainLanguage": "Think of this section as the machine's metabolism — eat, store, and know when to stop working so you don't starve to death.\n\nThe SOLAR PANEL is the mouth: sunlight goes in, electricity comes out. The CHARGE CONTROLLER is a careful feeder — it spoons energy into the battery at the right rate and stops before it overfills. The BATTERY is the stomach/fuel tank: it holds today's sunshine so the pump can still run at dusk or under clouds. Inside a lithium battery there's also a BMS, which is a built-in trip-switch that slams the tank shut if things ever go badly wrong (bone empty, overfull, or someone yanks too much at once) — it's dumb hardware, not a computer, and that's exactly why we trust it.\n\nTwo guardian parts make this safe on the water. The MAIN FUSE is a sacrificial snap-link bolted right on the battery: if a wire ever rubs through and shorts, the fuse melts in a blink and cuts everything — that is the one part standing between you and an electrical fire floating on a pond. The LOW-VOLTAGE DISCONNECT (LVD) is the actual reflex. It's a little voltage-watching switch — like a thermostat, but for battery level. When the battery gets tired, the LVD pulls the plug on the pump so the battery lives to see the next sunrise; when the sun refills the tank, it clicks the pump back on. No microcontroller decides this. Nothing to boot, nothing to configure, nothing to hang. It's a reflex — knee-jerk simple.\n\nThe whole loop is a reflex arc: sun fills the tank → when there's enough charge the pump is allowed to work → when the tank runs low the LVD reflex yanks the pump off → sun refills → repeat. The old design's giant 2200-farad supercapacitor is GONE — it was a dangerous, contradictory part that added nothing for our little pump. The blocking diode is GONE too; the modern controller already blocks backflow at night. Fewer parts, fewer things to break.",
+   "whyThisWay": "Charlie's law: the survival loop is a pure-analog reflex — charge, store, don't over-discharge — with no microcontroller in the protection path and nothing that has to boot or be flashed. My whole area is that reflex, so the design decisions all serve one question: \"if every clever chip on this raft dies, does the battery still get charged and still refuse to murder itself?\" Answer must be yes.\n\nThree honest sub-reflexes, and where the silicon is allowed:\n1. CHARGE — done by the MPPT charge controller. Yes, an MPPT contains a microcontroller (that's how it tracks the panel's peak-power point for +15–30% harvest). We tolerate this ONE chip in the loop because its failure mode is fail-safe: a hung charger simply stops charging, so the machine quietly goes to sleep. A hung charger physically cannot over-charge or over-discharge the battery — it just stops feeding it. If a builder wants literally zero microcontrollers, a dumb PWM controller (an analog comparator clamping the panel to battery voltage) is the drop-in T1 substitute at the cost of 15–30% harvest. Either way, charging is the ONLY place a chip touches the reflex, and it's the safe place.\n2. STORE — the battery plus its BMS. A LiFePO4 BMS is hardware over/under-voltage and over-current protection — a reflex, not a brain. It's the last-ditch backstop.\n3. DON'T OVER-DISCHARGE — a standalone ANALOG low-voltage disconnect. This is the single most important correction I make to the \"improved manual,\" which leaned on the Victron's programmable load-output + firmware LVD for cutoff. That buries the survival reflex inside a config screen and a microcontroller — exactly what Charlie's architecture forbids. So I pull the over-discharge cutoff OUT of the firmware and make it a discrete comparator (LM393 + TL431 reference + P-MOSFET, hysteresis set by feedback) or a proven analog LVD module. Now the reflex is a voltage threshold in hardware. The Victron's smarts become an OPTIONAL Observer/timer in T2 — unplug the Bluetooth brain and the machine still protects itself.\n\nCorrections to the original's real errors, all in my area:\n- SUPERCAP: the \"2200 F\" is a single-cell rating (~2.7 V); to make a 12 V bank you need ~6 in series, which divides down to ~366 F — the separate \"3 F\" line is an unreconciled contradiction, and NEITHER is needed. A discharged 2200 F cell across a battery is a dead short that arc-welds terminals. DELETED on baseline; the battery buffers our ~5 A diaphragm pump's inrush trivially. It returns only in T3, and only as a factory-balanced 16 V module fed through a pre-charge resistor, if someone fits a high-inrush brushed-motor pump.\n- NO FUSING (the original had none anywhere): a 12 V LiFePO4/lead-acid bus sources hundreds of fault amps. A main terminal fuse on the battery post is the cheapest life-safety part in the whole machine and is now mandatory.\n- BLOCKING DIODE: deleted — redundant with the controller's built-in reverse/night blocking, and its 0.7 V drop wasted power on a tight budget.\n- WIND UNLOADED: a turbine with no diversion/dump load overspeeds and cooks itself. On baseline, wind is dropped (solar alone closes the trickle budget). If kept (T3), a diversion-load controller + dump resistor is mandatory — the turbine is NEVER allowed to spin into an open circuit.\n\nBattery chemistry: LiFePO4 recommended (2–3× cycle life, true 80–100% usable depth, a hardware BMS backstop, half the weight). Marine AGM is the cheaper, cold-tolerant alternative and its extra weight is actually useful low-mounted ballast — but it has no BMS, so the analog LVD is doubly essential, and you must never take it below ~50%.",
+   "components": [
+    {
+     "ref": "PV",
+     "part": "Solar panel, 12 V nominal, mono rigid (baseline 45 W; recommended 100 W — Renogy/Rich Solar 100 W class)",
+     "spec": "Voc ~18–22 V, Imp ~2.5–5.5 A. 45 W ≈ 120–170 Wh/day realistic; 100 W ≈ 300–400 Wh/day. MC4 leads.",
+     "qty": "1",
+     "cost": "$60–90 (45 W) / $80–110 (100 W)"
+    },
+    {
+     "ref": "MPPT",
+     "part": "Victron SmartSolar MPPT 75/15 charge controller",
+     "spec": "75 V PV max, 15 A charge. MPPT (+15–30% vs PWM), built-in reverse-polarity + night reverse-current blocking, LiFePO4/AGM presets. NOTE: its programmable load output + firmware LVD are NOT used for the survival cutoff — quarantined to the T2 Observer/timer.",
+     "qty": "1",
+     "cost": "~$110"
+    },
+    {
+     "ref": "MPPT-ALT",
+     "part": "(Zero-microcontroller substitute) rugged PWM controller — e.g. Genasun/Morningstar SunSaver-class or Victron BlueSolar PWM",
+     "spec": "Analog series/shunt regulation, no MPP tracking. Use only if a builder wants literally no MCU anywhere; costs 15–30% harvest. Failure mode identical (stops charging = safe).",
+     "qty": "0–1 (alt to MPPT)",
+     "cost": "$20–40"
+    },
+    {
+     "ref": "BATT",
+     "part": "12 V LiFePO4 with internal BMS (LiTime/Ampere Time 50–100 Ah) — recommended; OR Group 24/27 AGM marine as alternative",
+     "spec": "LiFePO4 50 Ah ≈ 640 Wh usable, ~2 days autonomy at trickle load; BMS = hardware over/under-V + over-current + (pick a model with) low-temp charge cutoff. AGM alt: ~75–100 Ah, half usable, no BMS, heavier (= useful ballast), cold-charge OK.",
+     "qty": "1",
+     "cost": "$150–300 (LiFePO4) / $130–200 (AGM)"
+    },
+    {
+     "ref": "MRBF",
+     "part": "Blue Sea MRBF terminal fuse + holder, on the battery + post",
+     "spec": "Baseline 30 A (small diaphragm pump ~5 A + margin, protects 10 AWG). 60 A only if a big motor pump is fitted (then upsize wire to 6 AWG). Fuse MUST match the wire it protects, not just the load.",
+     "qty": "1",
+     "cost": "$20–30"
+    },
+    {
+     "ref": "SW",
+     "part": "Marine battery main disconnect switch (Blue Sea m-Series or equiv)",
+     "spec": "On/off battery isolator downstream of the main fuse; kills the whole bus for service/transport. ≥100 A rated.",
+     "qty": "1",
+     "cost": "$15–25"
+    },
+    {
+     "ref": "LVD",
+     "part": "Analog low-voltage disconnect — comparator module (LM393 + relay/MOSFET, adjustable) OR discrete build (LM393 + TL431 ref + P-channel MOSFET, hysteresis via feedback resistor)",
+     "spec": "Pure analog, no firmware. LiFePO4: cut ~12.0 V, reconnect ~13.0 V. AGM: cut ~11.5 V, reconnect ~12.6 V. ~100–500 ms debounce to ignore inrush sag. This is the survival reflex.",
+     "qty": "1",
+     "cost": "$15–30 (module) / ~$8 (discrete parts)"
+    },
+    {
+     "ref": "BUS+",
+     "part": "Positive distribution stud / fused block feed point",
+     "spec": "Switched positive from SW; feeds LVD input. (Per-branch fusing lives in the load-switching subsystem, not here.)",
+     "qty": "1",
+     "cost": "$10–20"
+    },
+    {
+     "ref": "BUS-",
+     "part": "Negative bus bar (single-point ground)",
+     "spec": "All module negatives land here; ties to battery − (via SHUNT in T2). Prevents ground loops.",
+     "qty": "1",
+     "cost": "$10–15"
+    },
+    {
+     "ref": "WIRE",
+     "part": "Tinned marine wire + MC4 connectors + ring terminals + heat-shrink + PV disconnect/breaker",
+     "spec": "PV leads 10 AWG (<6 A); battery main + LVD legs 10 AWG baseline (6 AWG if 60 A fuse). Add a PV-side disconnect/breaker (good marine practice).",
+     "qty": "1 set",
+     "cost": "$40–70"
+    },
+    {
+     "ref": "SHUNT",
+     "part": "[T2 OBSERVER] Victron SmartShunt 500 A OR INA226 module, in the battery − path",
+     "spec": "Coulomb-counts Wh in vs out. Passive — remove it and the reflex is unaffected. This is the unpluggable data-logger tap, not a control element.",
+     "qty": "0–1",
+     "cost": "$120 (SmartShunt) / ~$15 (INA226)"
+    },
+    {
+     "ref": "SC",
+     "part": "[T3 OPTIONAL] Factory-balanced 16 V supercap module (Eaton XLM/XLR) + pre-charge resistor (10–47 Ω, 5–10 W)",
+     "spec": "ONLY if a high-inrush brushed-motor pump is fitted. First connection MUST be through the pre-charge resistor (a discharged bank is a dead short that arc-welds terminals), then bypass. Replaces the deleted 2200 F/3 F parts entirely.",
+     "qty": "0–1",
+     "cost": "~$60 + $2 resistor"
+    },
+    {
+     "ref": "WIND+DUMP",
+     "part": "[T3 OPTIONAL] Small 12 V wind turbine + rectifier (if 3-phase AC) + diversion/dump-load controller + dump resistor bank",
+     "spec": "Turbine NEVER runs unloaded. Dump resistor sized to absorb full turbine output; controller shunts surplus to it once the battery is full. Analog/rugged. Dropped from baseline — solar alone closes the trickle budget.",
+     "qty": "0–1",
+     "cost": "$60+ turbine + $60 controller + $20 resistor"
+    },
+    {
+     "ref": "DEL-SC",
+     "part": "DELETED: original 2200 F supercapacitor (and the contradictory separate 3 F cap)",
+     "spec": "Undocumented, unbalanced, arc-weld/short hazard; the '2200 F' is a single-cell rating that becomes ~366 F in a 12 V string. Battery buffers the small pump. Net saving.",
+     "qty": "0",
+     "cost": "−$40 to −$120"
+    },
+    {
+     "ref": "DEL-DIODE",
+     "part": "DELETED: 50 A stud blocking diode",
+     "spec": "Redundant — the MPPT (or even a decent PWM) blocks reverse/night current. Its 0.7 V drop wasted power on a tight budget.",
+     "qty": "0",
+     "cost": "−$5"
+    }
+   ],
+   "connections": [
+    {
+     "from": "PV+ (panel positive, MC4)",
+     "to": "MPPT PV+",
+     "wire": "10 AWG red, via optional PV disconnect/breaker",
+     "note": "Panel <6 A; connect PV LAST, after the controller already sees the battery (battery-first sequence)."
+    },
+    {
+     "from": "PV− (panel negative, MC4)",
+     "to": "MPPT PV−",
+     "wire": "10 AWG black",
+     "note": "Confirm polarity with a meter in sunlight before mating MC4."
+    },
+    {
+     "from": "BATT +post",
+     "to": "MRBF fuse input",
+     "wire": "stud-mount, no wire between",
+     "note": "Fuse bolts DIRECTLY on the battery post — nothing unfused ever leaves the battery."
+    },
+    {
+     "from": "MRBF fuse output (node FP, fused positive)",
+     "to": "MPPT BATT+",
+     "wire": "10 AWG red",
+     "note": "Charging path AND how the controller senses battery voltage. Wire this before the PV side."
+    },
+    {
+     "from": "MRBF fuse output (node FP)",
+     "to": "SW (main disconnect) input",
+     "wire": "10 AWG red",
+     "note": "Same fused-positive node feeds both the charger and the load side."
+    },
+    {
+     "from": "SW output",
+     "to": "BUS+ (positive distribution)",
+     "wire": "10 AWG red",
+     "note": "Opening this switch kills the entire load bus for service/transport."
+    },
+    {
+     "from": "BUS+",
+     "to": "LVD IN (sense + supply)",
+     "wire": "10 AWG red",
+     "note": "LVD watches this node's voltage AND passes its current."
+    },
+    {
+     "from": "LVD OUT",
+     "to": "LOAD-BUS+ (hand-off to load-switching subsystem: SSR/relay board)",
+     "wire": "10 AWG red",
+     "note": "THIS is my area's output boundary. Everything past here (pump relay, horns, per-branch fuses) belongs to the load-switching specialist. The 'run pump when power + water' logic sits downstream of this protected feed."
+    },
+    {
+     "from": "BATT −post",
+     "to": "BUS− (negative bus bar)",
+     "wire": "10 AWG black (T2: route through SHUNT first)",
+     "note": "Single-point ground. In T2 the SmartShunt/INA226 sits in this leg so ALL current is counted."
+    },
+    {
+     "from": "MPPT BATT−",
+     "to": "BUS−",
+     "wire": "10 AWG black",
+     "note": "Controller negative to the common negative bar."
+    },
+    {
+     "from": "LVD ground/reference",
+     "to": "BUS−",
+     "wire": "16 AWG black",
+     "note": "LVD comparator reference must share the system ground to read battery voltage correctly."
+    },
+    {
+     "from": "LCD voltmeter + / − (glance display, passive)",
+     "to": "BUS+ / BUS−",
+     "wire": "18 AWG",
+     "note": "Harmless dumb display; may stay on T1 or move to T2. Not part of the reflex."
+    },
+    {
+     "from": "[T3] Wind turbine leads",
+     "to": "Rectifier (if AC) → DUMP controller charge output → node FP",
+     "wire": "sized to turbine output, fused",
+     "note": "Turbine charge current joins the fused battery node; the dump controller senses BUS+/BUS−."
+    },
+    {
+     "from": "[T3] DUMP controller dump terminal",
+     "to": "Dump resistor bank",
+     "wire": "sized to full turbine output",
+     "note": "MANDATORY. Surplus power is shunted here when the battery is full — the turbine is never open-circuit."
+    },
+    {
+     "from": "[T3] Supercap module +/−",
+     "to": "BUS+ / BUS− via pre-charge resistor on first connect",
+     "wire": "10 AWG, pre-charge 10–47 Ω 5–10 W",
+     "note": "First connection THROUGH the resistor only; bypass once charged. Only present if a high-inrush motor pump is fitted."
+    }
+   ],
+   "buildSteps": [
+    {
+     "n": 1,
+     "title": "Mount the battery low as ballast",
+     "detail": "Fasten the 12 V battery low and central between the hulls in a vented marine box, strapped down. Low mass here lowers the center of gravity for free — deliberate ballast against capsize.",
+     "caution": "A vented box is mandatory for AGM/lead-acid (hydrogen off-gassing). LiFePO4 doesn't off-gas but still strap it hard — a shifting battery on a beamy raft is a capsize and a wiring-tear risk."
+    },
+    {
+     "n": 2,
+     "title": "Bolt the main fuse directly on the battery + post",
+     "detail": "Install the MRBF terminal fuse on the battery positive post BEFORE any wire leaves it. Baseline 30 A (protects 10 AWG for the small-pump load); 60 A only with a big motor pump and 6 AWG wire.",
+     "caution": "Do not energize the machine without this fuse. An unfused 12 V bus sources hundreds of fault amps into a shorted wire — this is the fire-on-water scenario. Size the fuse to the WIRE, not just the load."
+    },
+    {
+     "n": 3,
+     "title": "Mount the charge controller above the splash line and wire battery-first",
+     "detail": "Mount the MPPT (or PWM) high in the enclosure. Connect its BATT terminals to the fused battery node FIRST, then set the LiFePO4/AGM charge profile. Only after the controller sees the battery do you connect the panel.",
+     "caution": "Wiring PV before battery can damage some controllers. For an MPPT this order is required. Confirm the charge profile matches your chemistry — an AGM profile on LiFePO4 (or vice-versa) mis-charges the pack."
+    },
+    {
+     "n": 4,
+     "title": "Connect the solar panel and confirm charging",
+     "detail": "Verify panel polarity with a meter in sunlight, mate the MC4s, and confirm the controller reports charging. No external blocking diode — the controller blocks night reverse-current itself.",
+     "caution": "Skip the deleted 50 A blocking diode entirely; it only wastes 0.7 V. Add a PV-side disconnect/breaker so you can safely isolate a live panel."
+    },
+    {
+     "n": 5,
+     "title": "Install the ANALOG low-voltage disconnect",
+     "detail": "Wire the LVD between BUS+ and the LOAD-BUS+ hand-off. Set cut/reconnect thresholds for your chemistry (LiFePO4 ~12.0 V cut / ~13.0 V reconnect; AGM ~11.5 V / ~12.6 V). Tie its ground to BUS−. This is the survival reflex — no firmware.",
+     "caution": "Do NOT substitute the controller's programmable firmware LVD for this. The reflex must be hardware you can trust with the Bluetooth brain unplugged. Add ~100–500 ms debounce so pump-start inrush sag doesn't false-trip it."
+    },
+    {
+     "n": 6,
+     "title": "Build the negative bus / single-point ground",
+     "detail": "Land battery −, controller −, and LVD reference on one negative bus bar. Keep it a single star point to avoid ground loops.",
+     "caution": "A loose lug here becomes a hot resistive joint. Torque and check every ring terminal; use tinned marine lugs and heat-shrink."
+    },
+    {
+     "n": 7,
+     "title": "Confirm the deletions",
+     "detail": "Verify the 2200 F/3 F supercapacitor and the blocking diode are NOT installed on the baseline. The battery buffers the diaphragm pump's inrush without help.",
+     "caution": "If a builder insists on the supercap, it belongs in T3 only, as a factory-balanced 16 V module, and the first connection MUST go through a pre-charge resistor or it will arc-weld the terminals."
+    },
+    {
+     "n": 8,
+     "title": "[T2 Observer] Insert the shunt and logger — reversibly",
+     "detail": "Move the battery-negative connection through a SmartShunt/INA226 so all current is coulomb-counted. Pair the BLE logger; keep the LCD as a glance display. This measures Wh-in vs Wh-out — the number the venture turns on.",
+     "caution": "The Observer must be removable without breaking the reflex: if you unplug the shunt/logger, jumper the negative path so the machine keeps running. The logger observes; it never controls."
+    },
+    {
+     "n": 9,
+     "title": "[T3 Options] Add wind-with-dump-load and/or the pre-charge supercap",
+     "detail": "If adding wind: turbine → rectifier (if AC) → diversion-load controller → dump resistor bank, with charge output to the fused battery node. If adding a high-inrush motor pump: fit the balanced 16 V supercap via its pre-charge resistor.",
+     "caution": "A turbine must NEVER be connected without its dump load — open-circuit overspeed destroys the alternator and raises capsize risk from mast-top mass. Drop wind entirely if unsure; solar closes the baseline budget."
+    }
+   ],
+   "safety": "FUSING (life-safety #1): main MRBF fuse bolted on the battery + post before any wire leaves it; size to the wire it protects. Absence = fire risk — a 12 V LiFePO4/lead-acid bus sources hundreds of fault amps. VENTING: AGM/lead-acid off-gas hydrogen — vented battery box only, never sealed. LiFePO4 doesn't off-gas but must be strapped hard. SUPERCAP ARC-WELD (T3 only): a discharged supercap module is a dead short; connect the first time through a pre-charge resistor, never directly. LiFePO4 COLD-CHARGE: charging LiFePO4 below 0 °C permanently damages cells — use a BMS with low-temp charge cutoff, or choose AGM for freezing ponds. WATERPROOFING (top failure mode for a floating box): IP66 enclosure above the splash line, cable glands LOW, Gore breather vent HIGH, drip loops on every entry, conformal-coat any exposed board. GALVANIC: isolate every aluminum-to-stainless mount with nylon washers + anti-seize. POLARITY + SEQUENCE: confirm panel polarity with a meter; wire the controller battery-first, PV last. WIND (T3): never energize the turbine without its dump load connected. DISCONNECT: a main battery switch downstream of the fuse lets you safely kill the bus for service and transport.",
+   "honestNotes": "Confidence levels and the places I'm not blowing smoke:\n\n1. THE ONE MICROCONTROLLER (moderate-high confidence this is the right call): an MPPT charge controller genuinely contains a microcontroller — I won't pretend otherwise. It's in the charge reflex. I keep it because its failure is fail-safe (hung charger = stops charging = safe sleep; it cannot over-charge or over-discharge). If Charlie wants literally zero MCUs on the baseline, the honest swap is a dumb PWM controller for 15–30% less harvest. Both are offered. What I will NOT do is let the survival cutoff live in firmware — the analog LVD is the real reflex, and that's the meaningful departure from the 'improved manual,' which relied on the Victron's programmable load-output/LVD.\n\n2. POWER BUDGET (high confidence it's tight): at 45 W the baseline 'closes marginally in daylight' and only as an intermittent batch process. I recommend 100 W for real margin. Do not expect continuous operation on solar — the Observer shunt (T2) will prove the actual daily balance instead of us arguing it.\n\n3. LVD ON LiFePO4 (moderate confidence, known limitation): LiFePO4's discharge curve is flat, so a voltage-threshold LVD is a coarser fuel gauge than coulomb counting. Voltage LVD is still the correct ROBUST reflex (no firmware, no calibration drift); the precise state-of-charge belongs to the T2 Observer, which is allowed to be smart because it's unpluggable and never controls.\n\n4. SUPERCAP DELETION (high confidence): the 2200 F/3 F pair is contradictory and hazardous, and adds nothing for a ~5 A diaphragm pump. Deleted. It only earns a place back (T3, balanced, pre-charged) if someone fits a high-inrush brushed-motor pump — which the fluid design currently doesn't.\n\n5. WIND (high confidence to drop on baseline): on a low-wind pond a small turbine averages tens of watts, raises the CG, and is an unloaded-overspeed hazard. Baseline solar-only is the honest, safer default.\n\n6. BATTERY CHEMISTRY (moderate): LiFePO4 wins on cycle life, usable depth, weight, and the BMS backstop, and is my recommendation — EXCEPT in freezing climates (cold-charge damage) or where the extra weight of AGM is wanted as ballast. Genuine judgment call for the builder; I've given both.\n\n7. SCOPE BOUNDARY: my area ends at LOAD-BUS+. The 'run the pump when there's power AND water' half of the reflex (pump relay, water sensor, per-branch fuses, air-horn annunciators) is the load-switching specialist's — I hand them a protected, over-discharge-safe positive feed and a clean single-point ground."
+  },
+  {
+   "area": "Safety: Fusing, Bonding & Waterproofing (the electrical protection skeleton)",
+   "tiers": "T1 / T2 / T3 — this is the shared foundation. Fuses, bonding, and waterproofing are dumb physical protections that don't care whether a microcontroller is present, so the FULL package lives in the T1 base and is not optional at any tier. T2 adds exactly one fused branch + one gland for the Observer; T3-roaming adds fused branches for thrusters; T3 station-keeping (anchored) adds NOTHING electrical to this area.",
+   "plainLanguage": "Three separate jobs, all cheap, all life-safety.\n\n1) FUSES = deliberate weak links that melt before your wires catch fire. This battery is small but it can shove a firehose of electricity — over a thousand amps — into any wrong connection (a chafed wire touching metal, a pump that jams). A fuse is a thin piece of metal that melts first and opens the circuit before the wire gets hot enough to start a fire. We put one BIG fuse right on the battery's plus terminal (the master \"if anything at all goes wrong, cut it\") and one SMALL fuse for each device downstream, so a single broken gadget blows only its own fuse and can't take down the boat or start a fire. The original machine had NO fuses anywhere. That is the single most dangerous thing about it and the cheapest thing to fix.\n\n2) BONDING/GROUNDING on a floating raft is different from a house. In a house, \"ground\" is a copper rod driven into the dirt. A raft floating in a pond has no dirt to connect to — so here \"ground\" just means one shared \"minus\" bar that every wire's return connects back to, like everyone in a building meeting at one single door. Two surprises for a non-technical builder: first, 12 volts will NOT shock you, even soaking wet — the real dangers in water are FIRE and metal being eaten by corrosion, not electrocution. Second, we deliberately DON'T let electricity use the metal frame as a wire; in water, even a tiny electrical leak into the frame eats the metal like rust on fast-forward. We also bolt a little bar of magnesium under the waterline that corrodes away on purpose so the aluminum frame doesn't.\n\n3) WATERPROOFING = the electronics live in a sealed lunchbox mounted up out of the splash. Wires enter through rubber-gasket doughnuts (called glands) on the BOTTOM of the box, and each wire is made to dip down in a U-shape (a \"drip loop\") just before it enters, so rain running down the wire drips off the bottom of the U instead of crawling inside. A tiny one-way breather button on TOP lets the box \"breathe\" as it heats up in sun and cools at night — without it, the sealed box sucks in damp air and it literally rains inside the box overnight. Finally every circuit board gets a coat of clear varnish so a stray drop can't short it.",
+   "whyThisWay": "Why this belongs entirely in the analog T1 base, and why it's built this way:\n\n- SAFETY IS TIER-AGNOSTIC AND ANALOG-AGNOSTIC. A fuse doesn't know or care whether a microcontroller is watching. Because the survival-critical loop is a pure analog reflex, the protection around it must be equally dumb and equally unkillable: melting metal (fuses), one shared minus bar (single-point negative), and a sealed box (ingress protection). None of it can \"crash.\" That is precisely why the whole package sits in T1 and is mandatory — it protects the reflex regardless of what's plugged in above it.\n\n- THE OBSERVER IS MADE UNPLUGGABLE BY A FUSE AND A GLAND, not by software. Put the data logger on its OWN fused branch through its OWN cable gland. If the logger shorts, its little 3A fuse blows and the analog reflex never notices. Pull the logger and cap the gland — the reflex keeps running. The \"optional, removable observer that can die without stopping the machine\" is enforced physically, in this area, by fuse + gland isolation. Same logic extends to T3 steering: thrusters and the BEAM board get their own fuses so a steering fault can't reach the charge-and-pump reflex.\n\n- FLOATING (ISOLATED) DC, NOT CHASSIS-RETURN. On a 12V two-wire system the safest choice for a metal-framed raft in water is to keep both battery terminals off the frame entirely. Then a single wire chafing to the frame does nothing — there's no return path — and it takes two independent faults to get frame current. This also minimizes stray-current corrosion, which at 12V in water is a faster killer than any shock risk. We handle dissimilar-metal (galvanic) corrosion mechanically instead: nylon isolation washers at every aluminum-to-stainless joint plus one sacrificial magnesium anode.\n\n- FIRE IS THE THREAT MODEL, NOT SHOCK. 12V DC is below the human shock-hazard threshold even in fresh water. So every dollar in this area buys protection against the two things that actually kill a floating electrical box: fault-current fire and water ingress. That reframes \"electricity next to water\" correctly and keeps us from over-engineering (e.g. chasing IP67 immersion-proofing the box doesn't need).",
+   "components": [
+    {
+     "ref": "MRBF",
+     "part": "Blue Sea 5191 MRBF terminal-fuse block",
+     "spec": "Battery-post mount, sealed marine, 30-300A range, 58VDC",
+     "qty": "1",
+     "cost": "$18-22"
+    },
+    {
+     "ref": "FUSE-M",
+     "part": "Blue Sea 5177 MRBF fuse, 40A (+1 spare)",
+     "spec": "40A, 58VDC, >2000A interrupt rating; re-size to peak load",
+     "qty": "2",
+     "cost": "$16"
+    },
+    {
+     "ref": "FDB",
+     "part": "Blue Sea 5025 ST-Blade fused distribution block",
+     "spec": "6 ATO/ATC branch circuits + common negative bus, 100A bus",
+     "qty": "1",
+     "cost": "$30"
+    },
+    {
+     "ref": "FUSE-B",
+     "part": "ATO/ATC blade fuse assortment (3/5/7.5/10/15/20A)",
+     "spec": "Automotive blade, one per branch, sized to LOAD",
+     "qty": "1 kit",
+     "cost": "$10"
+    },
+    {
+     "ref": "SW",
+     "part": "Blue Sea 6006 mini battery on/off switch (recommended)",
+     "spec": "300A continuous, marine; manual de-energize / lockout",
+     "qty": "1",
+     "cost": "$18-25"
+    },
+    {
+     "ref": "ENCL",
+     "part": "IP66 polycarbonate enclosure ~200x150x100mm",
+     "spec": "IP66, UV-stable PC, gasketed lid; mount above splash line",
+     "qty": "1",
+     "cost": "$28-40"
+    },
+    {
+     "ref": "GLAND",
+     "part": "Nylon IP68 cable glands, M12-M20 + locknuts/gaskets",
+     "spec": "Cable OD 3-14mm; one cable per gland; enter on LOW face",
+     "qty": "10-pk",
+     "cost": "$10"
+    },
+    {
+     "ref": "PLUG",
+     "part": "IP68 gland blanking plugs",
+     "spec": "Seal every unused hole to hold IP66",
+     "qty": "assorted",
+     "cost": "$5"
+    },
+    {
+     "ref": "BRV",
+     "part": "Gore PolyVent (or equiv) pressure-equalizing breather, M12",
+     "spec": "IP66/IP68 vent; blocks liquid, passes air; mount on TOP face",
+     "qty": "1",
+     "cost": "$6-10"
+    },
+    {
+     "ref": "COAT",
+     "part": "MG Chemicals 422B acrylic conformal coating",
+     "spec": "55mL aerosol; coat both sides of every PCB, re-coat after rework",
+     "qty": "1",
+     "cost": "$18"
+    },
+    {
+     "ref": "HS",
+     "part": "Adhesive-lined heatshrink assortment (3:1)",
+     "spec": "Marine, glue-lined; every crimp and splice",
+     "qty": "1",
+     "cost": "$12"
+    },
+    {
+     "ref": "WIRE-BG",
+     "part": "Tinned marine battery cable, 6 AWG (red+black)",
+     "spec": "~60A ampacity; main feed + main negative; ~10 ft",
+     "qty": "1",
+     "cost": "$30"
+    },
+    {
+     "ref": "WIRE-PR",
+     "part": "Tinned marine primary wire, 12/14/16/18 AWG",
+     "spec": "Tinned copper only (bare copper wicks water); branch wiring",
+     "qty": "spools",
+     "cost": "$40"
+    },
+    {
+     "ref": "TERM",
+     "part": "Tinned ring/blade terminals w/ adhesive heatshrink",
+     "spec": "Marine crimp terminals, assorted",
+     "qty": "1 kit",
+     "cost": "$15"
+    },
+    {
+     "ref": "DGREASE",
+     "part": "Dielectric grease",
+     "spec": "On every terminal/connector to block corrosion",
+     "qty": "1",
+     "cost": "$8"
+    },
+    {
+     "ref": "ANODE",
+     "part": "Magnesium sacrificial anode (FRESHWATER) + SS strap",
+     "spec": "Teardrop ~0.5 lb; bolt to frame below waterline. NOT zinc",
+     "qty": "1",
+     "cost": "$15-25"
+    },
+    {
+     "ref": "BBOX",
+     "part": "Vented marine battery box + strap (shared w/ Frame BOM)",
+     "spec": "Group 24/27; contains+vents fault off-gassing; mounted low",
+     "qty": "1",
+     "cost": "$20-30"
+    },
+    {
+     "ref": "ISOWASH",
+     "part": "Nylon shoulder washers / isolation bushing kit",
+     "spec": "Galvanic isolation at every Al-to-SS interface (shared w/ Frame)",
+     "qty": "1 kit",
+     "cost": "$12"
+    },
+    {
+     "ref": "SEAL",
+     "part": "Marine-grade silicone or polyurethane sealant",
+     "spec": "Gland threads, box penetrations, drum-adjacent runs",
+     "qty": "1",
+     "cost": "$8"
+    },
+    {
+     "ref": "FUSE-MIDI",
+     "part": "Blue Sea MIDI/AMI fuse holder + fuse (T3 roaming or 12V BLDC pump only)",
+     "spec": "30-60A on own holder; size to thruster/BLDC (UNKNOWN); NOT the blade block",
+     "qty": "0-2",
+     "cost": "$18 ea"
+    }
+   ],
+   "connections": [
+    {
+     "from": "BATT(+) post",
+     "to": "MRBF input stud",
+     "wire": "terminal-fuse mounts directly on the post (no wire)",
+     "note": "NOTHING leaves the battery unfused. This is the master protection; install it FIRST."
+    },
+    {
+     "from": "MRBF output",
+     "to": "SW (battery switch) input",
+     "wire": "6 AWG red tinned, 40A main fuse upstream",
+     "note": "Fused + switchable main feed."
+    },
+    {
+     "from": "SW output",
+     "to": "FDB positive input stud",
+     "wire": "6 AWG red tinned",
+     "note": "Energizes the fused distribution bus; every downstream branch is individually fused off this."
+    },
+    {
+     "from": "BATT(-) post",
+     "to": "NEGBUS (via SmartShunt if T2)",
+     "wire": "6 AWG black tinned",
+     "note": "SINGLE-POINT NEGATIVE: all return current passes through one bus (and, in T2, through the shunt so it sees 100% of current)."
+    },
+    {
+     "from": "FDB F1 (15A)",
+     "to": "Transfer/diaphragm PUMP(+)",
+     "wire": "14 AWG tinned",
+     "note": "Fuse sized to the load (~7A run/10A stall), not the wire max."
+    },
+    {
+     "from": "PUMP(-)",
+     "to": "NEGBUS",
+     "wire": "14 AWG tinned",
+     "note": "Star return to the single point."
+    },
+    {
+     "from": "FDB F2 (20A)",
+     "to": "MPPT charge controller BATT(+)",
+     "wire": "12 AWG tinned",
+     "note": "Protects the controller-to-battery cable; controller BATT(-) also lands on NEGBUS."
+    },
+    {
+     "from": "Solar panel PV(+/-)",
+     "to": "MPPT PV(+/-) via ENCL gland",
+     "wire": "14 AWG tinned",
+     "note": "Single 45W panel needs no series fuse (only 3+ parallel strings do); add a PV disconnect. PV(-) does NOT touch the frame."
+    },
+    {
+     "from": "FDB F3 (5A)",
+     "to": "Analog reflex control power (comparator / LVD / relay & SSR coils)",
+     "wire": "16 AWG tinned",
+     "note": "The survival-reflex electronics on their own fuse so a downstream load fault cannot kill control power."
+    },
+    {
+     "from": "FDB F4 (7.5A) / F5 (7.5A)",
+     "to": "HORN A(+) / HORN B(+)",
+     "wire": "16 AWG tinned",
+     "note": "Each annunciator on its own fused branch; returns to NEGBUS. (Confirm horn purpose before arming.)"
+    },
+    {
+     "from": "FDB F6 (3A)",
+     "to": "OBSERVER / data-logger(+)  [T2]",
+     "wire": "18 AWG tinned, own gland",
+     "note": "THE UNPLUGGABLE BRANCH: logger fault blows only this 3A fuse; pull the plug + cap the gland and the analog reflex runs untouched. OBS(-) to NEGBUS."
+    },
+    {
+     "from": "FUSE-MIDI (size to thruster)",
+     "to": "THRUSTER-FRONT / THRUSTER-REAR  [T3 roaming]",
+     "wire": "10 AWG tinned, sealed leads",
+     "note": "Own holder, NOT the blade block. Rating UNKNOWN until thrusters sized. T3 STATION-KEEPING (anchor) adds NO electrical branch here."
+    },
+    {
+     "from": "FDB spare (3A)",
+     "to": "BEAM steering board(+)  [T3]",
+     "wire": "18 AWG tinned",
+     "note": "Steering brain on its own fuse; (-) to NEGBUS. A steering fault cannot reach the charge/pump reflex."
+    },
+    {
+     "from": "ANODE",
+     "to": "FRAME (below waterline)",
+     "wire": "SS strap/bolt, clean metal-to-metal",
+     "note": "Sacrificial magnesium (freshwater) corrodes instead of the aluminum frame."
+    },
+    {
+     "from": "FRAME",
+     "to": "NEGBUS",
+     "wire": "*** NO CONNECTION — intentional ***",
+     "note": "Floating/isolated DC: the frame is NEVER a current return. One chafe fault then becomes harmless; it takes two faults to pass frame current."
+    },
+    {
+     "from": "Every cable bundle",
+     "to": "ENCL via GLAND on the LOW face, with a DRIP LOOP",
+     "wire": "gland = sealed strain-relief",
+     "note": "Water running down the cable drips off the bottom of the U instead of tracking into the box. One cable per gland."
+    },
+    {
+     "from": "BRV breather",
+     "to": "ENCL TOP face",
+     "wire": "M12 threaded, sealed",
+     "note": "Equalizes day/night pressure so the sealed box doesn't inhale moist air and condense water inside."
+    },
+    {
+     "from": "Unused ENCL holes",
+     "to": "PLUG",
+     "wire": "blanking plug + gasket",
+     "note": "Maintains the IP66 rating."
+    },
+    {
+     "from": "All PCBs (reflex board, Observer, BEAM)",
+     "to": "COAT (conformal coating)",
+     "wire": "acrylic film both sides",
+     "note": "Insurance against the condensation that will occasionally get in; re-coat any joint you rework."
+    },
+    {
+     "from": "BATT",
+     "to": "BBOX (vented battery box)",
+     "wire": "strapped, low as ballast",
+     "note": "Contains and vents any AGM/LiFePO4 fault off-gassing; NO spark source (fuse/relay) goes inside this box."
+    }
+   ],
+   "buildSteps": [
+    {
+     "n": 1,
+     "title": "Fuse the battery at the post — first, before anything else",
+     "detail": "Bolt the MRBF terminal-fuse block (40A baseline) directly onto the battery POSITIVE post. No conductor leaves the battery unfused. From the fuse, run 6 AWG through the battery switch to the fused distribution block input.",
+     "caution": "A 12V 50Ah AGM/LiFePO4 can dump 1000-2000A into a dead short — enough to melt cable and ignite. Install this before you connect a single load."
+    },
+    {
+     "n": 2,
+     "title": "Set the single-point negative and keep DC off the frame",
+     "detail": "Land EVERY device's negative on one negative bus (through the shunt in T2). Run the system as an isolated two-wire loop — neither battery terminal touches the aluminum frame.",
+     "caution": "Never use the frame as a return conductor. In water, a bonded frame turns any second fault into fast stray-current corrosion and a hot joint."
+    },
+    {
+     "n": 3,
+     "title": "Build the fused distribution — one fuse per branch, sized to the LOAD",
+     "detail": "Populate the ST-Blade block: pump 15A/14AWG, charge-controller 20A/12AWG, reflex electronics 5A/16AWG, each horn 7.5A/16AWG. Wire gauge must be able to carry its own fuse's rating.",
+     "caution": "An oversize fuse on undersize wire protects nothing — the wire becomes the fuse. Match wire to fuse, fuse to load."
+    },
+    {
+     "n": 4,
+     "title": "Put the Observer (T2) and steering (T3) on their OWN fuses and glands",
+     "detail": "Logger on a dedicated 3A branch through its own gland. T3 roaming thrusters on their own MIDI/ANL holder; BEAM board on a 3A branch. Station-keeping (anchor) adds no branch.",
+     "caution": "This is what makes the observer truly unpluggable: its fault blows only its fuse, and pull-and-cap leaves the analog reflex fully alive."
+    },
+    {
+     "n": 5,
+     "title": "Galvanic isolation + one sacrificial anode",
+     "detail": "Nylon isolation washers/bushings and anti-seize at every aluminum-to-stainless joint. Bolt a magnesium anode to the frame below the waterline, clean bare-metal contact.",
+     "caution": "Use MAGNESIUM in fresh water — zinc anodes passivate in fresh water and stop protecting within weeks. This is a commonly-botched detail."
+    },
+    {
+     "n": 6,
+     "title": "Mount the IP66 box above the splash line, glands DOWN",
+     "detail": "Fix the enclosure on standoffs above the wettest zone. Drill all cable entries on a LOW side/bottom face. One cable per gland; torque the gland gaskets onto tinned cable.",
+     "caution": "Never penetrate the top of the box for cables — a top hole is a direct leak path. The only thing on top is the breather."
+    },
+    {
+     "n": 7,
+     "title": "Drip-loop every cable, breather on top, plug unused holes",
+     "detail": "Give each entering conductor a U-sag below its gland. Fit the Gore breather on the top face. Seal every unused hole with a blanking plug.",
+     "caution": "Skip the breather and the sealed box condenses water internally every day/night cycle — it drowns itself from the inside even with perfect glands."
+    },
+    {
+     "n": 8,
+     "title": "Conformal-coat boards; tinned wire, glue-lined heatshrink, dielectric grease throughout",
+     "detail": "Spray both sides of every PCB. Use only tinned marine wire, adhesive-lined heatshrink on every crimp, dielectric grease on every terminal. Keep ALL splices inside the dry box.",
+     "caution": "Bare copper wicks pond water up inside the insulation and corrodes green. No submerged splices — run continuous leads to any in-water device."
+    },
+    {
+     "n": 9,
+     "title": "Add the battery on/off switch and vented battery box",
+     "detail": "Wire the master switch just downstream of the main fuse for a one-move shutdown. Strap the battery low in a vented box (doubles as ballast).",
+     "caution": "Keep the battery sealed (AGM/LiFePO4) to minimize off-gassing, and never place a spark source — fuse, relay, SSR — inside the battery box."
+    },
+    {
+     "n": 10,
+     "title": "Commission: prove every fuse present and correct before energizing, then wet-test",
+     "detail": "Verify the main MRBF and all branch fuses are installed and correctly rated. Then splash/rain-test the closed box and inspect for ingress before deployment.",
+     "caution": "Do NOT energize without the main fuse — its total absence was the original build's single worst and most dangerous omission."
+    }
+   ],
+   "safety": "FUSING: One MRBF terminal fuse on the battery positive post (40A baseline; re-size to actual peak if a big 12V BLDC pump shares the bus) + one blade fuse per branch in an ST-Blade block, each sized to its load not the wire. A 12V BLDC cavitation pump or T3 thrusters get their own MIDI/ANL holder, not the little blade block. BONDING: Floating/isolated two-wire DC — neither battery terminal touches the frame; single shared negative bus (single-point ground); frame galvanic corrosion handled by nylon isolation washers + one MAGNESIUM (freshwater) sacrificial anode below the waterline; the frame is never a current return. 12V DC is below the human shock threshold even wet — the threat model is FIRE and stray-current CORROSION, not electrocution. WATERPROOFING: IP66 (not IP67 — the box is above the splash line and a higher rating just traps condensation) polycarbonate enclosure, cable glands on the LOW face, a drip loop on every entry, a pressure-equalizing breather on TOP, blanking plugs in unused holes, conformal-coated boards, tinned marine wire, glue-lined heatshrink and dielectric grease everywhere, and no submerged splices. Battery in a vented box; no spark sources inside it.",
+   "honestNotes": "Confidence levels and the one real judgment call:\n\n- FUSING JUSTIFICATION — HIGH. A 50Ah AGM/LiFePO4 sourcing 1000-2000A into a fault is real and fire-capable; the MRBF + per-branch tree is textbook ABYC-style protection and the correct fix for the original's zero-fuse design. This is the highest-leverage, cheapest change in my area.\n\n- 12V IS NOT A SHOCK HAZARD — HIGH. Below the ~60VDC ripple-free wet-contact threshold; a swimmer touching this system in the pond is in no electrocution danger. Stated plainly so nobody over-builds against a phantom risk. The genuine water hazards are fault-current fire and metal corrosion.\n\n- FLOATING vs BONDED DC — MODERATE, and it's a real design choice, not a settled fact. I recommend isolated/floating DC because for a 12V two-wire system on a metal-framed raft it's simpler and minimizes stray-current corrosion (a single fault stays harmless). ABYC E-11 on larger craft prefers a bonded negative + a proper bonding/anode system for detectable faults and galvanic control. Both are defensible; at this scale and voltage I'm confident floating is the better default, but flag it for the builder — if they later add AC shore-charging ashore, the grounding story changes and needs revisiting.\n\n- MAGNESIUM (not zinc) ANODE IN FRESH WATER — HIGH, and commonly gotten wrong. Zinc passivates in fresh water; magnesium is the correct freshwater sacrificial metal. Aluminum anodes are the brackish/all-water compromise.\n\n- IP66 NOT IP67 — MODERATE-HIGH. IP66 (powerful jets) covers rain + splash; IP67 (immersion) is unnecessary for a box mounted above the splash line and actively harmful because it seals in condensation. The breather matters more than a higher IP number.\n\n- MAIN-FUSE RATING is baseline-dependent. 40A suits the diaphragm-pump T1/T2 baseline on 6 AWG. If the high-current 12V BLDC cavitation pump is put on the 12V house bus (the improved manual prefers 24-48V for it, separately), bump the main to 60A and give that pump its own MIDI/ANL branch — do the load sum before finalizing.\n\n- THRUSTER FUSING (T3 roaming) is UNKNOWN until thrusters are sized — placeholder 30-60A MIDI. Station-keeping avoids this branch entirely, which makes the anchored baseline the electrically safest steering option.\n\n- MRBF is a sealed marine terminal fuse widely used at battery posts but is not formally 'ignition-protected'; keeping a sealed battery (AGM/LiFePO4) and a vented box, with no fuse/relay inside the battery box, keeps any spark source away from any off-gassing."
+  },
+  {
+   "area": "Observer / Data Logger + Telemetry — the optional, unpluggable passive digital witness (ESP32 + current shunts + turbidity/level/temp + SD + phone/LoRa/cellular)",
+   "tiers": "T2 (this whole area IS Tier 2). It only READS the T1 analog bus and the water; it adds nothing the survival loop depends on. Extends naturally into T3 when GPS + heading are added to log roaming/station-keeping. In T1 it simply isn't installed.",
+   "plainLanguage": "The Manatee's survival brain is pure analog — think of it as a heart that beats on its own: the solar controller keeps the battery charged, a low-voltage cutoff stops it from over-draining, and a simple reflex runs the pump when there's both power and water. Nothing in that loop is a computer, so there's nothing to crash.\n\nThe Observer is a fitness watch strapped onto that heart. It watches — battery volts and amps, how much sun came in versus how much the pump used, how cloudy the water is going IN versus coming OUT (the honest proof the pond got cleaner), pond temperature, drum level, and how many grams of wax piled up in the storage can — and it writes every reading into a diary on a memory card once a minute. It can also text that diary home over Wi-Fi, a little long-range radio, or a cell connection.\n\nThe one rule that makes this safe: the watch never touches the steering wheel. It cannot turn the pump on or off, cannot cut the battery, cannot do anything but look and write. It sips its power through its own tiny fuse, so if the watch itself shorts out, only its own little fuse blows and the heart never even feels it. And it hangs on a single plug — pull that one connector and the whole digital watch is gone, while the machine keeps running exactly as before. That's what \"unpluggable observer\" means: you can rip it off, drop it in the pond, let its firmware freeze, and the Manatee does not care.",
+   "whyThisWay": "Charlie's architecture is the whole point: analog is intentional, digital is a fragile guest. Microcontrollers crash, SD cards corrupt, firmware hangs, and — worst of all next to water — boards flood. So the machine's life-support (charge, low-voltage-disconnect, pump-when-power-and-water) stays 100% analog reflex, and the ESP32 is bolted on strictly as a witness. Four hard isolations enforce \"it can die without stopping the machine\":\n\n1) POWER isolation — the Observer draws its supply through its OWN 1A-fused tap into its OWN buck converter. A dead short anywhere in the digital domain blows only that 1A fuse; the main bus is untouched. The Observer's current draw (~0.3–0.8 W) is a rounding error on the 45 W budget.\n\n2) SENSE isolation — every electrical measurement is a READ. Battery/PV/pump current is measured across PERMANENT passive shunts (dumb ~milliohm resistors that live in the harness forever and essentially never fail open). The INA226 chips and the ESP32 only read the millivolt drop through high-impedance sense leads. Remove the digital side and the shunts still carry current normally.\n\n3) NO ACTUATION AUTHORITY — the ESP32 has zero wires into the pump relay, the LVD, or any survival actuator in T2. It can log \"the pump is running\" but it can never make the pump run. This is the bright line between an observer and a controller, and it's why the Observer can never brick the machine.\n\n4) PHYSICAL UNPLUGGABILITY — the entire digital domain hangs off one keyed connector (fused +12V, ground, and the sense/sensor leads). Unplug it and you drop cleanly from Tier 2 to Tier 1.\n\nWhy still instrument at all? Because the venture's entire honesty firewall turns on TWO measured numbers — watt-hours in vs. grams of product out, and turbidity in vs. turbidity out. The improved manual already demanded these be measured, not asserted. The Observer is how you measure them permanently, on every run, cheaply, with commodity parts — and (the strategic move) how you standardize that measurement across a whole fleet so the data itself becomes the moat. But measuring a claim must never endanger the machine making the claim — hence a witness, not a controller.\n\nWhy INA226 + external shunts instead of a Hall clamp? Accuracy and cost. At DC, cheap Hall sensors (ACS712-class) are noisy and drift; true non-invasive DC clamps cost $20–40 each. Kelvin-tapped passive shunts read to <1% for a few dollars and keep the removable part limited to the sense wire + IC. (A split-core DC Hall option is noted for anyone who wants literally zero series element.) Why an ADS1115 for the turbidity sensors instead of the ESP32's own ADC? The ESP32's ADC2 is unusable while Wi-Fi is on and its ADC is nonlinear/noisy — a $4 16-bit I2C ADC gives clean, repeatable water-quality numbers, which is the reading we least want to get wrong.",
+   "components": [
+    {
+     "ref": "OBS-MCU",
+     "part": "ESP32-WROOM-32 dev board (or ESP32-S3 for more RAM)",
+     "spec": "240 MHz dual-core, Wi-Fi + BLE, 3.3V logic, ~30 GPIO. Hosts logger + SoftAP dashboard + store-and-forward. Deep-sleep capable to cut idle draw.",
+     "qty": "1",
+     "cost": "$8–12"
+    },
+    {
+     "ref": "OBS-BUCK",
+     "part": "12V→5V buck converter (MP1584 or LM2596 module)",
+     "spec": "9–15V in, 5V/2A out; feeds ESP32 VIN (onboard LDO makes 3.3V) and the 5V sensor rail. The Observer's sole power interface to the machine.",
+     "qty": "1",
+     "cost": "$2–4"
+    },
+    {
+     "ref": "OBS-FUSE",
+     "part": "1A ATC blade fuse + inline holder",
+     "spec": "On the Observer's +12V tap, at the battery/positive bus. Isolates the entire digital domain — a short here blows 1A, main bus unaffected.",
+     "qty": "1",
+     "cost": "$3"
+    },
+    {
+     "ref": "OBS-CONN",
+     "part": "Keyed 8–12 pos disconnect (Phoenix/JST or terminal block)",
+     "spec": "Single-plug removal of the whole digital domain: fused +12V, GND, and the shunt-sense / water-sensor leads. Unplug = clean Tier 2→1 drop.",
+     "qty": "1",
+     "cost": "$3–5"
+    },
+    {
+     "ref": "SH-PV / SH-BAT / SH-PMP",
+     "part": "Permanent passive current-sense shunts (2mΩ 5W, or reuse INA226 onboard 2mΩ)",
+     "spec": "In series with PV+, battery−, and pump branch respectively. Passive resistors that live in the harness forever; carry current whether or not the Observer is present. Rated well above branch current (PV ~3A, batt ~10A pk, pump ~4A).",
+     "qty": "3",
+     "cost": "$2–6 total (or free if using INA226 onboard shunt)"
+    },
+    {
+     "ref": "INA-PV / INA-BAT / INA-PMP",
+     "part": "INA226 current/power monitor module (I2C)",
+     "spec": "0–36V bus, 16-bit; reads V and I across its shunt. Addresses 0x40/0x41/0x44. Gives pv_w, batt_v/batt_i, pump_w and the Wh accumulators — the energy-balance instrument. Removable side of the shunt tap.",
+     "qty": "3",
+     "cost": "$4 ea"
+    },
+    {
+     "ref": "OBS-ADC",
+     "part": "ADS1115 4-ch 16-bit I2C ADC",
+     "spec": "Clean analog reads for the two turbidity sensors (ESP32's own ADC is too noisy / Wi-Fi-conflicted). Addr 0x48. Two spare channels.",
+     "qty": "1",
+     "cost": "$4"
+    },
+    {
+     "ref": "TURB-IN / TURB-OUT",
+     "part": "DFRobot Gravity Analog Turbidity Sensor (SEN0189-class)",
+     "spec": "0–4.5V analog vs. NTU; IN at the pond intake, OUT at the clarified S-return. turbidity_in − turbidity_out = the honest 'cleaner water' proof. Needs a 2:3 divider into the ADS1115 and periodic clean/calibrate (fouling).",
+     "qty": "2",
+     "cost": "$10 ea"
+    },
+    {
+     "ref": "OBS-TMP",
+     "part": "DS18B20 waterproof 1-wire temperature probe",
+     "spec": "pond_temp_c; 4.7k pullup to 3.3V on the data line. Cheap, drift-free, digital.",
+     "qty": "1",
+     "cost": "$5"
+    },
+    {
+     "ref": "OBS-LVL",
+     "part": "JSN-SR04T waterproof ultrasonic sensor (or eTape/pressure)",
+     "spec": "drum_level (and can watch surface). Echo needs a divider to 3.3V. Alt: submersible pressure sensor for level, or float for coarse.",
+     "qty": "1",
+     "cost": "$8"
+    },
+    {
+     "ref": "OBS-RTC",
+     "part": "DS3231 real-time clock + coin cell",
+     "spec": "Accurate UTC timestamps when offline (no Wi-Fi/NTP). ±2ppm. On the I2C bus. Essential so SD rows are honestly time-stamped.",
+     "qty": "1",
+     "cost": "$4"
+    },
+    {
+     "ref": "OBS-SD",
+     "part": "microSD SPI breakout + 8–32GB industrial card",
+     "spec": "Primary log store: one CSV row/min ≈ 1,440 rows/day (trivial). Also holds the daily JSON rollup and the store-and-forward unsent queue.",
+     "qty": "1",
+     "cost": "$5 + $6 card"
+    },
+    {
+     "ref": "OBS-LOAD (opt)",
+     "part": "HX711 24-bit ADC + 5–20kg load cell",
+     "spec": "Under the storage jerrican → product_mass_g_cum. This directly automates the venture's headline number (grams product out) instead of hand-weighing. Honest caveat: it's deck mass, not a lab assay.",
+     "qty": "0–1",
+     "cost": "$8"
+    },
+    {
+     "ref": "OBS-FLOW (opt)",
+     "part": "YF-S201 Hall flow sensor",
+     "spec": "On the S-return line → flow_lpm and vol_pumped_cum_l. Open-collector, 5V pullup, divider to 3.3V, read on an interrupt GPIO. If omitted, volume is derived from pump runtime.",
+     "qty": "0–1",
+     "cost": "$8"
+    },
+    {
+     "ref": "OBS-GPS (opt, T3)",
+     "part": "u-blox NEO-M8N GPS module (UART + PPS)",
+     "spec": "gps_lat/lon/fix + PPS time discipline. Logs station-keeping drift vs. BEAM roaming (the T3 story) and doubles as anti-theft/drift alarm. UART to ESP32.",
+     "qty": "0–1",
+     "cost": "$15"
+    },
+    {
+     "ref": "OBS-LORA (opt)",
+     "part": "RFM95W (SX1276) LoRa module + shore gateway",
+     "spec": "~24-byte compact packets to a shore gateway every 5 min; hundreds of m to km at ~tens of mW. Best transport for a pond with no Wi-Fi. SPI + DIO0 IRQ.",
+     "qty": "0–1",
+     "cost": "$15 + gateway"
+    },
+    {
+     "ref": "OBS-CELL (opt)",
+     "part": "SIMCom SIM7000 LTE-M/NB-IoT module + IoT SIM",
+     "spec": "Remote-pond transport: POST JSON every 15 min. High inrush → own local cap/supply, still inside the Observer fuse domain (or its own fuse). SIM ~$1–5/mo.",
+     "qty": "0–1",
+     "cost": "$25 + SIM"
+    },
+    {
+     "ref": "OBS-ENCL",
+     "part": "Small IP65 enclosure or a connectorized removable carrier inside the main IP66 box",
+     "spec": "Conformal-coated board (MG 422B), glands low, breather high, drip loops. Water sensors live outside on rated cable; only the dry electronics are in here.",
+     "qty": "1",
+     "cost": "$8–15"
+    }
+   ],
+   "connections": [
+    {
+     "from": "Battery+ bus (post-main-fuse)",
+     "to": "OBS-FUSE (1A) → OBS-BUCK Vin+",
+     "wire": "18AWG red, inline 1A ATC fuse",
+     "note": "The ONLY power the Observer draws from the machine. Its own fuse — a short in the entire digital domain blows only this 1A, main bus untouched. This is isolation #1."
+    },
+    {
+     "from": "Negative bus bar (single-point ground)",
+     "to": "OBS-BUCK Vin− / observer common ground",
+     "wire": "18AWG black",
+     "note": "Star ground: the Observer ties to the machine's negative at exactly ONE point (the neg bus / shunt reference) so sense readings are accurate and there are no ground loops."
+    },
+    {
+     "from": "OBS-BUCK 5V+",
+     "to": "ESP32 VIN (5V) + 5V sensor rail (turbidity, JSN-SR04T, flow, HX711)",
+     "wire": "22AWG red",
+     "note": "ESP32 onboard LDO derives 3.3V for logic/I2C sensors. 5V rail feeds the 5V-native sensors only."
+    },
+    {
+     "from": "SH-PV (permanent, in PV+ line)",
+     "to": "INA-PV IN+/IN− (Kelvin sense pair)",
+     "wire": "twisted 24AWG sense pair",
+     "note": "Shunt is permanent passive harness; INA226 only reads across it. Remove the Observer and PV current still flows. Isolation #2."
+    },
+    {
+     "from": "PV+ node",
+     "to": "INA-PV Vbus (voltage sense)",
+     "wire": "24AWG, high-impedance",
+     "note": "Read-only voltage tap → pv_v, pv_w, wh_in accumulator."
+    },
+    {
+     "from": "SH-BAT (permanent, battery− path — or reuse Victron SmartShunt)",
+     "to": "INA-BAT IN+/IN−",
+     "wire": "twisted 24AWG sense pair",
+     "note": "Net battery current, signed (+charge / −load) → batt_i, SoC. If builder bought the SmartShunt, read it over VE.Direct UART instead and skip this INA."
+    },
+    {
+     "from": "Battery+ node",
+     "to": "INA-BAT Vbus",
+     "wire": "24AWG high-impedance",
+     "note": "batt_v read-only tap."
+    },
+    {
+     "from": "SH-PMP (permanent, pump branch)",
+     "to": "INA-PMP IN+/IN−",
+     "wire": "twisted 24AWG sense pair",
+     "note": "pump_w, pump_i; integrates to wh_out and pump_runtime. Never a control wire — read only."
+    },
+    {
+     "from": "ESP32 GPIO21 (SDA) / GPIO22 (SCL)",
+     "to": "INA-PV, INA-BAT, INA-PMP, ADS1115, DS3231 (shared I2C)",
+     "wire": "22AWG + 4.7k pullups to 3.3V",
+     "note": "One I2C bus, distinct addresses (0x40/0x41/0x44 INAs, 0x48 ADS, 0x68 RTC). Keep the run short/twisted in the wet box."
+    },
+    {
+     "from": "TURB-IN signal / TURB-OUT signal",
+     "to": "ADS1115 A0 / A1 (via 2:3 divider each)",
+     "wire": "shielded 3-cond per sensor (5V/GND/sig)",
+     "note": "Divider drops 0–4.5V into the ADS1115's 3.3V input window. turbidity_in − turbidity_out = the cleaner-water proof. Sensors mounted at intake and at clarified return."
+    },
+    {
+     "from": "OBS-TMP (DS18B20) data",
+     "to": "ESP32 GPIO4 (1-wire, 4.7k pullup to 3.3V)",
+     "wire": "waterproof 3-cond",
+     "note": "pond_temp_c. Probe hangs in the pond; gland low with a drip loop."
+    },
+    {
+     "from": "OBS-LVL JSN-SR04T Trig / Echo",
+     "to": "ESP32 GPIO (Trig direct; Echo via divider to 3.3V)",
+     "wire": "4-cond, 5V",
+     "note": "drum_level_cm. Echo pin is 5V — divide before the ESP32 GPIO."
+    },
+    {
+     "from": "OBS-SD SPI (MOSI/MISO/SCK/CS)",
+     "to": "ESP32 VSPI GPIOs (23/19/18/5)",
+     "wire": "22AWG short SPI bundle",
+     "note": "Primary CSV/JSON store + store-and-forward queue. 3.3V only."
+    },
+    {
+     "from": "OBS-LOAD HX711 DOUT/SCK (opt)",
+     "to": "ESP32 GPIOs; load cell bridge → HX711",
+     "wire": "shielded 4-cond to load cell",
+     "note": "product_mass_g_cum under the storage jerrican — automates grams-out. Tare at empty; a slow ~1 g resolution is plenty."
+    },
+    {
+     "from": "OBS-FLOW signal (opt)",
+     "to": "ESP32 interrupt GPIO (via divider to 3.3V, 5V pullup)",
+     "wire": "3-cond",
+     "note": "flow_lpm on the S-return → vol_pumped_cum_l. If omitted, derive volume from pump runtime × known pump rate."
+    },
+    {
+     "from": "OBS-GPS TX/RX/PPS (opt, T3)",
+     "to": "ESP32 UART2 (RX GPIO16 / TX GPIO17) + PPS GPIO",
+     "wire": "4-cond",
+     "note": "gps_lat/lon/fix + time discipline; logs roaming vs. station-keeping and drift/theft. 3.3V-safe module."
+    },
+    {
+     "from": "OBS-LORA SPI + DIO0 (opt)",
+     "to": "ESP32 HSPI + IRQ GPIO",
+     "wire": "SPI bundle + antenna",
+     "note": "Compact 24-byte telemetry packets to a shore gateway when there's no pond Wi-Fi. 3.3V."
+    },
+    {
+     "from": "OBS-CELL UART + PWRKEY (opt)",
+     "to": "ESP32 UART + GPIO, module on local reservoir cap",
+     "wire": "UART + power",
+     "note": "Remote-pond POST. High inrush — give it a local cap/supply; keep it inside the fused Observer domain (or its own fuse)."
+    },
+    {
+     "from": "OBS-CONN keyed connector",
+     "to": "carries fused +12V, GND, all shunt-sense pairs and water-sensor leads across one plug",
+     "wire": "multi-pin keyed block",
+     "note": "Isolation #4: unplug this ONE connector and the entire digital domain is gone — machine keeps running on the analog reflex. Shunts remain in-circuit and keep passing current."
+    },
+    {
+     "from": "ESP32 pump-state input (optional)",
+     "to": "INA-PMP reading ONLY (software-derived), NOT the relay coil",
+     "wire": "none — inferred from pump current",
+     "note": "The Observer infers pump_state from measured pump current. It has NO wire to the pump relay/LVD. Zero actuation authority — isolation #3, the bright line."
+    }
+   ],
+   "buildSteps": [
+    {
+     "n": 1,
+     "title": "Confirm the analog machine runs WITHOUT the Observer first",
+     "detail": "Before installing any digital part, verify Tier 1: MPPT charges, LVD cuts off at threshold, pump runs when there's power + water. The Observer is only allowed onto a machine that already survives on its own.",
+     "caution": "If the machine can't run without the logger, you've violated the architecture. Fix the analog reflex before adding the witness."
+    },
+    {
+     "n": 2,
+     "title": "Install the three permanent passive shunts in the harness",
+     "detail": "Place SH-PV in the PV+ line, SH-BAT in the battery negative (or install the Victron SmartShunt there), SH-PMP in the pump branch. These are dumb resistors and belong to the Power area's permanent wiring — they stay whether or not the Observer exists.",
+     "caution": "Kelvin-tap the sense leads at the shunt body, not out on the power lugs, or your current reading inherits lug/wire drop. Torque power lugs to spec — a loose shunt lug is a hot joint."
+    },
+    {
+     "n": 3,
+     "title": "Build the Observer on a connectorized carrier and fuse its power tap",
+     "detail": "Mount ESP32, buck, the three INA226s, ADS1115, DS3231, and SD on one small board that lands on the OBS-CONN plug. Run its +12V through the 1A OBS-FUSE at the bus. Bring GND to the single star point at the negative bus.",
+     "caution": "One fuse, one ground tie. If you accidentally give the Observer a second ground path, you create a loop that corrupts the current readings the whole venture depends on."
+    },
+    {
+     "n": 4,
+     "title": "Wire the I2C bus and verify every chip answers",
+     "detail": "Common SDA/SCL to the three INAs, ADS1115, and RTC with 4.7k pullups. Power up on the bench and run an I2C scan — confirm 0x40/0x41/0x44/0x48/0x68 all appear. Set the RTC to UTC.",
+     "caution": "Two INA226s at the same address is the classic bug — strap the address pins deliberately. Keep I2C runs short and twisted inside a wet enclosure."
+    },
+    {
+     "n": 5,
+     "title": "Mount and calibrate the water sensors",
+     "detail": "Turbidity IN at the pond intake, turbidity OUT at the clarified S-return, DS18B20 in the pond, ultrasonic over the drum, optional load cell under the jerrican, optional flow on the return. Zero the turbidity pair in clear water and record the offset; tare the load cell empty.",
+     "caution": "Turbidity is a proxy, not a species assay, and it fouls — bake a monthly clean-and-recalibrate into the maintenance schedule or the 'cleaner water' number quietly drifts. Divide the 5V sensor outputs (turbidity, ultrasonic echo, flow) before they hit any 3.3V input."
+    },
+    {
+     "n": 6,
+     "title": "Flash the logger firmware: sample, integrate, write CSV",
+     "detail": "Sample the INAs at a few Hz and integrate Wh continuously; log a 60s row to SD (YYYYMMDD.csv) with all fields; write a daily JSON rollup at local midnight. Include schema_version, device_id, config_id, fw_version, and RTC/GPS UTC on every row.",
+     "caution": "Open/flush/close the SD file safely — a yanked card mid-write corrupts the log. Keep a small flash ring buffer of the last hours as backup, and never block the sample loop on a slow SD or network write."
+    },
+    {
+     "n": 7,
+     "title": "Set config_id from the exact build manifest",
+     "detail": "Compute config_id as a short hash of this raft's build: pump model, nozzle bore + insert type, panel watts, battery Ah/chemistry, filtration. This is what makes every raft's data comparable at the hub.",
+     "caution": "If config_id doesn't actually reflect the hardware, cross-raft comparisons are garbage. Re-stamp it whenever you change a pump, nozzle bore, or panel."
+    },
+    {
+     "n": 8,
+     "title": "Choose and wire ONE transport tier",
+     "detail": "Baseline: offline — ESP32 SoftAP hosts a captive dashboard; phone connects and downloads the CSV, or pull the card. Connected options: Wi-Fi STA POST to the hub, LoRa to a shore gateway, or LTE-M cellular for remote ponds. All buffer to SD when offline and backfill idempotently on reconnect.",
+     "caution": "Never let a failed network call stall logging — telemetry is best-effort, the SD log is the source of truth. De-dupe backfilled rows by device_id+ts at the hub."
+    },
+    {
+     "n": 9,
+     "title": "Prove unpluggability — the acceptance test",
+     "detail": "With the machine running, pull the OBS-CONN connector. Confirm the pump, charging, and LVD carry on unchanged. Re-plug, confirm logging resumes and backfills. Optionally short the Observer's input to confirm only the 1A fuse blows.",
+     "caution": "This test is the whole design contract. If pulling the connector disturbs the machine, you have a wire crossing the survival path — find it and remove it before deployment."
+    }
+   ],
+   "safety": "FUSING: The Observer gets its own dedicated 1A fuse on its +12V tap, separate from the survival branches. This is non-negotiable — it guarantees a flooded/shorted logger blows only its own fuse and cannot pull fault current on the main bus. The survival branches keep the main MRBF terminal fuse + per-branch fuses from the Power area; the Observer never shares a branch with the pump or LVD.\n\nGROUNDING: Single-point star ground. The Observer ties to the machine's negative at exactly ONE node (the negative bus bar / shunt reference). No second ground path — a ground loop both corrupts the current measurement (the venture's key number) and can create a sneak fault path. Shunt sense leads are Kelvin-connected at the shunt body.\n\nNO CONTROL AUTHORITY (a safety property, not just architecture): The Observer has zero wires into any actuator — pump relay, LVD, or steering. It physically cannot energize a load or defeat the low-voltage cutoff. This means a firmware bug or a hostile telemetry payload can't, e.g., deadhead the HP pump or drain the battery. The bright line is enforced in copper, not just in code.\n\nWATERPROOFING: Dry electronics live in an IP65/IP66 enclosure (or a conformal-coated removable carrier inside the main box) — MG Chemicals 422B on the board, cable glands entering LOW on a side wall, a breather vent HIGH, and a drip loop on every cable so water tracks away from the entry. Only the water-rated sensors (turbidity, DS18B20, ultrasonic, submerged leads) go outside; their cables are marine-grade with glanded, strain-relieved, drip-looped entries. Antennas (Wi-Fi/LoRa/GPS/cell) exit through gasketed bulkhead connectors, never a drilled hole.\n\nISOLATION FROM HV FLUID: The Observer touches only 12V and sensor-level signals — it stays clear of the 250–400 psi cavitation leg entirely. Any pressure/flow sensing on the HP leg uses sensors rated well above the line pressure; the logger only reads their low-voltage output.\n\nCALIBRATION AS SAFETY-OF-DATA: An uncalibrated turbidity or current channel gives confident wrong numbers — the most dangerous failure for an honesty-firewall venture. Monthly clean-and-recalibrate of the turbidity pair and a periodic current-zero check are mandatory maintenance items, logged.",
+   "honestNotes": "WHAT THIS AREA HONESTLY IS: a Tier-2 bolt-on witness. It measures and reports; it never controls. Its value is entirely in retiring the venture's two open questions with logged numbers — Wh-in vs. product-out, and turbidity-in vs. turbidity-out — not in making the machine work (the analog reflex does that). If someone frames the ESP32 as the 'brain' or 'AI,' that's the same overclaim the DD flagged; it's a data logger.\n\nHONEST MEASUREMENT CAVEATS (do not oversell these):\n- turbidity NTU is a proxy for suspended solids/algae, NOT species-selective and NOT a nutrient (N/P) assay. It fouls and drifts — good for a clear directional 'water left cleaner' signal, not a lab result. Pair with occasional grab-sample lab tests for the real claim.\n- product_mass_g (load cell) is cumulative mass accumulated in the storage can on a moving deck — honest as a trend, but raft motion adds noise and it is not a composition analysis. It is 'grams of skimmed material,' not 'grams of fuel.'\n- batt_soc is an estimate (coulomb-count drifts; needs periodic full-charge resync). Report batt_v and integrated Wh as the primary truths, SoC as derived.\n- ml_oil_out is best obtained from the load cell (mass ÷ density) or skim-pump runtime as a proxy; treat pure runtime-derived volume as coarse.\n\n============================================================\nTELEMETRY PROTOCOL  (the strategic moat)\n============================================================\nThe defensible asset is NOT the open-source hardware — anyone can clone an ESP32 and a shunt. It's the STANDARDIZED, COMPARABLE dataset that a fleet of rafts reports to a central hub, keyed to exactly which build produced it. That fleet-learning loop — 'which nozzle bore / pump size / panel watt config actually closes the energy balance and cleans water fastest, across many real ponds' — is what a hardware cloner cannot copy. Standardize the schema now.\n\nFIELDS (per 60s row; units explicit; * = optional sensor):\n  schema_version   int        (protocol version; bump on any change)\n  device_id        str        (per-raft UUID, permanent)\n  config_id        str        (hash of build manifest: pump model, nozzle bore, insert type, panel W, battery Ah/chem, filtration)\n  fw_version       str\n  ts_utc           ISO8601    (RTC/GPS/NTP disciplined)\n  uptime_s         int\n  batt_v           V   0.01\n  batt_i           A   signed (+charge / −load)\n  batt_soc_pct     %   (derived, low-confidence)\n  pv_v, pv_i, pv_w V/A/W\n  wh_in_cum        Wh  (PV harvest accumulator)\n  wh_in_60s        Wh  (interval)\n  pump_state       0/1 (inferred from pump current — NOT commanded)\n  pump_i, pump_w   A/W\n  pump_runtime_cum_s int\n  wh_out_cum       Wh  (load accumulator)\n  wh_out_60s       Wh\n  flow_lpm*        L/min\n  vol_pumped_cum_l* L\n  turbidity_in_ntu   NTU\n  turbidity_out_ntu  NTU\n  turbidity_delta_ntu NTU  (in − out; the honest 'cleaner water' signal)\n  pond_temp_c      degC\n  drum_level_cm    cm  (or %)\n  product_mass_g_cum*  g   (load cell → maps to ml_oil_out)\n  product_mass_60s_g*  g\n  gps_lat, gps_lon, gps_fix*   (T3 roaming / drift / anti-theft)\n  heading_deg*, drift_m*       (T3 station-keeping vs. photovore)\n  lvd_flag         0/1 (LVD observed active)\n  fault_flags      bitmask (sensor-fault / SD-fault / net-fault bits)\n\nSAMPLE CADENCE:\n  - electrical (INA226): integrate continuously at 4–10 Hz; log 60s row + 60s Wh intervals.\n  - water quality / level / temp / product mass: 60s.\n  - GPS: 300s, or event-driven on movement.\n  - events (extra rows): pump start/stop, LVD trip, Wi-Fi/LoRa connect, SD-swap, calibration.\n  - daily rollup (local solar midnight): wh_in_day, wh_out_day, energy_balance_ratio = wh_in/wh_out, pump_runtime_day, product_g_day, mean turbidity_delta, mean pond_temp. This daily row is the fleet's headline record.\n\nLOCAL STORAGE (source of truth):\n  - SD CSV, one file/day (YYYYMMDD.csv) — ~1,440 rows/day, negligible.\n  - daily JSON rollup file.\n  - flash ring buffer (last ~hours) as SD-failure backup.\n  - unsent-queue file for store-and-forward.\n\nTRANSPORT (ranked; all fall back to offline; SD is always authoritative):\n  1. OFFLINE (baseline, zero infra): ESP32 SoftAP + captive dashboard; phone downloads CSV or view live; or pull the card.\n  2. Wi-Fi STA → HTTPS POST to hub /ingest with a device token, batched rows, when a pond AP is in range.\n  3. LoRa → shore gateway: compact ~24-byte binary packet (short device_id, ts, batt_v, wh_in_60s, wh_out_60s, turb_in, turb_out, product_g, flags) every 5 min; best for Wi-Fi-less ponds.\n  4. Cellular LTE-M/NB-IoT (SIM7000): POST every 15 min for remote ponds.\n  Envelope (2/4): {schema_version, device_id, config_id, fw_version, rows:[...]}. Offline → queue to SD, backfill on reconnect, de-dupe idempotently at the hub by device_id+ts.\n\nHUB / PUBLIC DASHBOARD: aggregates every raft's daily energy_balance_ratio and turbidity_delta, sliced by config_id, into a growing public proof surface — the credible, third-party-checkable answer to 'does it clean water?' and 'does the energy balance close?' across many ponds and configs. Version the schema; never silently change a field's units.\n\nDELIBERATELY OUT OF SCOPE FOR T2: any path from the logger to an actuator. If a future tier wants the observed data to influence steering or duty cycle, that becomes a SEPARATE, clearly-gated controller with its own fusing and fail-safe — it does not get bolted onto this witness. Keeping actuation out is what lets the Observer be freely unplugged, drowned, or crashed with zero risk to the machine."
+  },
+  {
+   "area": "Pump-Switching Reflex + Level/Float Sensing (the analog \"run-the-pump\" decision)",
+   "tiers": "T1 = the whole survival reflex (analog only, no microcontroller). T2 = passive observer taps on the same nodes (logger can die without stopping the pump). T3 = optional bounded-batch 555 timer and/or an advisory MCU that can only make the reflex MORE conservative, never override the low-voltage cutoff.",
+   "plainLanguage": "This is the part of the Manatee that decides, thousands of times a second, \"should the cavitation pump be running right now?\" It answers with three yes/no questions wired in series, so ALL three must be yes or the pump stays off:\n\n1. Is the battery charged enough that running the pump won't hurt it? (Don't drain the battery flat.)\n2. Is the sun up / is there daylight power to spend? (Only work when there's energy to burn.)\n3. Is there actually water/slurry in the drum? (Never run a high-pressure pump dry — it destroys the seals in minutes.)\n\nThe device that answers each question is a comparator. Picture a see-saw (a balance beam). On one pan you place a fixed \"yardstick\" weight — here, a rock-steady 2.5-volt reference from a $0.40 chip called a TL431. On the other pan you place a small, honest fraction of whatever you're measuring: a slice of the battery voltage, or the voltage from a light sensor. Whichever pan is heavier, the see-saw slams fully to that side — all the way ON or all the way OFF, never halfway. That \"slam to one side\" is the whole decision. There is no code, no chip running a program, nothing to crash or get a virus. It is a balance beam made of a resistor and a reference.\n\nThere's one clever trick called hysteresis. A plain see-saw flutters madly when the two pans are almost equal — which would make the pump chatter on-off-on-off many times a second and burn out the relay. So we add a tiny feedback resistor that acts like a notch the see-saw clicks into: once it tips ON, it won't tip back OFF until the battery drops noticeably lower, and vice-versa. This notch is what turns the machine into a BATCH processor for free: the pump switches on when the battery hits ~12.4V, runs and pulls the battery down to ~11.7V, shuts off, the solar panel refills it back to 12.4V, and it runs again. Each on-period is one \"batch.\" No timer chip needed — the battery itself is the metronome.\n\nThe three yes/no answers are combined using a beautiful piece of old electronics: the comparators have \"open-collector\" outputs, which means each one can only pull the shared wire DOWN to off, never force it up. Tie them together with one pull-up resistor and you've built an AND gate out of nothing — the shared wire only goes high (pump allowed) when every comparator lets go. The float switch (a dumb plastic bob that rises with the water and closes a contact) sits in series in that same enable path. All of it finally nudges one transistor, which clicks one rugged sealed relay, which feeds the pump. If any wire in the sensing chain breaks, the pump defaults to OFF — the safe answer.",
+   "whyThisWay": "Charlie's architecture demands the survival loop be a reflex with nothing to break, and a comparator reflex is exactly that: it is the honest, correct version of what the original builder was already reaching for. The teardown shows the deployed \"3rd-generation Prospero AI inference engine\" was physically a hand-soldered perfboard with a single trim-pot comparator (teardown part S). The idea was right; the execution had four real defects I'm correcting:\n\n1. NO STABLE REFERENCE. The original compared the sensor against a bare voltage divider off the same drifting battery bus — so the threshold moved with the thing it was trying to measure, and drifted with temperature. Fix: a TL431 shunt reference gives a 2.5V yardstick that ignores battery sag and temperature. This is the single most important upgrade to the \"brain.\"\n\n2. NO HYSTERESIS. A bare comparator at threshold chatters — the relay buzzes and the contacts weld. Fix: a feedback resistor sets a clean ~0.7V gap between turn-on and turn-off. This also gives batch operation for free, which is exactly the duty cycle the improved manual's power budget requires (the 45W panel can only support intermittent solar-charged batches, never continuous running).\n\n3. NO DRY-RUN INTERLOCK. The original could command the high-pressure plunger pump with an empty drum; positive-displacement pumps eat their own seals when run dry (teardown FP5 failure mode). Fix: a float switch is a hard series interlock — mechanically dumb, marine-proven, and wired fail-safe (broken wire = pump blocked).\n\n4. POLARITY-SENSITIVE, LOSSY SSRs. The original switched loads with 4x Fotek SSR-40 DD DC solid-state relays: each wastes ~5W as heat while conducting (teardown part Q) — four of them can eat a third of a 45W budget — and they silently fail to switch if wired backwards. Fix: one sealed 40A automotive/marine relay driven by a logic-level MOSFET — near-zero standing loss, no heatsink, no polarity trap. The reflex board's own draw is under 10mA (~0.1W), negligible on the budget.\n\nWhy open-collector wired-AND instead of a logic-gate chip: it's the fewest possible parts, it teaches the concept cleanly, and every added chip is another thing that can die in a wet environment. The whole three-input AND costs one resistor.\n\nWhy the daylight gate at all, when the battery threshold already implies \"there's surplus power\": at night a full battery can briefly still read above the turn-on threshold. A dedicated CdS/pilot-cell comparator makes \"only work in daylight\" explicit and honest, and it too is wired fail-safe (sensor open = reads dark = pump off).\n\nWhy keep the analog LVD as the un-overridable floor even in T2/T3: the entire point of the tiering is that the digital observer or a future smart-steering MCU can OBSERVE and can make the machine more cautious, but the hard battery-protection cutoff lives in dumb silicon that keeps working when everything digital is dead or removed.",
+   "components": [
+    {
+     "ref": "REF1",
+     "part": "TL431ACLP shunt voltage reference (TO-92)",
+     "spec": "2.495V, ±0.5%, the stable 'yardstick' all three comparators judge against",
+     "qty": "1",
+     "cost": "$0.40"
+    },
+    {
+     "ref": "U1",
+     "part": "LM393P dual differential comparator (DIP-8)",
+     "spec": "Open-collector outputs (enables wired-AND), 2–36V supply, ~0.4mA quiescent, input common-mode includes ground",
+     "qty": "1",
+     "cost": "$0.50"
+    },
+    {
+     "ref": "RV1",
+     "part": "Bourns 3296 25-turn cermet trimpot, 10k",
+     "spec": "Field-calibrate the battery turn-on/off thresholds (keeps the original's trim-pot spirit, now anchored to a real reference)",
+     "qty": "1",
+     "cost": "$1.50"
+    },
+    {
+     "ref": "CDS1",
+     "part": "GL5528 CdS photocell (or a small pilot PV cell)",
+     "spec": "~5k in daylight / ~200k dark; forms the daylight-sense divider. Pilot-PV-cell variant ties the gate directly to 'is the panel making power'",
+     "qty": "1",
+     "cost": "$0.50"
+    },
+    {
+     "ref": "Q1",
+     "part": "IRLZ44N logic-level N-channel MOSFET (TO-220)",
+     "spec": "Vgs(th) ~1–2V so 12V logic drives it fully; Rds(on) ~22mΩ; sinks the relay coil current with no heatsink",
+     "qty": "1",
+     "cost": "$1.00"
+    },
+    {
+     "ref": "K1",
+     "part": "Sealed 40A SPDT automotive/marine relay (Song Chuan/Panasonic CB1-class, IP-rated)",
+     "spec": "Switches the pump (or the BLDC controller's power/enable). Replaces the 4x Fotek SSR-40 DD — no ~5W standing loss, no polarity trap, no heatsink",
+     "qty": "1",
+     "cost": "$6.00"
+    },
+    {
+     "ref": "SW-FLOAT",
+     "part": "Vertical float switch, normally-open, 12V (Madison M8000-class / marine bilge float)",
+     "spec": "Mounted at the drum's minimum safe suction level; closes when slurry is present. Wired as a fail-safe series interlock (open = pump blocked)",
+     "qty": "1",
+     "cost": "$15.00"
+    },
+    {
+     "ref": "D-FB / D-PUMP",
+     "part": "1N5822 Schottky diode (3A)",
+     "spec": "One across the relay coil (flyback), one across the pump motor. Kills inductive kickback that would otherwise arc the contacts and spike the bus",
+     "qty": "2",
+     "cost": "$0.60"
+    },
+    {
+     "ref": "D-RP",
+     "part": "SB560 Schottky (5A) — or a P-channel MOSFET for zero-drop",
+     "spec": "Reverse-polarity block on the reflex board's supply so a miswired battery can't destroy U1",
+     "qty": "1",
+     "cost": "$0.50"
+    },
+    {
+     "ref": "R-SET",
+     "part": "1/4W 1% metal-film resistors: 39k, 10k, 680k, 2.2k, 4.7k, 10k, 1M, 10k, 100k",
+     "spec": "Battery divider (39k/10k+RV1), battery hysteresis (680k), TL431 bias (2.2k), wired-AND pull-up (4.7k), light divider (10k), light hysteresis (1M), gate series (10k), gate pull-down (100k)",
+     "qty": "1 set",
+     "cost": "$2.00"
+    },
+    {
+     "ref": "C-SET",
+     "part": "Ceramic 100nF x2 + electrolytic 10µF",
+     "spec": "Reference filter, comparator supply decoupling, bulk bus decouple — stops noise from false-tripping the see-saw",
+     "qty": "1 set",
+     "cost": "$1.00"
+    },
+    {
+     "ref": "F1",
+     "part": "2A inline blade fuse + holder",
+     "spec": "Protects the reflex board's own supply tap",
+     "qty": "1",
+     "cost": "$3.00"
+    },
+    {
+     "ref": "F2",
+     "part": "Pump-branch fuse (blade or ANL), sized to the LOAD not the wire",
+     "spec": "~10A for a diaphragm-class demo pump; ~30A ANL if feeding a 500–700W BLDC controller. On the pump branch off the battery/distribution block",
+     "qty": "1",
+     "cost": "$5.00"
+    },
+    {
+     "ref": "PCB1",
+     "part": "Perfboard/PCB, screw terminal blocks, MG Chemicals 422B conformal coat (shared)",
+     "spec": "Coat both sides; screw terminals for field service. Board lives inside the IP66 enclosure with drip loops",
+     "qty": "1",
+     "cost": "$10.00"
+    },
+    {
+     "ref": "U2-OPT",
+     "part": "NE555 timer + RC (T3 bounded-batch option)",
+     "spec": "Optional astable/one-shot to cap max run-time and enforce min rest between batches, if the battery-hysteresis cycle alone runs batches too long. Still pure analog, no code",
+     "qty": "0–1",
+     "cost": "$1.00"
+    }
+   ],
+   "connections": [
+    {
+     "from": "Battery + (post/distribution)",
+     "to": "F1 → D-RP anode",
+     "wire": "16 AWG red, 2A fused",
+     "note": "Board supply tap. D-RP cathode = node VBAT (board +12V rail)."
+    },
+    {
+     "from": "VBAT",
+     "to": "R 2.2k → REF1 cathode",
+     "wire": "PCB trace",
+     "note": "TL431 bias. Cathode current (12−2.5)/2.2k ≈ 4.3mA, above the TL431's ~1mA minimum."
+    },
+    {
+     "from": "REF1 cathode (= REF-pin tied to cathode)",
+     "to": "REF node (2.5V)",
+     "wire": "PCB trace",
+     "note": "Two-terminal shunt-reference mode. REF1 anode → GND. Add 100nF REF→GND filter."
+    },
+    {
+     "from": "VBAT",
+     "to": "R 39k → BDIV",
+     "wire": "PCB trace",
+     "note": "Top of battery-sense divider."
+    },
+    {
+     "from": "BDIV",
+     "to": "R 10k + RV1(10k) in series → GND",
+     "wire": "PCB trace",
+     "note": "Lower leg. Trim RV1 to set the threshold center. Divider draws ~245µA continuous — negligible."
+    },
+    {
+     "from": "BDIV",
+     "to": "U1 pin3 (comparator A, V+)",
+     "wire": "PCB trace",
+     "note": "Battery-charge question goes to the non-inverting input."
+    },
+    {
+     "from": "REF (2.5V)",
+     "to": "U1 pin2 (comparator A, V−)",
+     "wire": "PCB trace",
+     "note": "Yardstick on the inverting input. Battery high ⇒ BDIV>2.5 ⇒ output releases (high-Z)."
+    },
+    {
+     "from": "U1 pin1 (OUTA, open-collector)",
+     "to": "R 680k → BDIV",
+     "wire": "PCB trace",
+     "note": "Hysteresis. Gives ~ON 12.4V / OFF 11.7V (AGM start point) — measure and tune on a bench supply."
+    },
+    {
+     "from": "U1 pin1 (OUTA)",
+     "to": "Node N (wired-AND)",
+     "wire": "PCB trace",
+     "note": "Pulls N low if battery low."
+    },
+    {
+     "from": "VBAT",
+     "to": "CDS1 → LDIV",
+     "wire": "PCB trace",
+     "note": "Daylight-sense divider top (CdS or pilot PV cell)."
+    },
+    {
+     "from": "LDIV",
+     "to": "R 10k → GND",
+     "wire": "PCB trace",
+     "note": "Bright ⇒ LDIV high ⇒ day = true. Sensor open ⇒ LDIV=0 ⇒ reads dark ⇒ pump off (fail-safe)."
+    },
+    {
+     "from": "LDIV",
+     "to": "U1 pin5 (comparator B, V+)",
+     "wire": "PCB trace",
+     "note": "Daylight question."
+    },
+    {
+     "from": "REF (2.5V)",
+     "to": "U1 pin6 (comparator B, V−)",
+     "wire": "PCB trace",
+     "note": "Same yardstick reused."
+    },
+    {
+     "from": "U1 pin7 (OUTB)",
+     "to": "R 1M → LDIV",
+     "wire": "PCB trace",
+     "note": "Dusk hysteresis so the pump doesn't chatter at twilight."
+    },
+    {
+     "from": "U1 pin7 (OUTB)",
+     "to": "Node N (wired-AND)",
+     "wire": "PCB trace",
+     "note": "Second open-collector output tied to the same node = the AND."
+    },
+    {
+     "from": "VBAT",
+     "to": "R 4.7k → Node N",
+     "wire": "PCB trace",
+     "note": "The single pull-up that makes the wired-AND. N goes high only when BOTH comparators release."
+    },
+    {
+     "from": "U1 pin8 / pin4",
+     "to": "VBAT / GND",
+     "wire": "PCB trace",
+     "note": "Comparator supply. 100nF pin8→GND + 10µF bulk VBAT→GND decoupling."
+    },
+    {
+     "from": "Node N",
+     "to": "SW-FLOAT (NO) → R 10k → GATE",
+     "wire": "18 AWG to float, PCB trace at gate",
+     "note": "Third condition in series: water present closes the float. Fail-safe — broken float wire = gate can't be driven = pump off."
+    },
+    {
+     "from": "GATE",
+     "to": "R 100k → GND",
+     "wire": "PCB trace",
+     "note": "Gate pull-down: floats gate to OFF whenever N is low OR the float is open."
+    },
+    {
+     "from": "GATE",
+     "to": "Q1 gate",
+     "wire": "PCB trace",
+     "note": "12V·100k/110k ≈ 10.9V at gate when enabled — hard ON for the logic MOSFET."
+    },
+    {
+     "from": "Q1 source / drain",
+     "to": "GND / K1 coil low side",
+     "wire": "PCB trace / 18 AWG",
+     "note": "MOSFET sinks the relay coil. Q1 buffers N (which can only source ~2.5mA) up to the coil's ~100mA."
+    },
+    {
+     "from": "VBAT",
+     "to": "K1 coil high side",
+     "wire": "18 AWG",
+     "note": "Coil energized when Q1 pulls the other end to GND."
+    },
+    {
+     "from": "D-FB across K1 coil",
+     "to": "cathode→VBAT, anode→coil low side",
+     "wire": "—",
+     "note": "Flyback. Mandatory on any relay/solenoid coil."
+    },
+    {
+     "from": "Battery + → F2",
+     "to": "K1 common (terminal 30)",
+     "wire": "gauge to pump load; 30A ANL if BLDC",
+     "note": "Pump power path is separate from the reflex-board supply and separately fused to the load."
+    },
+    {
+     "from": "K1 NO (terminal 87)",
+     "to": "PUMP+ (or BLDC controller V+ / ENABLE input)",
+     "wire": "gauge to load",
+     "note": "PREFER switching the BLDC controller's low-current ENABLE line, not the motor DC — avoids DC contact arcing (see safety)."
+    },
+    {
+     "from": "Pump −",
+     "to": "Battery − / GND bus",
+     "wire": "gauge to load",
+     "note": "Single-point ground back to the negative bus/shunt."
+    },
+    {
+     "from": "D-PUMP across pump (or RC snubber across K1 contacts)",
+     "to": "—",
+     "wire": "—",
+     "note": "Motor flyback / DC arc suppression. Use an RC snubber across the contacts if K1 directly switches a DC motor line."
+    },
+    {
+     "from": "OUTA, OUTB, N, BDIV, LDIV, float (T2 observer taps)",
+     "to": "High-impedance buffer / optocoupler → logger ADC/GPIO",
+     "wire": "signal",
+     "note": "OBSERVER ONLY. Isolate so a shorted or dead logger cannot pull N or load the dividers. The logger reads the reflex; it never gates it."
+    }
+   ],
+   "buildSteps": [
+    {
+     "n": 1,
+     "title": "Build the 2.5V reference first and verify it",
+     "detail": "Solder REF1 (TL431) with its 2.2k bias resistor and 100nF filter. Power the board from a bench supply at 12V and measure REF to GND: it must read 2.48–2.51V and NOT move when you sweep the supply 11–14V. This stable yardstick is what the whole reflex judges against.",
+     "caution": "If REF tracks the supply voltage, you've wired the TL431's REF pin to the wrong node — it must tie to the cathode, not the anode. A drifting reference re-creates the original's core defect."
+    },
+    {
+     "n": 2,
+     "title": "Wire comparator A as the battery low-voltage cutoff with hysteresis",
+     "detail": "Install the 39k/10k+RV1 divider to BDIV, BDIV→pin3, REF→pin2, and the 680k hysteresis resistor from OUTA back to BDIV. Add the 4.7k pull-up from VBAT to OUTA to test. On a bench supply, slowly raise voltage and note where OUTA snaps high (turn-ON) and lower it to note turn-OFF. Trim RV1 until you get roughly ON 12.4V / OFF 12.0V for AGM.",
+     "caution": "Verify the GAP (hysteresis) is at least ~0.5V or the relay will chatter under the pump's load sag. To widen the gap, lower the 680k. LiFePO4's flat discharge curve makes voltage thresholds unreliable — for LiFePO4, keep this as a coarse floor (~12.0V off) and lean on the T2 coulomb-counting shunt for real state-of-charge."
+    },
+    {
+     "n": 3,
+     "title": "Wire comparator B as the daylight gate",
+     "detail": "Install CDS1 (or pilot PV cell) from VBAT to LDIV, 10k LDIV→GND, LDIV→pin5, REF→pin6, and the 1M hysteresis resistor OUTB→LDIV. Cover the sensor: OUTB should pull low (block). Shine light: OUTB should release (allow). Set the trip point by choosing the 10k lower-leg value if needed.",
+     "caution": "Confirm fail-safe: unplug the sensor entirely — LDIV should fall to 0 and the output should read 'dark/off.' If a pilot PV cell is used instead of CdS, it ties 'daytime' directly to 'the panel is actually generating,' which is the more honest signal."
+    },
+    {
+     "n": 4,
+     "title": "Tie the two outputs together with ONE pull-up — the wired-AND",
+     "detail": "Join OUTA and OUTB to node N and fit the single 4.7k pull-up from VBAT to N. Confirm: N is high ONLY when battery is high AND it's light. Force either condition false and N must drop to ~0.2V. This one resistor is your entire AND gate.",
+     "caution": "Both outputs must be genuine open-collector (LM393 is). Never tie together comparators with push-pull outputs — they'll fight and destroy each other."
+    },
+    {
+     "n": 5,
+     "title": "Add the float switch as a fail-safe series interlock",
+     "detail": "Wire N → SW-FLOAT (NO) → 10k → GATE, with a 100k GATE→GND pull-down. Mount the float in the drum at the minimum safe suction level. Bench-test by shorting the float terminals (simulating water present) — only then can the gate go high.",
+     "caution": "Wire it so an OPEN float (broken wire, disconnected, or dry drum) leaves the gate pulled DOWN = pump OFF. Test this explicitly: disconnect the float, confirm pump won't run. Dry-running the plunger pump destroys its seals in minutes."
+    },
+    {
+     "n": 6,
+     "title": "Fit the MOSFET relay driver and the sealed relay",
+     "detail": "GATE→Q1 gate, Q1 source→GND, Q1 drain→K1 coil low side, VBAT→coil high side, and D-FB (1N5822) across the coil (cathode to VBAT). Feed the pump through K1's contacts on its own fuse (F2). Prefer routing K1 to the BLDC controller's ENABLE line rather than the raw motor DC.",
+     "caution": "The coil flyback diode is mandatory. If K1 must switch a DC motor line directly, add an RC snubber across the contacts — DC arcs don't self-extinguish like AC and will erode the contacts. This is why switching the controller's low-current enable is cleaner."
+    },
+    {
+     "n": 7,
+     "title": "Fuse, reverse-protect, conformal-coat, and enclose",
+     "detail": "Install F1 (2A) and D-RP on the board supply; size F2 to the actual pump load. Conformal-coat both sides of the board (MG 422B), mount it in the IP66 enclosure above the splash line, glands low, breather high, drip loops on every wire entry.",
+     "caution": "Do not energize without both fuses. This board sits on a wet raft; water ingress is the number-one failure mode. The float and pump-power wires are the ones most exposed — seal their glands and add drip loops."
+    },
+    {
+     "n": 8,
+     "title": "(T3, optional) Bound the batch with a 555 or hand thresholds to an advisory MCU",
+     "detail": "If the battery-hysteresis cycle runs batches longer than the cavitation loop wants, insert an NE555 one-shot/astable between N and the gate to cap max run-time and enforce a rest interval — still no code. If a smart-steering MCU is present, let it only pull the enable MORE conservative (e.g., via an added open-collector line onto N); it can never lift the analog LVD.",
+     "caution": "The analog low-voltage cutoff from Step 2 must remain the un-overridable floor. Any digital addition may block the pump but must be physically incapable of forcing it on below the battery threshold. Verify by powering down the MCU/555 — the analog reflex must still run correctly on its own."
+    }
+   ],
+   "safety": "Electricity next to water — this board's failure modes are fire and shock, so protection is not optional. (1) FUSING: the reflex-supply tap gets a 2A fuse (F1); the pump branch gets its own fuse sized to the LOAD (F2 — ~10A diaphragm demo, ~30A ANL for a BLDC controller), landed on the fused distribution block per the improved manual. A 12V AGM/LiFePO4 bus can source hundreds of amps into a fault; the original had zero fuses anywhere. (2) FAIL-SAFE SENSING: every sensing wire is oriented so that a break defaults the pump OFF — battery divider open ⇒ reads low ⇒ off; CdS open ⇒ reads dark ⇒ off; float open/dry ⇒ gate pulled down ⇒ off. Verify all three by disconnection during commissioning. (3) INDUCTIVE SUPPRESSION: 1N5822 flyback across the relay coil AND across the pump motor; if K1 switches DC motor power directly, add an RC snubber across the contacts — DC arcs don't self-extinguish and will weld/erode contacts, and the kickback can spike the bus into the electronics. (4) DRY-RUN: the float interlock exists specifically to stop the high-pressure plunger pump running dry (seal destruction, potential overheat). (5) BATTERY PROTECTION: the LVD turn-off protects the battery from deep discharge (AGM below ~50%/11.8V-under-load kills cycle life); for LiFePO4 treat the analog LVD as a coarse floor and rely on the T2 shunt for true SoC. (6) REVERSE POLARITY: D-RP (or a P-FET) so a miswired battery can't detonate the comparator IC. (7) WATERPROOFING: conformal-coat the board, house it IP66 above the splash line, glands low, breather high, drip loops on the float and pump leads. (8) THERMAL: the sealed marine relay and logic MOSFET run cool — unlike the four Fotek DC SSRs they replace, which each dissipated ~5W and needed a heatsink; removing them also removes a burn hazard and ~15W of parasitic heat/load.",
+   "honestNotes": "What is solid: the comparator-reflex topology is textbook, cheap, and rugged; it is the honest version of what the builder already deployed (teardown part S). The open-collector wired-AND, TL431 reference, hysteresis, and fail-safe float interlock are all standard, proven practice. Confidence: HIGH that this reflex works and is safe as drawn.\n\nWhat must be MEASURED on your unit, not trusted from me:\n- The exact ON/OFF voltage thresholds. My 12.4V/11.7V (AGM) numbers come from the resistor values I chose (39k/10k divider, 680k hysteresis) and a first-order calculation; component tolerance and your battery chemistry will shift them. Set them empirically on a bench supply with RV1 (Step 2). Confidence MODERATE on the exact numbers, HIGH on the method.\n- LiFePO4 caveat: its discharge curve is nearly flat from ~90% to ~20% SoC, so ANY voltage-threshold LVD is a blunt instrument on lithium. On LiFePO4 this analog cutoff is a coarse safety floor only; real duty-cycling should come from the T2 coulomb-counting shunt (Victron SmartShunt or INA226). Do not claim precise SoC control from voltage alone.\n- The \"daylight\" signal is a proxy, not truth. A CdS cell reads brightness, which is a fair proxy for \"sun is up,\" but it can be fooled by cloud shadow flicker (hence the 1M hysteresis) and drifts with temperature and age. A small pilot PV cell tied to actual panel output is the more honest choice and I'd lean that way. Neither senses \"is there surplus energy\" as precisely as watching charge current — which is a T2 observer measurement, not something the pure-analog T1 reflex knows.\n- DC switching of the BLDC motor line: I recommend switching the controller's ENABLE input instead, because a 40A automotive relay is spec'd for 12–24V and switching a 48V DC motor risks contact arcing. If you insist on switching motor DC directly, you need a properly DC-rated relay/contactor plus a snubber — verify the relay's DC voltage rating, which is often far below its AC rating.\n- Failure-mode asymmetry: the fail-safe orientation covers the LIKELY failures (broken wires, disconnected sensors). It does NOT cover a resistor failing SHORT in the divider's lower leg or the light divider's lower leg — those rare cases could read \"full/day\" falsely. Metal-film resistors almost always fail open, not short, so this is low-probability, but it's why the float interlock and (T2) shunt exist as independent layers. I won't pretend a single comparator is triply-redundant — it isn't; the redundancy comes from stacking the three independent conditions.\n\nWhat I did NOT invent: I did not assign a purpose to the two air-horn annunciators (still UNKNOWN per the corpus — alarm vs. bird deterrent), and I did not spec the pump's exact current until you confirm whether it's a diaphragm-class demo pump or the 500–700W BLDC — that sets F2 and the relay/contactor rating."
+  }
+ ]
+}

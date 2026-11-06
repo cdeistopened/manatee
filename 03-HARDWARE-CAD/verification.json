@@ -1,0 +1,429 @@
+{
+  "version": "2026-10-15-detail-2-cleanroom",
+  "cleanroom_origin": "cleanroom-parametric-2026-10-15",
+  "cleanroom_license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+  "cleanroom_zero_3d_warehouse": true,
+  "cleanroom_envelope_m": {
+    "bbox_min_m": [
+      -1.1288,
+      -1.5495,
+      -0.163
+    ],
+    "bbox_max_m": [
+      1.1341,
+      1.6545,
+      1.0727
+    ],
+    "size_m": [
+      2.2629,
+      3.204,
+      1.2357
+    ],
+    "target_size_m": [
+      2.2604,
+      3.2039,
+      1.2357
+    ]
+  },
+  "cleanroom_groups": 22,
+  "cleanroom_checks": [
+    {
+      "id": "cr-pontoon-port-outer",
+      "source_part": "pontoon-port-outer",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.1321,
+        3.1753,
+        0.1321
+      ],
+      "vertices": 2308
+    },
+    {
+      "id": "cr-pontoon-port-inner",
+      "source_part": "pontoon-port-inner",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.1321,
+        3.1753,
+        0.1321
+      ],
+      "vertices": 2308
+    },
+    {
+      "id": "cr-pontoon-starboard-inner",
+      "source_part": "pontoon-starboard-inner",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.1321,
+        3.1753,
+        0.1321
+      ],
+      "vertices": 2308
+    },
+    {
+      "id": "cr-pontoon-starboard-outer",
+      "source_part": "pontoon-starboard-outer",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.1321,
+        3.1753,
+        0.1321
+      ],
+      "vertices": 2308
+    },
+    {
+      "id": "cr-pontoon-clamps",
+      "source_part": "pontoon-clamps",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        2.1775,
+        1.5991,
+        0.161
+      ],
+      "vertices": 2496
+    },
+    {
+      "id": "cr-frame-rail-cross-aft",
+      "source_part": "frame-rail-cross-aft",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        2.0611,
+        0.053,
+        0.053
+      ],
+      "vertices": 8
+    },
+    {
+      "id": "cr-frame-rail-cross-forward",
+      "source_part": "frame-rail-cross-forward",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        2.0856,
+        0.053,
+        0.053
+      ],
+      "vertices": 8
+    },
+    {
+      "id": "cr-frame-rail-long-port",
+      "source_part": "frame-rail-long-port",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.053,
+        2.5189,
+        0.053
+      ],
+      "vertices": 8
+    },
+    {
+      "id": "cr-frame-rail-long-starboard",
+      "source_part": "frame-rail-long-starboard",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.053,
+        2.5189,
+        0.053
+      ],
+      "vertices": 8
+    },
+    {
+      "id": "cr-frame-sockets",
+      "source_part": "frame-sockets",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        1.9886,
+        1.6901,
+        0.088
+      ],
+      "vertices": 224
+    },
+    {
+      "id": "cr-deck-cross-members",
+      "source_part": "deck-cross-members",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        1.6351,
+        1.6453,
+        0.12675
+      ],
+      "vertices": 624
+    },
+    {
+      "id": "cr-mast-tube",
+      "source_part": "mast-tube",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.158,
+        0.158,
+        0.8436
+      ],
+      "vertices": 24
+    },
+    {
+      "id": "cr-mast-stays-inner",
+      "source_part": "mast-stays-inner",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        1.5927,
+        1.5924,
+        0.4527
+      ],
+      "vertices": 384
+    },
+    {
+      "id": "cr-mast-stays-outer",
+      "source_part": "mast-stays-outer",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        1.9202,
+        1.5924,
+        0.4527
+      ],
+      "vertices": 384
+    },
+    {
+      "id": "cr-bilge-pumps-pair",
+      "source_part": "bilge-pumps-pair",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        2.136,
+        0.3305,
+        0.1705
+      ],
+      "vertices": 1104
+    },
+    {
+      "id": "cr-bilge-pump-cartridge-centre",
+      "source_part": "bilge-pump-cartridge-centre",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.0711,
+        0.0632,
+        0.0999
+      ],
+      "vertices": 288
+    },
+    {
+      "id": "cr-pump-deck",
+      "source_part": "pump-deck",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.0761,
+        0.1399,
+        0.0779
+      ],
+      "vertices": 224
+    },
+    {
+      "id": "cr-eductor-nozzle",
+      "source_part": "cr-eductor-nozzle",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        1.49889,
+        1.32576,
+        0.26243
+      ],
+      "vertices": 746
+    },
+    {
+      "id": "cr-vessel-squat-cylinder",
+      "source_part": "vessel-squat-cylinder",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.41705,
+        0.41565,
+        0.0933
+      ],
+      "vertices": 720
+    },
+    {
+      "id": "cr-solar-panel",
+      "source_part": "solar-panel",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        2.0655,
+        0.5192,
+        0.0068
+      ],
+      "vertices": 40
+    },
+    {
+      "id": "cr-capacitor",
+      "source_part": "capacitor",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.064,
+        0.203,
+        0.064
+      ],
+      "vertices": 280
+    },
+    {
+      "id": "cr-rotor-lenz-masthead",
+      "source_part": "rotor-lenz-masthead",
+      "origin": "cleanroom-parametric-2026-10-15",
+      "license": "CERN-OHL-S-2.0 / CC-BY-SA-4.0",
+      "third_party": false,
+      "dimensions_m": [
+        0.57748,
+        0.52784,
+        0.3971
+      ],
+      "vertices": 832
+    }
+  ],
+  "kinetic_nozzle_groups": 4,
+  "source_groups": 19,
+  "source_checks": [
+    {
+      "id": "mast-stays-inner",
+      "max_envelope_error_m": 4.707565307615624e-05,
+      "vertices": 238
+    },
+    {
+      "id": "frame-rail-cross-aft",
+      "max_envelope_error_m": 4.50550079347245e-05,
+      "vertices": 96
+    },
+    {
+      "id": "frame-rail-long-starboard",
+      "max_envelope_error_m": 3.584518432608874e-05,
+      "vertices": 96
+    },
+    {
+      "id": "deck-cross-members",
+      "max_envelope_error_m": 4.300203323365226e-05,
+      "vertices": 256
+    },
+    {
+      "id": "frame-rail-long-port",
+      "max_envelope_error_m": 3.584518432608874e-05,
+      "vertices": 96
+    },
+    {
+      "id": "frame-rail-cross-forward",
+      "max_envelope_error_m": 1.9046783447267124e-05,
+      "vertices": 96
+    },
+    {
+      "id": "pontoon-port-inner",
+      "max_envelope_error_m": 3.6118316650401994e-05,
+      "vertices": 4816
+    },
+    {
+      "id": "pontoon-starboard-outer",
+      "max_envelope_error_m": 3.6118316650401994e-05,
+      "vertices": 4816
+    },
+    {
+      "id": "pontoon-port-outer",
+      "max_envelope_error_m": 3.6118316650401994e-05,
+      "vertices": 4816
+    },
+    {
+      "id": "pontoon-starboard-inner",
+      "max_envelope_error_m": 3.6118316650401994e-05,
+      "vertices": 4816
+    },
+    {
+      "id": "mast-stays-outer",
+      "max_envelope_error_m": 3.599433898915372e-05,
+      "vertices": 234
+    },
+    {
+      "id": "bilge-pumps-pair",
+      "max_envelope_error_m": 3.4977340698461035e-05,
+      "vertices": 6128
+    },
+    {
+      "id": "rotor-lenz-masthead",
+      "max_envelope_error_m": 4.903640747067062e-05,
+      "vertices": 6402
+    },
+    {
+      "id": "mast-tube",
+      "max_envelope_error_m": 4.295005798338192e-05,
+      "vertices": 225
+    },
+    {
+      "id": "vessel-squat-cylinder",
+      "max_envelope_error_m": 4.596681594848384e-05,
+      "vertices": 144
+    },
+    {
+      "id": "capacitor",
+      "max_envelope_error_m": 2.602157592773713e-05,
+      "vertices": 6950
+    },
+    {
+      "id": "pump-deck",
+      "max_envelope_error_m": 2.6984906196597658e-05,
+      "vertices": 4883
+    },
+    {
+      "id": "solar-panel",
+      "max_envelope_error_m": 3.4955310821538355e-05,
+      "vertices": 40
+    },
+    {
+      "id": "bilge-pump-cartridge-centre",
+      "max_envelope_error_m": 4.4000327587126464e-05,
+      "vertices": 3064
+    }
+  ],
+  "assembly_groups": 31,
+  "study_groups": {
+    "cleanroom": 22,
+    "kinetic-nozzle": 4,
+    "assembly": 31,
+    "turnbuckle": 9,
+    "bilge-pump": 4,
+    "hose-joint": 3
+  },
+  "all_part_ids_unique": true,
+  "units": "metres",
+  "open_questions": 6,
+  "note": "cleanroom and kinetic-nozzle studies are 100% procedural clean-room CAD (CERN-OHL-S-2.0 / CC-BY-SA-4.0) with zero 3D Warehouse meshes. Source assembly retained separately for provenance comparison."
+}

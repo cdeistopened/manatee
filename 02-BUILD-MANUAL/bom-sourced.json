@@ -1,0 +1,644 @@
+{
+ "systems": [
+  {
+   "subsystem": "Frame & Flotation",
+   "kitPhilosophy": "The drum ships full of the \"smart, hard-to-find, corrosion-critical\" bits — all 316 rigging (cable, thimbles, clips, turnbuckles, pad-eyes), the bolt/isolation kit, cosmetic caps, foam kit, mast base and battery box — everything under 33 in that a hardware store won't reliably stock in marine grade. The three long rigid members that physically can't fit the 22.5x33 in drum (dock floats/hull pipe, aluminum frame stock, mast tube) are a printed cut-list the builder buys locally, because shipping 10 ft stock costs more than the metal.",
+   "parts": [
+    {
+     "name": "Pontoons / hulls (Route A: foam-cored HDPE dock floats)",
+     "chosenComponent": "BARR Plastics PermaFloat rotomolded HDPE + EPS-foam-core dock float, ~24x48x16 in class (size to >=2x payload; ~590-900 lb buoyancy each, molded bolt flanges)",
+     "vendor": "BARR Plastics / Dock Builders Supply (Permafloat) / Great Northern Docks",
+     "price": "$300-500 per pair (approx)",
+     "qty": "2 (add a 3rd if drum runs fuller than ~40 gal)",
+     "shipOrLocal": "source-locally",
+     "fitsNote": "A 24x48x16 in float dwarfs the 22.5 in drum bore in every axis — cannot ship inside. Bulky/light, cheapest freight is local pickup or the dock-supplier's own LTL.",
+     "upgrade": "Two full 55-gal HDPE drums as pontoons (near-free if salvaged) undersize the payload; better upgrade is upsizing to a 24x72 in PermaFloat pair (~1,200+ lb pair) so the drum can run full without a 3rd float.",
+     "link": "https://dockbuilders.com/collections/permafloats"
+    },
+    {
+     "name": "Pontoons / hulls (Route B: round-tube look)",
+     "chosenComponent": "12 in HDPE / DR17 poly pipe, 10 ft, filled SOLID with 2-lb foam; or Charlotte 6 in PVC (classic look, but undersized — see note)",
+     "vendor": "Local plastics/irrigation yard (HDPE) or Home Depot (PVC)",
+     "price": "$200-450 per pair (approx, 12 in HDPE)",
+     "qty": "2 lengths + 4 caps",
+     "shipOrLocal": "source-locally",
+     "fitsNote": "10 ft pipe is ~3.6x the drum's 33 in interior length — impossible to ship in-drum; the rule sends any >33 in rigid member local.",
+     "upgrade": "Route A dock floats are strictly better (unsinkable, UV-stable, no glued seam to flood the hollow tube); keep Route B only for the original tube aesthetic and then fill solid, not partial.",
+     "link": "https://www.homedepot.com/b/Plumbing-Pipe-Fittings-Pipe-PVC-Pipe/N-5yc1vZbueo"
+    },
+    {
+     "name": "Deck frame — aluminum ladder (Route A, recommended)",
+     "chosenComponent": "6061-T6 aluminum square tube, 2x2 in x 0.125 in wall (bolted ladder: 2 cross-beams + perimeter + center bay)",
+     "vendor": "OnlineMetals / FastMetals / local metal supermarket",
+     "price": "~$6-10/ft; ~$300-450 for 40-60 ft (approx)",
+     "qty": "~40-60 ft (measure to your beam & hull length)",
+     "shipOrLocal": "source-locally",
+     "fitsNote": "Sold in 8-24 ft sticks; even a 4 ft cut exceeds the 33 in drum length. Local pickup avoids per-stick oversize freight that can exceed the metal cost.",
+     "upgrade": "6061-T6 is the right call over PVC (no creep, ratable, bolts together). If budget allows, 2x3 in x 0.125 in for the two spanwise cross-beams stiffens the drum bay for little added weight.",
+     "link": "https://www.onlinemetals.com/en/buy/aluminum/2-x-0-125-aluminum-square-tube-6061-t6-extruded/pid/14952"
+    },
+    {
+     "name": "Frame joint hardware (bolted gussets / angle brackets)",
+     "chosenComponent": "6061 aluminum angle + flat-bar gussets, drilled for 5/16 or 3/8 in bolts at every joint (fabbed from offcuts)",
+     "vendor": "OnlineMetals / local metal supply",
+     "price": "$30-60 (approx)",
+     "qty": "8-12 joints",
+     "shipOrLocal": "either",
+     "fitsNote": "Short angle/gusset offcuts (<12 in) ship flat in the drum; if cut from the same local stock, buy with the frame.",
+     "upgrade": "Bolted aluminum gussets replace the as-built's unrated furniture-grade PVC 4-way fittings entirely — the single biggest structural fix. No plastic fitting belongs in the load path.",
+     "link": "https://www.onlinemetals.com/en/buy/aluminum-angle-6061"
+    },
+    {
+     "name": "Mast",
+     "chosenComponent": "6061-T6 aluminum tube, 2 in OD, ~6 ft, set in a bolted base flange",
+     "vendor": "OnlineMetals / local metal supply",
+     "price": "$25-40 (approx)",
+     "qty": "1",
+     "shipOrLocal": "source-locally",
+     "fitsNote": "~6 ft length is ~2x the 33 in drum interior — ships local with the frame stock.",
+     "upgrade": "On Route A the mast is structural-only (carries panel/turbine); a low-mounted battery does the stability work, so no need to oversize the mast for tensegrity preload.",
+     "link": "https://www.onlinemetals.com/en/buy/aluminum-round-tube-6061"
+    },
+    {
+     "name": "Mast base flange / socket",
+     "chosenComponent": "2 in bolt-down aluminum floor flange / weld-on base socket",
+     "vendor": "Amazon / local metal supply",
+     "price": "$15-30 (approx)",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Palm-sized flange packs flat in the drum.",
+     "upgrade": "On Route B add a threaded jack-screw adjuster at the base to set tensegrity preload to torque; unnecessary on the bolted Route A frame.",
+     "link": "search: 2 inch aluminum bolt down floor flange"
+    },
+    {
+     "name": "Rigging cable (Route B tensegrity)",
+     "chosenComponent": "1/8 in 7x19 Type 316 stainless aircraft cable",
+     "vendor": "US Cargo Control / Amazon (DuraBrite)",
+     "price": "$25-40 for 100 ft (approx)",
+     "qty": "~50 ft",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Coils to a ~10 in loop — ships easily in the drum. This is exactly the corrosion-critical part a builder should NOT substitute with hardware-store galvanized.",
+     "upgrade": "Deleted entirely on the bolted aluminum Route A. If keeping tensegrity, 316 (not 304) is the pond-water-correct grade.",
+     "link": "https://www.uscargocontrol.com/products/1-8-7x19-stainless-steel-aircraft-cable-type-316-500-ft"
+    },
+    {
+     "name": "Wire-rope thimbles (Route B)",
+     "chosenComponent": "1/8 in Type 316 stainless wire-rope thimbles",
+     "vendor": "US Stainless / Sailrite",
+     "price": "~$10 for a 10-pack (approx)",
+     "qty": "8-12",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Coin-sized; ships loose in a hardware bag inside the drum.",
+     "upgrade": "Swageless mechanical terminals (Hayn Hi-Mod / Suncor) eliminate thimbles AND clips for full-strength, tool-free eyes — pricier but foolproof for a DIY builder.",
+     "link": "https://www.sailrite.com/Wire-Rope-Thimble"
+    },
+    {
+     "name": "Wire-rope clips (saddle clamps, Route B)",
+     "chosenComponent": "1/8 in Type 316 stainless U-bolt wire-rope clips (DuraBrite / US Stainless)",
+     "vendor": "US Stainless / Amazon",
+     "price": "~$18-20 per 10-pack; $36 for 20 (approx)",
+     "qty": "16-24 (min 2 per eye)",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Small; ships in the fastener bag. Include a printed 'never saddle a dead horse' + 4.5 ft-lb torque card.",
+     "upgrade": "Same swageless-terminal upgrade as thimbles retires clips entirely and removes the #1 rigging error (saddle on the dead end).",
+     "link": "https://usstainless.com/wire-rope-fittings/10-pieces-stainless-steel-316-1-8-3mm-standard-wire-rope-clip-marine-grade-for-1-8-wire-rope/"
+    },
+    {
+     "name": "Turnbuckles (Route B upper-half tensioners)",
+     "chosenComponent": "316 stainless 3/8 in x 6 in hook-and-eye turnbuckle",
+     "vendor": "e-Rigging / US Rigging / Stainless Steel Marine",
+     "price": "$15-25 each; $60-100 for 4 (approx)",
+     "qty": "4",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "~6 in closed — well under drum length, ships inside.",
+     "upgrade": "Deleted on Route A. If kept, jaw-and-jaw (vs hook) turnbuckles won't unhook under a slack cycle — safer on a moving raft than open hooks.",
+     "link": "https://e-rigging.com/collections/stainless-turnbuckles"
+    },
+    {
+     "name": "Pad-eyes / lifting eyes",
+     "chosenComponent": "316 stainless heavy-duty diamond/cast pad eye (~2000 lb WLL, 1/4 in fasteners)",
+     "vendor": "US Stainless / Amazon",
+     "price": "$8-12 each; ~$40 for 4 (approx)",
+     "qty": "4 corner lift points (+4-8 more for Route B cable anchors)",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Fist-sized castings; ship in-drum. Label the 4 corner ones 'LIFT ONLY HERE.'",
+     "upgrade": "For the four hoist points, a forged (not cast) 316 pad eye or a bolt-through backing-plate eye gives a higher, more trustworthy WLL than economy cast eyes.",
+     "link": "https://usstainless.com/categories/hardware/pad-eyes.html"
+    },
+    {
+     "name": "316 bolt / nut / washer + galvanic-isolation kit",
+     "chosenComponent": "316 SS hex-cap-screw assortment (e.g. BoltsandNuts 574-pc) + nylon shoulder isolation washers + nylon flat washers + anti-seize",
+     "vendor": "BoltsandNuts.com / Marine Bolt Supply / McMaster (nylon shoulder washers) + Amazon (anti-seize)",
+     "price": "$60-90 kit + ~$12 nylon washers + ~$10 anti-seize (approx)",
+     "qty": "40-60 sets",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Compact kit box + washer packs ship in-drum. Nylon shoulder washers at every Al-to-316 interface are the corrosion firewall a builder rarely sources on their own.",
+     "upgrade": "Add a small tube of Tef-Gel (marine dielectric) instead of generic anti-seize at the aluminum/stainless joints — it's the boatyard standard for stopping galvanic seizing on fasteners.",
+     "link": "https://boltsandnuts.com/products/assortment-kit-490"
+    },
+    {
+     "name": "Flotation pour foam (Route B pipe hulls only)",
+     "chosenComponent": "2-part 2-lb-density closed-cell polyurethane pour foam, 2-gal kit (TotalBoat / True Composites)",
+     "vendor": "TotalBoat / Amazon (True Composites) / Aeromarine",
+     "price": "$90-130 (approx)",
+     "qty": "~2 gal per hull (fill SOLID in ~5 staged lifts)",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Two 1-gal jugs stand upright in the 33 in drum. DELETED on Route A (dock floats are already foam-cored).",
+     "upgrade": "None needed — 2-lb closed-cell is the correct marine grade; just pour SOLID (not the as-built's partial pour that left the tube mostly hollow).",
+     "link": "https://www.totalboat.com/products/2-part-polyurethane-marine-flotation-foam"
+    },
+    {
+     "name": "Cosmetic nose caps + googly eyes (the manatee face)",
+     "chosenComponent": "6 in Sch-40 domed PVC slip cap (DURA 447-060) + large adhesive googly eyes",
+     "vendor": "Home Depot / PVC Fittings Online + Amazon (googly eyes)",
+     "price": "$8-12 per cap + ~$5 eyes; ~$25-40 total (approx)",
+     "qty": "2 caps (forward ends) + eyes",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "6 in caps nest inside the 22.5 in bore. Eyes go on the two FORWARD caps only — never the reactor drum (grounding note is emphatic).",
+     "upgrade": "Foam nose cones (shaped, lighter) read more 'manatee' than flat-domed caps and add a touch of reserve buoyancy at the bow; purely cosmetic either way.",
+     "link": "https://www.pvcfittingsonline.com/products/447-060-6-schedule-40-pvc-cap"
+    },
+    {
+     "name": "Vented battery box (mounts battery low as ballast)",
+     "chosenComponent": "Attwood Power Guard Group 27 vented marine battery box + hold-down strap (350 lb strap)",
+     "vendor": "Fisheries Supply / Hamilton Marine / Amazon",
+     "price": "$15-25 (approx)",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "~13x8x10 in box fits inside the 22.5 in bore. Mounting it low/central is the free capsize fix.",
+     "upgrade": "If going LiFePO4, a low-profile group-24 box lowers CG further; the vent matters only for flooded/AGM, so a sealed LiFePO4 can sit in a simpler strapped tray even lower.",
+     "link": "https://www.fisheriessupply.com/attwood-attwood-group-27-battery-box/9067-1"
+    },
+    {
+     "name": "Drum cradle straps",
+     "chosenComponent": "2 in x 10-12 ft heavy-duty ratchet straps (2-pack) over a bolted aluminum center-bay saddle",
+     "vendor": "Home Depot / Amazon",
+     "price": "$15-25 (approx)",
+     "qty": "2-4 straps",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Straps coil flat in the drum; the saddle itself is cut from the local aluminum frame stock.",
+     "upgrade": "Swap ratchet straps for cam-buckle stainless-hardware straps (won't rust-seize) or a molded 55-gal drum saddle; the ~460 lb full drum is the heaviest single mass and must not shift underway.",
+     "link": "https://www.homedepot.com/b/Storage-Organization-Tie-Down-Straps-Ratchet-Straps/N-5yc1vZc4al"
+    }
+   ]
+  },
+  {
+   "subsystem": "Power & Electronics (Manatee / EVIE-2c \"kit-in-a-drum\")",
+   "kitPhilosophy": "Almost the entire power subsystem is small, rugged, and drum-packable, so the \"brains + protection + metering\" all SHIP IN THE DRUM as a sealed electronics bundle (MPPT, shunt, fusing, distribution, relays, enclosure, control boards, wiring kit). The two heavy commodity items — the 12V battery (lithium ground-ship/hazmat rules, and it's a swap-anywhere part) and the rigid solar panel (fragile glass, and locally-stocked) — are SOURCE-LOCALLY on a cut-list. The control brain is presented as three honest tiers, not one pick: (A) no dedicated brain — the Victron MPPT's own programmable load output + low-voltage-disconnect runs the pump on a timer (baseline, recommended); (B) a ~$20 analog BEAM phototrope kit if light-seeking steering thrusters are fitted; (C) a ~$10 ESP32 if the builder wants programmable duty-cycling, Wi-Fi/BLE telemetry, and data logging. No machine learning anywhere — this is cheap, proven, un-exotic hardware, and that is the point.",
+   "parts": [
+    {
+     "name": "Solar panel (primary + only baseline generation)",
+     "chosenComponent": "Renogy 50W 12V Monocrystalline Compact (RNG-50D-SS), ~20 x 26.8 x 1.2 in, ~8 lb",
+     "vendor": "Home Depot / Amazon / Renogy",
+     "price": "$70-85",
+     "qty": "1",
+     "shipOrLocal": "either",
+     "fitsNote": "The compact rigid 50W (~20x27in) actually fits inside the 22.5x33in drum on the diagonal, but it is fragile glass — better boxed separately or sourced locally. Manual specs 45W; a 50W compact is the closest current stock item and gives ~120-170 Wh/day after derating.",
+     "upgrade": "Step to a 100W panel (Renogy RNG-100D, ~$95) IF the payload/float budget allows the extra weight — doubles daily harvest and lets the cavitation batch run longer; pair with a 75/15 or 100/20 MPPT. Or a semi-flexible 50-100W panel (Renogy flexible, ~$80-140) to stow flat and shed the glass fragility.",
+     "link": "https://www.homedepot.com/p/Renogy-50-Watt-12-Volt-Monocrystalline-Solar-Panel-for-Compact-Design-RNG-50D-SS/308789809"
+    },
+    {
+     "name": "MPPT solar charge controller (regulation + duty-cycle timer + LVD)",
+     "chosenComponent": "Victron SmartSolar MPPT 75/15 (SCC075015060), Bluetooth",
+     "vendor": "Amazon / solar-electric.com / Off Grid Stores",
+     "price": "$100-115",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Palm-sized (~5x4x2in). Ships in the drum. This is the keystone electronics upgrade: +15-30% harvest vs PWM, built-in reverse-polarity protection (deletes the old 50A blocking diode), and a programmable load output + low-voltage-disconnect that replaces the hand-soldered trim-pot perfboard as the pump duty-cycle timer.",
+     "upgrade": "For a 45-50W panel only, the 75/10 (~$85) is technically enough (panel Isc ~3A << 10A) and saves ~$25. Go UP to 100/20 (~$150) only if upsizing to a 100W+ panel. The 75/15 is the sweet spot — headroom for a 100W panel without overpaying.",
+     "link": "https://www.amazon.com/Victron-SmartSolar-Charge-Controller-Bluetooth/dp/B075NQQRPD"
+    },
+    {
+     "name": "Battery monitor / coulomb-counting shunt (the missing power-budget instrument)",
+     "chosenComponent": "Victron SmartShunt 500A/50mV IP65, Bluetooth (SHU050150050)",
+     "vendor": "Amazon / Off Grid Stores / Battle Born",
+     "price": "$110-120",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Small (~4x3x2in). Ships in drum. Installed in the battery NEGATIVE path so all current passes through it — this single part retires the venture's biggest open question (does Wh-in vs oil-out close?) by logging it automatically every run. Pairs with the MPPT's harvest log over the same VictronConnect app.",
+     "upgrade": "Two ways: DOWN to a bare INA226 breakout (~$15) if the builder is comfortable with an Arduino/ESP32 reading it (loses the polished app, keeps the physics); or the SmartShunt 300A (~$100) is more than enough for this <10A load and saves a few dollars. The 500A is only 'bigger' — not better here.",
+     "link": "https://www.amazon.com/Victron-Energy-SmartShunt-Battery-Bluetooth/dp/B0DJ2P2XN5"
+    },
+    {
+     "name": "12V battery (overnight store + low-mounted stability ballast)",
+     "chosenComponent": "LiTime 12V 50Ah LiFePO4, built-in 50A BMS, ~11.6 lb (or Ampere Time 12V 50Ah equivalent)",
+     "vendor": "Amazon / LiTime / Walmart",
+     "price": "$140-165",
+     "qty": "1",
+     "shipOrLocal": "source-locally",
+     "fitsNote": "Dimensionally it WOULD fit the drum (~7.7x6.6x6.8in), but lithium cells carry ground-ship/hazmat restrictions and it is a swap-anywhere commodity — cheaper and simpler for the builder to buy locally. Mount it LOW and central between the hulls: the manual makes it double as capsize ballast, the cheapest stability fix in the build.",
+     "upgrade": "Step to 12V 100Ah LiFePO4 (~$200-240) for genuine ~2-day autonomy margin and more ballast mass — highly worth it since the whole rig runs as a solar-charged batch process and reserve energy sets the duty cycle. Or a Bluetooth-BMS version (LiTime 50Ah TM, ~$180) to see state-of-charge on the phone. AGM (Group 24, ~$130) is the cheap heavy fallback but has worse cycle life with no LVD headroom.",
+     "link": "https://www.litime.com/products/litime-12v-50ah-lifepo4-lithium-ion-battery"
+    },
+    {
+     "name": "Main terminal fuse (life-safety — was completely absent on the built rig)",
+     "chosenComponent": "Blue Sea 5178 MRBF 60A terminal fuse + Blue Sea 5191 MRBF terminal fuse block/holder",
+     "vendor": "Amazon / West Marine / Powerwerx",
+     "price": "$12 (fuse) + $18-22 (holder) = ~$30-35",
+     "qty": "1 fuse + 1 holder",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Tiny; ships in drum. Bolts directly to the battery positive post BEFORE any wire leaves it. A 12V LiFePO4/AGM bus can source hundreds of amps into a fault — this is the single cheapest fire-safety part in the whole machine and it was missing entirely. Do not energize without it.",
+     "upgrade": "Size to ACTUAL peak load, not habit: for the baseline diaphragm-pump rig, a 30A MRBF (Blue Sea 5177, ~$12) is correct and safer (trips sooner). Reserve 60A+ only if a 1/2-hp motor pump is fitted. Right-sizing the fuse IS the upgrade.",
+     "link": "https://www.amazon.com/Blue-Systems-MRBF-Terminal-Model/dp/B01C1F3V2U"
+    },
+    {
+     "name": "Fused distribution block (per-branch protection + negative bus)",
+     "chosenComponent": "Blue Sea 5025 ST-Blade 6-circuit fuse block with negative bus and cover",
+     "vendor": "Off Grid Stores / West Marine / Amazon",
+     "price": "$43-58",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "~5x3x2in; ships in drum. Combined switched-positive fused bus + a negative bus bar in one part (single-point ground, no ground loops). Every load branch — pump, each annunciator, controller — gets its own ATO/ATC fuse sized to the LOAD.",
+     "upgrade": "12-circuit version (Blue Sea 5026, ~$60) if adding thrusters, ESP32, lights, and horns crowds 6 circuits. For a truly minimal baseline, an inline ATC fuse holder per branch (~$2 ea) is cheaper but messier — the block is worth it for serviceability.",
+     "link": "https://offgridstores.com/products/blue-sea-5025-st-blade-fuse-block-w-cover-6-circuit-w-negative-bus"
+    },
+    {
+     "name": "Load switching relays (replace the hot, lossy Fotek DC SSRs)",
+     "chosenComponent": "OLS / True Mods 12V 40A waterproof 5-pin SPDT Bosch-style relay w/ sealed socket & harness",
+     "vendor": "Amazon / Parts Express / True Mods",
+     "price": "$8-10 each, or ~$18 for a 5-pack",
+     "qty": "3-4",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Sealed, cheap, marine-rated; ship in drum. Each old Fotek SSR-40 DD burned ~5W as heat while conducting — four of them could quietly eat a third of a 45W budget. Sealed relays have near-zero drop, need no heatsink, and are not polarity-sensitive.",
+     "upgrade": "Logic-level MOSFET module (IRF3205 / IRLB8721 high-side switch board, ~$8) — silent, zero mechanical wear, and can PWM the pump for speed/duty control off the ESP32. The relay is the rugged simple default; the MOSFET is the smarter path if a microcontroller is aboard.",
+     "link": "https://www.amazon.com/Waterproof-Relay-Harness-Automotive-Marine/dp/B0936RM8S7"
+    },
+    {
+     "name": "Schottky flyback diodes (across each inductive load)",
+     "chosenComponent": "1N5822 3A 40V Schottky (assorted 10-pack)",
+     "vendor": "Amazon / DigiKey",
+     "price": "$6-8 for a 10-pack",
+     "qty": "1 pack (need 3-4)",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Loose components; ship in drum. One across each inductive load (pump motor, each air horn) to clamp switch-off kickback and protect the relay/MOSFET.",
+     "upgrade": "None needed — a 1N5822 is correct and pennies. If MOSFET modules with integrated flyback are used, these become spares.",
+     "link": "https://www.amazon.com/s?k=1N5822+schottky+diode"
+    },
+    {
+     "name": "IP66 enclosure + cable glands + breather vent (waterproofing package)",
+     "chosenComponent": "Polycarbonate IP66/IP67 hinged junction box ~8x6x4in (Zulkit/Polycase) + PG/NPT nylon cable gland assortment + Blue Sea 1000-class / Gore vent plug",
+     "vendor": "Amazon / Polycase / Blue Sea",
+     "price": "$18-25 box + $8 glands + $8-12 vent = ~$35-45",
+     "qty": "1 set",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Ships in drum (and can nest the small electronics inside it for packing). Box mounts above the splash line; glands go LOW on a side wall, the breather vent HIGH; drip loops on every entry. Water ingress is the #1 failure mode of a floating electronics box — the built rig had a bare perfboard in an open box.",
+     "upgrade": "For genuine salt exposure, a marine box with 316 stainless glands (Index Marine WB61, ~$40-60) resists pitting — overkill for a freshwater pond but the right call near brackish water. Add a silica-gel desiccant pack (~$5) inside either box.",
+     "link": "https://www.polycase.com/cable-management-venting"
+    },
+    {
+     "name": "Conformal coating (seal all PCBs against condensation)",
+     "chosenComponent": "MG Chemicals 422B Silicone Modified Conformal Coating (aerosol)",
+     "vendor": "Amazon / DigiKey / MG Chemicals",
+     "price": "$18-22",
+     "qty": "1 can",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "One aerosol can; ships in drum (check carrier aerosol rules). Coat the MPPT-adjacent boards, relay/MOSFET modules, control board, and voltmeter — belt-and-suspenders with the IP66 box against the humid, splashy environment.",
+     "upgrade": "MG Chemicals 419D acrylic (~$16) is easier to rework/solder-through if the builder expects to revise the boards; 422B is more moisture-durable for a set-and-forget build.",
+     "link": "https://www.amazon.com/s?k=MG+Chemicals+422B+conformal+coating"
+    },
+    {
+     "name": "Control brain — OPTION B: BEAM analog phototrope kit (only if steering thrusters fitted)",
+     "chosenComponent": "Discrete kit: 74HC14 + 74HC125 logic, PN2222A/PN2907A + 2N3904/2N3906 H-bridge transistors, 1N4148 flyback diodes, 2x photodiodes, R/C timing set (0.1uF, 3M/10M)",
+     "vendor": "DigiKey / Jameco / Amazon (component kit)",
+     "price": "$15-25",
+     "qty": "1 board's worth",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "A handful of chips and passives; ships in drum. Public-domain BEAM/Braitenberg topology — two photodiodes bias an analog 'Nv neuron' oscillator that pulses H-bridges to steer the raft toward the brightest water (a proxy for a surface bloom). No processor, no code, no 'AI'. Bench-verify on a scope that the microcore oscillates before water.",
+     "upgrade": "Skip the discrete build entirely and do steering in software on the ESP32 (Option C) reading the same two photodiodes — far easier to tune, and you get telemetry for free. The analog board is the honest 'no-firmware' path; the ESP32 is the practical one.",
+     "link": "https://www.jameco.com/z/74HC14"
+    },
+    {
+     "name": "Control brain — OPTION C: ESP32 (programmable duty-cycle + BLE/Wi-Fi telemetry + logging)",
+     "chosenComponent": "ESP32-WROOM-32 DevKit v1 (dual-core, Wi-Fi + BLE)",
+     "vendor": "Amazon / Espressif / DigiKey",
+     "price": "$8-12",
+     "qty": "0-1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Thumb-sized; ships in drum. Replaces the obsolete/discontinued MIT Super Cricket and the false ~1m IrDA 'telemetry' claim with real Wi-Fi/BLE. Can run the pump duty cycle, read the shunt (INA226) and photodiodes, drive MOSFET switches, and log every run — genuine telemetry for ~$10.",
+     "upgrade": "LilyGo T-Display / Heltec ESP32 with onboard OLED + LiPo (~$15-22) adds a field debug screen and a backup rail — handy for on-dock diagnostics without a laptop.",
+     "link": "https://www.amazon.com/s?k=ESP32+WROOM+devkit"
+    },
+    {
+     "name": "LCD glance voltmeter (kept as at-a-glance bus display)",
+     "chosenComponent": "0.28in / 0.36in DC digital voltmeter module (or 16x2 LCD DC volt module)",
+     "vendor": "Amazon / DigiKey",
+     "price": "$8-12",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Tiny; ships in drum. Carried over from the original as a dumb glance display across the bus. It shows voltage only — the SmartShunt is what actually captures current/Wh, which is the number that matters.",
+     "upgrade": "Largely redundant once the SmartShunt's Bluetooth app is in hand — keep it only if the builder wants a no-phone glance readout. A combo volt+amp panel meter (~$12) is a marginally better dumb display.",
+     "link": "https://www.amazon.com/s?k=dc+digital+voltmeter+module+12v"
+    },
+    {
+     "name": "Wiring, terminals & interconnect kit",
+     "chosenComponent": "Marine-grade tinned duplex/primary wire (10/12/14 AWG), adhesive-lined heat-shrink ring/spade terminals, heat-shrink tubing, cable ties",
+     "vendor": "Amazon / West Marine / Ancor",
+     "price": "$40-60",
+     "qty": "1 kit",
+     "shipOrLocal": "either",
+     "fitsNote": "Short spools, connectors, and heat-shrink SHIP IN DRUM as a kit; long homerun runs are trivially SOURCED LOCALLY once the built layout is measured (run lengths are UNKNOWN until the frame exists). Tinned copper resists corrosion; crimp adhesive-lined terminals and add drip loops.",
+     "upgrade": "A pre-assembled marine wiring kit (Ancor/heat-shrink-terminal assortment, ~$50) saves sourcing time; step battery-to-MPPT/main-fuse leads up to 8-10 AWG tinned for the higher-current legs if a bigger pump is fitted.",
+     "link": "https://www.amazon.com/s?k=marine+tinned+wire+kit+ancor"
+    },
+    {
+     "name": "OPTIONAL: balanced ultracap surge module (only if a high-inrush 1/2-hp motor pump is fitted)",
+     "chosenComponent": "Eaton XLM/XLR 16V balanced supercapacitor module + current-limiting pre-charge resistor",
+     "vendor": "DigiKey / Mouser",
+     "price": "$50-70",
+     "qty": "0-1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "DELETED on the baseline — the battery buffers the small diaphragm pump. Ships in drum only if the builder chooses a high-inrush motor pump. MUST be pre-charged through a resistor: a discharged 2200F-class cap is a dead short that will arc-weld terminals. This replaces the original's undocumented, unbalanced 2200F canister + contradictory 3F cap.",
+     "upgrade": "None on baseline (the correct move is to NOT fit it). If a big pump forces the issue, a factory-balanced module with built-in cell balancing is the only safe choice over loose series cells.",
+     "link": "https://www.digikey.com/en/products/filter/supercapacitor-modules/62"
+    }
+   ]
+  },
+  {
+   "subsystem": "Storage & Separation (Subsystem D)",
+   "kitPhilosophy": "The 55-gal drum is the reactor, the separator, AND the outer shipping crate — so every separation internal (skimmer, baffles/shroud, coalescer media, sight tube, vents, bulkheads, transfer pump, strainer, float switch, bladder/jerricans) nests inside it and ships as the kit. Only the drum itself and the aerosol flat-black paint are truly source-local; long straight PVC for the S-return is builder-cut to fit the as-built layout.",
+   "parts": [
+    {
+     "name": "55-gal reactor/settler drum (the vessel AND the shipping container)",
+     "chosenComponent": "Eagle 1655MBLKBR — 55-gal open-head HDPE, black blow-molded with UV inhibitors, metal bolt-ring gasketed lid (~23 in dia x ~34 in tall)",
+     "vendor": "Justrite/Eagle (eagle.justrite.com); Uline S-9945BL as cheaper lever-lock alt",
+     "price": "$180–230 (Eagle bolt-ring); ~$99 approx (Uline S-9945BL lever-lock)",
+     "qty": "1",
+     "shipOrLocal": "either",
+     "fitsNote": "This IS the ~22.5 in x 33 in kit drum — it does not ship inside itself. The Eagle exactly matches the IMPROVED spec (UV-stabilized black HDPE + metal bolt ring, vented not pressure-rated). Uline S-9945BL is fine but lever-lock, not bolt-ring.",
+     "upgrade": "Eagle bolt-ring over Uline lever-lock — the gasketed metal ring reseals flat and clamps the added baffles/vent penetrations better; worth the ~$80 delta on the one part that holds ~460 lb of slurry.",
+     "link": "https://eagle.justrite.com/lab-pack-open-head-poly-drum-55-gallon-metal-bolt-ring-black-1655mblkbr"
+    },
+    {
+     "name": "Floating weir surface skimmer head (self-leveling)",
+     "chosenComponent": "Shop-built HDPE floating-box weir feeding the diaphragm-pump suction (small poly float + adjustable overflow lip) — the honest $30–60 DIY per the manual",
+     "vendor": "DIY (HDPE offcut + float) shipped precut; SkimOIL FWS as the buy-it option",
+     "price": "$30–60 (DIY head) / $300–500 approx (SkimOIL FWS industrial)",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "The film to catch is only ~1/8 in thick, so the intake must self-level at the surface. A small shop-built floating weir nests inside the drum for shipping; a full industrial FWS is overkill and 10x the cost for a 23-in drum.",
+     "upgrade": "SkimOIL FWS (floating weir skimmer) — one moving part (weir hinge), self-adjusts to any suction pump and to wave action; buy it if the DIY box weir won't hold a calm lip on a pitching raft.",
+     "link": "https://www.skimoil.com/floating-weir-oil-skimmer/"
+    },
+    {
+     "name": "Anti-slosh baffle(s) + skimmer stilling shroud",
+     "chosenComponent": "Precut 1/4-in HDPE baffle plate(s)/slotted center tube + a short open-top poly-bucket shroud around the skim zone",
+     "vendor": "DIY from HDPE sheet (McMaster 8619K / a poly bucket)",
+     "price": "$25–40",
+     "qty": "1 set",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Cut flat and a nesting bucket-shroud both stow inside the drum. Must NOT fully partition the drum (loop still has to circulate) and stays perforated near the bottom for cleanout.",
+     "upgrade": "none — this is already the cheapest fix for the deepest flaw (gravity separation on a moving boat); a machined slotted center-tube baffle is a marginal refinement, not worth the cost.",
+     "link": "search: HDPE sheet 1/4 inch McMaster 8619K"
+    },
+    {
+     "name": "Coalescer / settler media pack (corrugated-plate)",
+     "chosenComponent": "Corrugated-plate (cross-flow) coalescing media cut to the 15-gal vessel — PVC/PP plate pack at 1/2–3/4 in spacing",
+     "vendor": "Wash Bay Solutions / SkimOIL coalescing media; or DIY corrugated PP sheet stack",
+     "price": "$40–80",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Stock packs are 1 ft wide x 2 ft high — cut a short section to the ~14.5-in settler and it ships flat inside the drum. Passive, zero power; must be removable for cleaning.",
+     "upgrade": "Oleophilic coalescing media (e.g., DynaPac-style) over plain corrugated PVC — grabs finer emulsified droplets that cavitation throws; only worth it if commissioning shows the plate pack alone won't break the emulsion.",
+     "link": "https://www.washbaysolutions.com/heavy-solids-cross-flow-corrugated-plate-coalescing-media.php"
+    },
+    {
+     "name": "15-gal intermediate coalescer/settler vessel",
+     "chosenComponent": "Uline S-24088-class 15-gal open-top HDPE drum (natural/translucent so the oil/water interface is visible), ~14.5 in dia x ~27 in tall",
+     "vendor": "Uline; Air Sea Containers 15-gal open-head poly as alt",
+     "price": "$45–70",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "14.5-in dia x 27-in tall nests inside the 22.5 x 33 drum interior. Pick translucent (not blue) so the sight-line works; paint exterior flat black for passive solar warming.",
+     "upgrade": "A clear-sided cone-bottom tank over a flat-bottom drum — the cone drains free water cleanly to the S-return and concentrates wax at the top take-off; costs more and won't nest as neatly.",
+     "link": "https://www.uline.com/Product/Detail/S-24088/Drums/Plastic-Drum-with-Lid-15-Gallon-Open-Top-Blue"
+    },
+    {
+     "name": "Sight glass / level & interface gauge",
+     "chosenComponent": "NTO 2-in tank sight-gauge kit (2 grommet+barb fittings + clear tube + shutoff), or clear reinforced-vinyl tube + 2 barb-grommets",
+     "vendor": "NTO Tank (ntotank.com); Ag Spray sight-gauge hose; McMaster sight tubes",
+     "price": "$15–40",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Coilable tube + two small fittings; stows loose in the drum. Install top+bottom taps on drum and settler. MUST be UV-shielded (opaque sleeve) — bare clear plastic yellows/embrittles pond-side.",
+     "upgrade": "Rigid acrylic/borosilicate sight tube with isolation valves over vinyl — reads the interface line more crisply and resists algae fouling; add shutoff valves top and bottom in case the tube fails.",
+     "link": "https://www.ntotank.com/nto-sight-gauge-x4635462"
+    },
+    {
+     "name": "Drum penetration fittings (bulkheads)",
+     "chosenComponent": "UNISEAL flexible tank adapters — 1 in (Amazon B0723HJ9KX) and 2 in (B072QR9KR6); threaded PVC bulkheads where a removable seal is wanted",
+     "vendor": "Amazon (UNISEAL brand); Banjo/Spears threaded PVC bulkheads at irrigation supply",
+     "price": "$8–12 ea (Uniseal); $30–80 total for the set",
+     "qty": "6–8",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Small rubber grommets that seal a plain drilled hole — ship loose. Cover nozzle return, feed, S-return valve, skim line, 2x sight-tube taps, and vent. Elevation is the whole game; the sight glass lets the builder set them empirically before drilling.",
+     "upgrade": "Threaded PVC bulkhead + gasket at the S-return/drain ports over a Uniseal — gives a serviceable, valve-able, re-torqueable seal at the two ports that matter most; Uniseals elsewhere are fine and cheaper.",
+     "link": "https://www.amazon.com/UNISEAL-Flexible-Tank-Adapter-Bulkhead/dp/B0723HJ9KX"
+    },
+    {
+     "name": "Sub-surface \"S\"-return tube",
+     "chosenComponent": "1-in Sch-40 PVC pipe + 2x 90-deg elbows forming an S/gooseneck, screened inlet below the oil layer",
+     "vendor": "Home Depot / Lowe's / any irrigation supplier",
+     "price": "$15–25",
+     "qty": "1",
+     "shipOrLocal": "either",
+     "fitsNote": "Elbows + short precut nipples + inlet screen ship in the drum; a long straight run (if the built layout needs >33 in) is builder-cut locally. Inlet MUST sit clearly sub-surface or it siphons off product oil instead of clarified water.",
+     "upgrade": "Add a ball valve at the bulkhead take-off (doubles as cleanout + lets you throttle draw so you don't pull the interface down and re-entrain oil).",
+     "link": "search: 1 inch schedule 40 PVC pipe and 90 elbow Home Depot"
+    },
+    {
+     "name": "Gooseneck vent + insect/debris screen",
+     "chosenComponent": "Attwood 90-deg P-trap fuel-tank vent (screened, marine) — one on drum, one on settler",
+     "vendor": "West Marine / BJ's RV & Marine; Acouto 316-SS gooseneck (Amazon B09JKCHBGQ) as alt",
+     "price": "$10–18 ea ($8–12/pair for shop-bent PVC + SS screen)",
+     "qty": "2",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Small; ships loose. The inverted-U with screened downward mouth vents displaced air + algae CO2 while blocking rain/bugs. Mandatory safety part — vessels are lidded and vented, NEVER sealed against pressure.",
+     "upgrade": "316 stainless gooseneck (Acouto) over plastic if long UV exposure is expected — won't embrittle; otherwise the Attwood marine vent is the proven cheap default.",
+     "link": "https://www.amazon.com/Acouto-Gooseneck-Connector-Stainless-fuel-transfer-tanks/dp/B09JKCHBGQ"
+    },
+    {
+     "name": "Final storage — cheap inert default",
+     "chosenComponent": "2x Air Sea Containers 25L/6.6-gal HDPE jerricans (Amazon B00PREJQ04) + quick-connect off-load tap",
+     "vendor": "Amazon (Air Sea Containers); Nalgene 20L HDPE jerrican as alt",
+     "price": "$60–100 (pair + tap)",
+     "qty": "1 set (2 cans)",
+     "shipOrLocal": "either",
+     "fitsNote": "HDPE is inert to the waxy lipid product. Two 6.6-gal cans can nest in the drum for shipping (bulky) or be sourced locally. Recommended cheap baseline over the bladder — kills the biggest cost uncertainty in the subsystem.",
+     "upgrade": "Hydrocarbon-rated TPU collapsible bladder (Fuel Safe / Techno Tanks, 15–25 gal, $350–600) — collapses as it empties (no sloshing air space, flexible deck footprint); only worth it if deck trim/space matters more than $300–500. Do NOT substitute a plain water bladder (swells/leaches).",
+     "link": "https://www.amazon.com/Air-Sea-Containers-Jerrican-Natural/dp/B00PREJQ04"
+    },
+    {
+     "name": "Transfer / off-load diaphragm pump (hydrocarbon-compatible)",
+     "chosenComponent": "SHURFLO 8000-543-238 — 12V DC diaphragm, 1.8 GPM / 100 PSI, Viton valves + Santoprene diaphragm, self-priming",
+     "vendor": "Amazon (B0020IRI28); Northern Tool / Ag Spray",
+     "price": "$90–130",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Exactly the spec: Viton/Santoprene wetted parts survive the waxy lipid, and diaphragm action self-primes and moves semi-solid wax a centrifugal bilge pump would stall on. Small — ships inside. Transfer ONLY; keep strictly off the HP nozzle loop.",
+     "upgrade": "SHURFLO 4008-class (higher-flow, same Santoprene/Viton family) if off-load time matters; but 1.8 GPM is ample for decant and lower inrush is friendlier to the 45 W budget.",
+     "link": "https://www.amazon.com/8000-543-238-Diaphragm-Agricultural-Self-Priming-Back-Flow/dp/B0020IRI28"
+    },
+    {
+     "name": "Inline suction strainer (protects transfer pump)",
+     "chosenComponent": "Jabsco Pumpgard 46400-0000 in-line strainer, 3/4-in barb (low profile)",
+     "vendor": "Amazon (B001443LJI); PumpBiz",
+     "price": "$15–25",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Clear-bowl screened basket on the diaphragm-pump suction traps congealed wax lumps before they jam the check valves (the pump's failure point). Small — ships inside. Distinct from the fine nozzle strainers in Subsystem B.",
+     "upgrade": "none for the scale — the Jabsco Pumpgard is the marine-standard cheap part; just keep the mesh coarse enough not to starve the thick product flow.",
+     "link": "https://www.amazon.com/Jabsco-46400-0000-Inline-Strainer-Plumbing/dp/B001443LJI"
+    },
+    {
+     "name": "Level / float switch (fill-level / decant timing)",
+     "chosenComponent": "SEAFLO marine bilge float switch, 12V (or Rule-A-Matic 35A)",
+     "vendor": "Amazon / Wholesale Marine / Defender",
+     "price": "$15–25",
+     "qty": "1 (optional)",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Small; ships inside. Gates the raise-level-to-decant cycle. In the IMPROVED build it's largely superseded by MPPT load-output timing + the sight glass, but a cheap float switch is still valid low-cost level control. Watch: fouls with wax/algae and sticks.",
+     "upgrade": "Solid-state / optical level sensor (no moving float to foul with wax) if reliability underway matters; or drop it entirely and gate skimming to calm windows via the sight glass, per the improved edition.",
+     "link": "https://www.amazon.com/bilge-pump-float-switch/s?k=bilge+pump+float+switch"
+    },
+    {
+     "name": "Flat-black paint (passive solar warming of the settler)",
+     "chosenComponent": "Rust-Oleum flat-black spray (plastic-compatible / UV) for the 15-gal settler exterior",
+     "vendor": "Home Depot / Lowe's / Amazon",
+     "price": "$5–10",
+     "qty": "1 can",
+     "shipOrLocal": "source-locally",
+     "fitsNote": "Aerosol = hazmat/ORM-D, can't ride in the kit drum. Source locally. Warms wax so it's less viscous and separates faster — zero added power. Keep warming MILD; excess gain can soften/stress HDPE.",
+     "upgrade": "Adhesive black solar-absorber film or a plastic-adhesion primer + flat-black topcoat if the paint won't key to the HDPE — HDPE is notoriously paint-shy; a plastic-bonding primer prevents peel.",
+     "link": "search: Rust-Oleum flat black spray paint for plastic Home Depot"
+    }
+   ]
+  },
+  {
+   "subsystem": "Fluid & Process (cavitation loop)",
+   "kitPhilosophy": "Every part in this subsystem is small, short, or coilable, so the entire fluid loop ships packed inside the 55-gal drum — nothing here trips the 33-in rule. The builder sources only two things locally: the drum itself (it IS the shipping container / reactor) and bulk low-pressure PVC suction/return hose and pipe by the foot from any hardware store.",
+   "parts": [
+    {
+     "name": "Intake coarse basket strainer (FP1)",
+     "chosenComponent": "Groco ARG-755-P 3/4\" bronze raw-water strainer with clear sight bowl + plastic basket",
+     "vendor": "Marine supply (Wholesale Marine / Fisheries Supply / Go2Marine)",
+     "price": "$110-140",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "~6 in tall x 4 in — trivially fits the drum. Clear one-piece sight bowl lets the builder SEE the algae mat blinding it (the top field failure) without disassembly; tool-less basket removal for clean-every-run duty.",
+     "upgrade": "For a cheaper DIY build, drop to a generic clear-bowl inline sediment strainer (~$20, Amazon) or a pond-pump leaf basket; the Groco is the marine-grade pick but overkill on a freshwater demonstrator. A self-cleaning suction screen (Arkal/Amiad) is the step up if you want zero-maintenance intake.",
+     "link": "https://www.groco.net/products/raw-water-strainers/basket-strainer/arg-series"
+    },
+    {
+     "name": "Backflushable fine mesh screen filter + ΔP gauge (FP2)",
+     "chosenComponent": "Rusco 1\" Spin-Down sediment filter, 140-mesh (104 µm) 316 screen, w/ bottom flush ball valve; paired 0-100 psi glycerin gauge(s) across it",
+     "vendor": "Home Depot / irrigation & well-water supply (Rusco, US Water Systems)",
+     "price": "$45-65 filter + $12-25 gauge",
+     "qty": "1 filter, 1-2 gauges",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "~11 in tall polymer bowl — fits. This is the geometric anti-clog guarantee: 140-mesh opening (104 µm) is smaller than the smallest 0.012 in orifice bore (~305 µm), so nothing that passes can lodge in the nozzle. Flush valve backflushes under load without teardown.",
+     "upgrade": "Vu-Flow 200-mesh or an Amiad/Arkal self-cleaning spin-down for finer/auto duty. For real instrumentation, use a purpose-made differential-pressure gauge (e.g., Winters PFQ diff gauge, ~$60) instead of two singles so ΔP reads directly.",
+     "link": "https://www.homedepot.com/p/Rusco-Spin-Down-Replacement-Water-Filter-RUSCO-FS-1-100/206755515"
+    },
+    {
+     "name": "Cavitation HP feed pump — plunger head + BLDC drive (FP5)",
+     "chosenComponent": "Cat Pumps 2SF-series direct-drive triplex plunger pump head (e.g., 2SF22ES ~2.2 gpm class) + Brushless.com 48V 750W BLDC motor + BLD-750 controller, belt/direct-coupled and regulated down to ~250-400 psi",
+     "vendor": "Cat Pumps (Anderson Process) + Brushless.com + Oyostepper (controller)",
+     "price": "$400-500 pump + $130-170 motor + $35-50 controller (approx) = ~$600 assembled",
+     "qty": "1 assembly",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Pump head ~8x6x6 in, motor ~4 in dia x 8 in, controller palm-sized — all fit the drum with room. This is the keystone 'brain + hardware' the kit exists to supply: no off-the-shelf 24-48V DC triplex exists, so the kit pre-marries a bulletproof Cat plunger head to a 48V BLDC and controller. Cat 2SF is rated far above 400 psi (you throttle down via the unloader), giving huge seal margin.",
+     "upgrade": "If the builder accepts lower flow (~0.5-1 gpm), a self-contained 24/48V high-pressure MISTING pump (brushless, 1000 psi, ~$150-250, e.g., Aeromist/mid-pressure fog pump) collapses pump+motor+controller into ONE sealed unit — cheaper, simpler, and even truer to the 'hold pressure, cut flow' physics. Flag: confirm its wetted parts tolerate algae grit.",
+     "link": "https://www.catpumps.com/products/pumps/2sf-direct-drive-plunger-pump-2sf30gs"
+    },
+    {
+     "name": "Kinetic Nozzle HOLDER — 316L manifold (FP6)",
+     "chosenComponent": "316L stainless manifold drilled/tapped for a triangular cluster of 3-4 orifice inserts (10/24 UNC) with a quick-change coupling — CNC one-off (Xometry/SendCutSend) OR DIY from a 316 stainless pipe plug/cross drilled and tapped",
+     "vendor": "Xometry / Protolabs / SendCutSend (CNC) or McMaster-Carr (316 plug for DIY)",
+     "price": "$100-200 CNC one-off; ~$15-30 DIY-from-316-plug",
+     "qty": "1 (+1 spare recommended)",
+     "shipOrLocal": "either",
+     "fitsNote": "Palm-sized — ships in the drum if pre-machined. Spec corrected to 316L (the source drawing's '306 S.S.' is a nonexistent grade). Threaded 10/24 sockets accept cheap standard misting-orifice inserts, converting the old $150-600 machined consumable into a reusable body.",
+     "upgrade": "For the true triangular micro-cluster geometry from the drawings, order the CNC holder; a builder who just wants it working can tap 3-4 holes into a 316 hex plug and skip the shop entirely. Either way keep it 316L and on a quick-disconnect for borescope inspection.",
+     "link": "https://www.mcmaster.com/316-stainless-steel-pipe-fittings/"
+    },
+    {
+     "name": "Orifice insert — the consumable jet (FP7)",
+     "chosenComponent": "Stainless-steel high-pressure misting orifice, 0.012 in bore, 10/24 UNC thread (30-pack) — known/defined bore, ~0.029 GPM each @ 1000 psi",
+     "vendor": "Amazon / Fogco / mistingnozzle.com",
+     "price": "$10-15 for a 10-30 pack (approx $0.50-1.50 each)",
+     "qty": "3-4 fitted + a pack of spares",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Thumbnail-sized; a lifetime of spares fits in a sandwich bag. This is the honest right-sizing of the manual's '$15-40 tungsten-carbide waterblast insert': at 250-400 psi (not 40,000 psi waterjet), a 0.012 in SS misting orifice IS the known-bore jet, at pennies, and fixes orifice area so pump P/Q become predictable.",
+     "upgrade": "Ceramic or tungsten-carbide misting orifices (10/24) exist for ~10-50x erosion life if the borescope schedule shows real pitting — press-in carbide waterblast inserts (StoneAge/Leland) are the top tier but are over-spec for this pressure. Start SS, upgrade to ceramic/carbide only if erosion data demands it.",
+     "link": "https://fogco.com/product/standard-brass-nozzle-012-orifice/"
+    },
+    {
+     "name": "Unloader / pressure-relief valve (FP9)",
+     "chosenComponent": "General Pump / AR pressure-washer unloader, low-flow variant (AR ZK7-25 class or General Pump ZK7), bypass routed back to drum; adjustable to hold ~250-400 psi below the 4000-psi hose rating",
+     "vendor": "Pressure-washer parts supply (pressure-washer-parts.com) / Amazon (Canpump)",
+     "price": "$40-70",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Fist-sized brass — ships easily. Mandatory life-safety part on a positive-displacement pump: a blocked nozzle has nowhere to send flow and will burst the line without it. Its bypass return doubles as in-drum mixing (which is why the separate immersion pump got deleted).",
+     "upgrade": "Flag: at 1.5-2.5 gpm you are BELOW most bypass-unloaders' actuation flow (ZK7.1 min ~2.9 gpm). Prefer a simple spring-loaded adjustable PRESSURE-REGULATING/RELIEF valve sized for low flow over a flow-actuated unloader — it regulates cleanly at trickle flow where a bypass unloader chatters.",
+     "link": "https://www.pressure-washer-parts.com/general-pump-unloader-valves"
+    },
+    {
+     "name": "High-pressure hose + fittings (FP10)",
+     "chosenComponent": "3/8 in (or 1/4 in) pressure-washer hose, 4000 psi, wire-braided, M22/QC ends for the NOZZLE-FEED LEG ONLY (e.g., Corretic/RIDGE WASHER) + low-pressure reinforced PVC hose, ball valves, tees, barbs, check valves for the rest",
+     "vendor": "Amazon (HP hose) + hardware/irrigation (LP hose & valves)",
+     "price": "$25-40 HP hose + $40-80 LP hose/valves/fittings",
+     "qty": "1 HP run (~15-25 ft) + LP set",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Coils flat — HP hose and the fittings kit ship in the drum. Only the single nozzle-feed leg is HP-rated; everything else is ordinary reinforced PVC. 1/4 in ID is plenty at 1.5-2.5 gpm and keeps the coil small.",
+     "upgrade": "Bulk low-pressure PVC hose and Sch-40 pipe are cheapest bought locally by the foot (source-locally). Use proper HP threaded/QC ends on the feed leg — barbed clamps creep and weep at 400 psi.",
+     "link": "https://www.amazon.com/Corretic-Pressure-Resistant-Replacement-M22-14mm/dp/B09YH39DXF"
+    },
+    {
+     "name": "Intake / transfer bilge lift pump (FP3)",
+     "chosenComponent": "Rule-Mate or Attwood Tsunami T500 12V bilge cartridge, ~500-800 GPH, 3/4 in outlet",
+     "vendor": "Any marine/boat supply (West Marine / Amazon)",
+     "price": "$25-45",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Palm-sized cartridge — ships. Low-pressure volume lift only (pond -> drum through the coarse strainer); a few psi, so it CANNOT and MUST NOT feed the nozzle. Size GPH to drum turnover, not the box number (nameplate collapses against real lift head).",
+     "upgrade": "A 12V self-priming diaphragm pump avoids the centrifugal air-lock problem if the pump sits above the waterline. Otherwise this $30 throwaway is the right 'borrow a marine part' call.",
+     "link": "https://www.amazon.com/s?k=attwood+tsunami+t500+bilge+pump"
+    },
+    {
+     "name": "Off-load / decant diaphragm pump (FP12)",
+     "chosenComponent": "Pentair SHURFLO 8000-543-250 12VDC diaphragm pump — 1.8 GPM, 50 PSI, Viton valves + Santoprene diaphragm (hydrocarbon-compatible wetted parts)",
+     "vendor": "Amazon / ag & RV supply (SpraySmarter, AgSpray)",
+     "price": "$120-130",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Small — ships. Transfer duty ONLY (skimmed wax/oil -> jerricans/bladder). Self-priming diaphragm moves viscous/semi-solid wax a centrifugal pump can't. Viton/Santoprene wetted parts survive the waxy lipid product where plain Buna swells. Keep it STRICTLY off the HP loop — plumbing it to the nozzle destroys it.",
+     "upgrade": "SHURFLO SF-1100 bulk chemical transfer (higher flow) if off-load speed matters; add an inline suction strainer either way to keep wax lumps out of the check valves.",
+     "link": "https://us.amazon.com/SHURFLO-8000%E2%80%91543%E2%80%91250-Diaphragm-Santoprene-Agricultural/dp/B00E5UV06E"
+    },
+    {
+     "name": "Eductor / venturi injector (FP8) — DAF concentration + mixing",
+     "chosenComponent": "Mazzei 584 (1/2 in) or 878 (1 in) polypropylene venturi injector — no-moving-parts, entrains gas to float/concentrate algae toward the >6% solids target",
+     "vendor": "Amazon (authorized Mazzei) / irrigation supply (DripWorks, IrrigationKing)",
+     "price": "$30-55 (584) / $60-90 (878)",
+     "qty": "1",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "Palm-sized polymer part — ships. Fed from the unloader bypass so it keeps floating/mixing while the HP pump idles between batches. Sizing to slurry flow is UNKNOWN — match motive flow (584 = 5.9 gpm @ 40 psi; 878 = 10.3 gpm) to your recirc leg, or measure.",
+     "upgrade": "Size the model to your actual recirc flow after the pump is chosen; too-small motive flow gives too little suction to float anything. The custom 4-port part in the drawings is unnecessary — a COTS Mazzei is the honest stand-in.",
+     "link": "https://www.amazon.com/Mazzei-584-PP-Authorized-Distributor-Injectors/dp/B014JYD48W"
+    },
+    {
+     "name": "Inline instrumentation — flow/pressure/watt (FP11)",
+     "chosenComponent": "Glycerin-filled 0-600 psi HP gauge + hall-effect/paddlewheel flow sensor (~1.5-2.5 gpm range) + inline DC watt-meter (shunt, e.g., Bayite/Drok) on the pump circuit",
+     "vendor": "Amazon (gauges, DC meters) + process-instrument supply (GPI, Blue-White for the flow meter)",
+     "price": "$75-125 for the set",
+     "qty": "1 set",
+     "shipOrLocal": "ship-in-drum",
+     "fitsNote": "All small — ships. This ~$100 of gauges is the cheapest-but-highest-stakes part in the build: it turns every run into logged grams-oil-out vs. watt-hours-in and reads TRUE nozzle P/Q off the gauge (never the BOM caption). Glycerin fill is mandatory — a dry gauge needle hammers itself dead on plunger-pump pulsation.",
+     "upgrade": "For real logging, feed the DC shunt and a pressure transducer into the optional ESP32 so runs auto-log; the Victron SmartShunt already covers battery-side Wh but a dedicated pump-circuit watt-meter isolates the cavitation energy cost.",
+     "link": "https://www.blue-white.com/product-category/flow-meters/"
+    }
+   ]
+  }
+ ]
+}
